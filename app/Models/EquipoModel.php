@@ -8,9 +8,4 @@ class EquipoModel extends Model
 {
     protected $table = 'equipo';
     protected $allowedFields = ['id', 'nombre', 'mundiales_ganados', 'ranking_fifa','mundiales_jugados'];
-
-    public function getEquipo()
-    {
-
-    }
 }
