@@ -32,9 +32,9 @@
   <!-- AdminLTE App -->
   <script src="<?= base_url('js/adminlte.min.js') ?>"></script>
   <script>
-    function baja() {
+    function alert(message) {
 
-      if (confirm("¿Desea eliminar el equipo seleccionado?") == true) {
+      if (confirm(message) == true) {
         return true;
       } else
         return false;
