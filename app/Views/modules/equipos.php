@@ -1,4 +1,5 @@
-<div class="row">
+<div class="content-wrapper">
+  <div class="row">
   <div class="col-12">
     <div class="card">
       <div class="card-header">
@@ -82,5 +83,6 @@
       <!-- /.card-body -->
     </div>
     <!-- /.card -->
+  </div>
   </div>
 </div>
