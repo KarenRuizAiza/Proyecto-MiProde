@@ -6,6 +6,7 @@ use App\Models\EquipoModel;
 
 class Equipo extends BaseController
 {
+
     public function index()
     {
         $equipoModel = new EquipoModel();
