@@ -42,13 +42,14 @@ class Fase extends BaseController
             . view('template/footer');
     }
 
-    public function agregarModificarFase()
+    public function agregarModificarFase($id_torneo)
     {
         if ($this->request->getPost()) {
             $fase = [
                 'nombre' => $this->request->getPost('nombre'),
                 'fecha_inicio' => $this->request->getPost('fecha_inicio'),
-                'fecha_fin' => $this->request->getPost('fecha_fin')
+                'fecha_fin' => $this->request->getPost('fecha_fin'),
+                'id_torneo' => $this->request->getPost($id_torneo)
             ];
             $faseModelo = new FaseModel();
             if ($this->request->getPost('id')) {

@@ -8,4 +8,10 @@ class TorneoModel extends Model
 {
     protected $table = 'partido';
     protected $allowedFields = ['id', 'fecha', 'hora'];
+
+    public function partidosListarTodos() {
+        query = $this->db->table('partidos p'){
+            
+        }
+    }
 }

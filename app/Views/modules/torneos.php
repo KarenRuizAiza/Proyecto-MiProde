@@ -32,22 +32,23 @@
 
             <div class="form-group">
               <label>Fecha Inicio</label>
-                <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                  <input type="text" name="fecha_inicio" class="form-control datetimepicker-input col-sm-4 flex-column d-flex" data-target="#reservationdate" value="<?php echo $torneoEditar ? $torneoEditar['fecha_inicio'] : '' ?>"/>
+                <div class="input-group date" data-target-input="nearest">
+                  <input type="text" name="fecha_inicio" class="datepicker col-sm-4" class="form-control datetimepicker-input"  value="<?php echo $torneoEditar ? $torneoEditar['fecha_inicio'] : '' ?>"/>
                   <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                   </div>
                 </div>
             </div>
 
-            <label for="fecha_fin" class="form-label">Fecha Fin</label>
-            <div class="input-group">
-              <div for="fecha_fin" class="input-group-prepend">
-                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-              </div>
-              <input type="text" name="fecha_fin "class="form-control col-sm-4 flex-column d-flex" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask value="<?php echo $torneoEditar ? $torneoEditar['fecha_fin'] : '' ?>">
+            <div class="form-group">
+              <label>Fecha Fin</label>
+                <div class="input-group date" data-target-input="nearest">
+                  <input type="text" name="fecha_fin" class="datepicker col-sm-4" class="form-control datetimepicker-input"  value="<?php echo $torneoEditar ? $torneoEditar['fecha_fin'] : '' ?>"/>
+                  <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                  </div>
+                </div>
             </div>
-            <br>
 
             <div class="col-sm-8 flex-row d-flex">
                 <button type="submit" name="submit" class="form-control col-sm-2 btn-primary"
@@ -65,7 +66,6 @@
         <table class="table table-head-fixed text-nowrap">
           <thead>
             <tr>
-              <th style="visibility: hidden;">Id</th>
               <th>Nombre</th>
               <th>Descripcion</th>
               <th>Fecha Inicio</th>
@@ -76,14 +76,15 @@
           <tbody>
             <?php foreach ($torneos as $t) : ?>
               <tr>
-                <td style="visibility: hidden;"><?= $t['id'] ?></td>
                 <td><?= $t['nombre'] ?></td>
                 <td><?= $t['descripcion'] ?></td>
-                <td><?= $t['fecha_fin'] ?></td>
+                <td><?= $t['fecha_inicio'] ?></td>
                 <td><?= $t['fecha_fin'] ?></td>
                 <td>
-                  <a href="<?php echo base_url('delete/'.$t['id']);?>" onclick="return alert('¿Desea eliminar el torneo seleccionado?')"><i class="fa-solid fa-trash-can"></i></a>
-                  <a href="<?php echo base_url('update/'.$t['id']);?>"><i class="fa-solid fa-pen"></i></a>
+                  <a href="<?php echo base_url('deleteTorneo/'.$t['id']);?>" onclick="return alert('¿Desea eliminar el torneo seleccionado?')"><i class="fa-solid fa-trash-can"></i></a>
+                  <a href="<?php echo base_url('updateTorneo/'.$t['id']);?>"><i class="fa-solid fa-pen"></i></a>
+                  <button type="button" name="agregar" class="form-control col-sm-6 ml-2 btn-primary"
+                        onclick="location.href='<?php echo base_url('obtenerTorneo/'.$t['id']); ?>'">Agregar Fase</button>
                 </td>
               </tr>
             <?php endforeach; ?>

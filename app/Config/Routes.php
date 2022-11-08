@@ -38,12 +38,16 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->get('fases', 'Fase::index');
 $routes->post('agregarModificarFase', 'Fase::agregarModificarFase');
-$routes->get('/update/(:num)', 'Fase::faseSeleccionada/$1');
-$routes->get('/delete/(:num)','Fase::eliminarFase/$1');
+$routes->get('/crearFase/(:num)', 'Fase::agregarModificarFase/$1');
+$routes->get('/updateFase/(:num)', 'Fase::faseSeleccionada/$1');
+$routes->get('/deleteFase/(:num)','Fase::eliminarFase/$1');
+
 $routes->get('torneos', 'Torneo::index');
 $routes->post('agregarModificarTorneo', 'Torneo::agregarModificarTorneo');
-$routes->get('/update/(:num)', 'Torneo::torneoSeleccionado/$1');
-$routes->get('/delete/(:num)','Torneo::eliminarTorneo/$1');
+$routes->get('/updateTorneo/(:num)', 'Torneo::torneoSeleccionado/$1');
+$routes->get('/deleteTorneo/(:num)','Torneo::eliminarTorneo/$1');
+$routes->get('/obtenerTorneo/(:num)', 'Torneo::obtenerTorneo/$1');
+
 $routes->get('equipos', 'Equipo::index');
 $routes->post('agregarModificar', 'Equipo::agregarModificarEquipo');
 $routes->get('/update/(:num)', 'Equipo::equipoSeleccionado/$1');

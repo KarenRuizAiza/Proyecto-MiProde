@@ -33,21 +33,22 @@
   <script src="<?= base_url('js/adminlte.min.js') ?>"></script>
   <!-- Bootstrap4 Duallistbox -->
   <script src="<?= base_url('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') ?>"></script>
-  <!-- Tempusdominus Bootstrap 4 -->
-  <script src="<?= base_url('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') ?>"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.es.min.js"></script>
+  
   <script>
   //Date picker
-  $('#reservationdate').datetimepicker({
-        format: 'L'
+  //$('#reservationdate').datetimepicker({
+  //      format: 'L'
+  //  });
+    $(function () {
+        $('.datepicker').datepicker({
+            format: "dd-mm-yyyy",
+            language: "es",
+            autoclose: true,
+            todayHighlight: true
+        });
     });
-
-    function alert(message) {
-
-      if (confirm(message) == true) {
-        return true;
-      } else
-        return false;
-    }
   </script>
 
 

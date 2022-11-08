@@ -28,24 +28,23 @@
 
             <div class="form-group">
               <label>Fecha Inicio</label>
-                <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                  <input type="text" name="fecha_inicio" class="form-control datetimepicker-input col-sm-4 flex-column d-flex" data-target="#reservationdate" value="<?php echo $faseEditar ? $faseEditar['fecha_inicio'] : '' ?>"/>
+                <div class="input-group date" data-target-input="nearest">
+                  <input type="text" name="fecha_inicio" class="datepicker col-sm-4" class="form-control datetimepicker-input"  value="<?php echo $faseEditar ? $faseEditar['fecha_inicio'] : '' ?>"/>
                   <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                   </div>
                 </div>
             </div>
 
-            <label for="fecha_fin" class="form-label">Fecha Fin</label>
-            <div class="input-group">
-              <div for="fecha_fin" class="input-group-prepend">
-                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-              </div>
-              <input type="text" name="fecha_fin "class="form-control col-sm-4 flex-column d-flex" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask value="<?php echo $faseEditar ? $faseEditar['fecha_fin'] : '' ?>">
+            <div class="form-group">
+              <label>Fecha Fin</label>
+                <div class="input-group date" data-target-input="nearest">
+                  <input type="text" name="fecha_fin" class="datepicker col-sm-4" class="form-control datetimepicker-input"  value="<?php echo $faseEditar ? $faseEditar['fecha_fin'] : '' ?>"/>
+                  <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                  </div>
+                </div>
             </div>
-            
-            <input type="hidden" name="id_torneo" value="<?php echo $faseEditar ? $faseEditar['id_torneo'] : '' ?>">
-            <br>
 
             <div class="col-sm-8 flex-row d-flex">
                 <button type="submit" name="submit" class="form-control col-sm-2 btn-primary"
@@ -63,25 +62,22 @@
         <table class="table table-head-fixed text-nowrap">
           <thead>
             <tr>
-              <th style="visibility: hidden;">Id</th>
               <th>Nombre</th>
               <th>Fecha Inicio</th>
               <th>Fecha Fin</th>
-              <th style="visibility: hidden;">IdTorneo</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             <?php foreach ($fases as $f) : ?>
               <tr>
-                <td style="visibility: hidden;"><?= $f['id'] ?></td>
                 <td><?= $f['nombre'] ?></td>
                 <td><?= $f['fecha_fin'] ?></td>
                 <td><?= $f['fecha_fin'] ?></td>
-                <td style="visibility: hidden;"><?= $f['id_torneo'] ?></td>
+                <td><?= $f['id_torneo'] ?></td>
                 <td>
-                  <a href="<?php echo base_url('delete/'.$f['id']);?>" onclick="return alert('¿Desea eliminar la fase seleccionada?')"><i class="fa-solid fa-trash-can"></i></a>
-                  <a href="<?php echo base_url('update/'.$f['id']);?>"><i class="fa-solid fa-pen"></i></a>
+                  <a href="<?php echo base_url('deleteFase/'.$f['id']);?>" onclick="return alert('¿Desea eliminar la fase seleccionada?')"><i class="fa-solid fa-trash-can"></i></a>
+                  <a href="<?php echo base_url('updateFase/'.$f['id']);?>"><i class="fa-solid fa-pen"></i></a>
                 </td>
               </tr>
             <?php endforeach; ?>
