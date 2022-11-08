@@ -42,7 +42,7 @@
                 <button type="submit" name="submit" class="form-control col-sm-2 btn-primary"
                         onclick="return alert('¿Desea guardar el equipo con los datos ingresados?')">Guardar</button>
                 <button type="button" name="cancel" class="form-control col-sm-2 ml-2 btn-danger"
-                        onclick="location.href='<?php echo base_url('tablaEquipo'); ?>'">Cancelar</button>
+                        onclick="location.href='<?php echo base_url('equipos'); ?>'">Cancelar</button>
             </div>
 
         </form>

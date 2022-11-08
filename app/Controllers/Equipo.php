@@ -6,6 +6,7 @@ use App\Models\EquipoModel;
 
 class Equipo extends BaseController
 {
+
     public function index()
     {
         $equipoModel = new EquipoModel();
@@ -61,7 +62,7 @@ class Equipo extends BaseController
             }
         }
 
-        return $this->response->redirect(site_url('/tablaEquipo'));
+        return $this->response->redirect(site_url('/equipos'));
     }
 
     public function eliminarEquipo($id = NULL)
@@ -69,6 +70,6 @@ class Equipo extends BaseController
         $equipoModelo = new EquipoModel();
         $data['user'] = $equipoModelo->where('id', $id)->delete($id);
 
-        return $this->response->redirect(site_url('/tablaEquipo'));
+        return $this->response->redirect(site_url('/equipos'));
     }
 }
