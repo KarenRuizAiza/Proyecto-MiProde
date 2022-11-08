@@ -31,7 +31,16 @@
   <script src="<?= base_url('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
   <!-- AdminLTE App -->
   <script src="<?= base_url('js/adminlte.min.js') ?>"></script>
+  <!-- Bootstrap4 Duallistbox -->
+  <script src="<?= base_url('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') ?>"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script src="<?= base_url('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') ?>"></script>
   <script>
+  //Date picker
+  $('#reservationdate').datetimepicker({
+        format: 'L'
+    });
+
     function alert(message) {
 
       if (confirm(message) == true) {

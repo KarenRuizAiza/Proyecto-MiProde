@@ -36,10 +36,19 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get('fases', 'Fase::index');
+$routes->post('agregarModificarFase', 'Fase::agregarModificarFase');
+$routes->get('/update/(:num)', 'Fase::faseSeleccionada/$1');
+$routes->get('/delete/(:num)','Fase::eliminarFase/$1');
+$routes->get('torneos', 'Torneo::index');
+$routes->post('agregarModificarTorneo', 'Torneo::agregarModificarTorneo');
+$routes->get('/update/(:num)', 'Torneo::torneoSeleccionado/$1');
+$routes->get('/delete/(:num)','Torneo::eliminarTorneo/$1');
 $routes->get('equipos', 'Equipo::index');
 $routes->post('agregarModificar', 'Equipo::agregarModificarEquipo');
 $routes->get('/update/(:num)', 'Equipo::equipoSeleccionado/$1');
 $routes->get('/delete/(:num)','Equipo::eliminarEquipo/$1');
+
 
 
 /*
