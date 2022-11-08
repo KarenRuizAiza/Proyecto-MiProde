@@ -5,6 +5,7 @@ namespace App\Controllers;
 use DateTime;
 
 use App\Models\TorneoModel;
+use App\Models\FaseModel;
 
 class Torneo extends BaseController
 {
@@ -80,14 +81,23 @@ class Torneo extends BaseController
 
     public function obtenerTorneo($id_torneo)
     {
-        $dato = ["id" => $id_torneo];
         $torneoModelo = new TorneoModel();
-        $torneo = $torneoModelo->obtenerTorneo($dato);
+        $torneo = $torneoModelo->find($id_torneo);
         
-        $datos = array(
-            'torneo' => $torneo
+        $faseModel = new FaseModel();
+        $fases = $faseModel->findAll();
+        //dd($torneo);
+        $data = array(
+            'nombre' => $torneo['nombre'],
+            'id_torneo' => $id_torneo,
+            'faseEditar' => false,
+            'titulo' => 'Agregar fase',
+            'fases' => $fases
         );
-    
-        return $this->response->redirect(site_url('/fases'));
+        
+        return view('template/header')
+        . view('template/sidebar')
+        . view('modules/fases', $data)
+        . view('template/footer');
     }
 }

@@ -18,7 +18,7 @@
       <!-- /.card-header -->
       <!-- /form -->
       <div class="form-container">
-        <h4><?php echo $faseEditar ? 'Editar fase:' : 'Añadir fase:' ?></h4>
+        <h4><?php echo $faseEditar ? 'Editar fase:' : 'Añadir fase: ' . $nombre ?></h4>
         <form class="form-card" action="<?php echo base_url('agregarModificarFase');?>" method="post" name="agregarModificarFase">
             <input type="hidden" name="id" value="<?php echo $faseEditar ? $faseEditar['id'] : '' ?>">
 
@@ -45,6 +45,8 @@
                   </div>
                 </div>
             </div>
+
+            <input type="hidden" name="id_torneo" value="<?php echo $id_torneo ?>">
 
             <div class="col-sm-8 flex-row d-flex">
                 <button type="submit" name="submit" class="form-control col-sm-2 btn-primary"

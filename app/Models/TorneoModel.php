@@ -13,12 +13,12 @@ class TorneoModel extends Model
     
         $builder = $this->db->table('torneo t');
         
-        $builder->select('t.nombre nombreTorneo')
+        $builder->select('t.nombre nombreTorneo, t.id torneo_id')
         ->join('fase f', 't.id = f.id_torneo')
         ->where('t.id', $dato);
         
-        $results = $builder->get()->getCustomResultObject(Torneo::class);
+        $resultado = $builder->get()->getCustomResultObject(Torneo::class);
 
-        return $results;
+        return $resultado;
     }
 }
