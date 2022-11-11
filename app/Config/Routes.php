@@ -35,14 +35,14 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+$routes->get('/', 'Home::index');
+
 $routes->get('login', 'Login::index');
 $routes->post('auth', 'Login::autenticar');
 $routes->post('logout', 'Login::logout');
 
-$routes->get('/', 'Home::index');
-$routes->get('fases', 'Fase::index');
+$routes->get('fases/(:num)', 'Fase::index/$1');
 $routes->post('agregarModificarFase', 'Fase::agregarModificarFase');
-$routes->get('/crearFase/(:num)', 'Fase::agregarModificarFase/$1');
 $routes->get('/updateFase/(:num)', 'Fase::faseSeleccionada/$1');
 $routes->get('/deleteFase/(:num)','Fase::eliminarFase/$1');
 
@@ -50,7 +50,7 @@ $routes->get('torneos', 'Torneo::index');
 $routes->post('agregarModificarTorneo', 'Torneo::agregarModificarTorneo');
 $routes->get('/updateTorneo/(:num)', 'Torneo::torneoSeleccionado/$1');
 $routes->get('/deleteTorneo/(:num)','Torneo::eliminarTorneo/$1');
-$routes->get('/obtenerTorneo/(:num)', 'Torneo::obtenerTorneo/$1');
+$routes->get('/torneoAgregarFase/(:num)', 'Torneo::torneoAgregarFase/$1');
 
 $routes->get('equipos', 'Equipo::index');
 $routes->post('agregarModificar', 'Equipo::agregarModificarEquipo');

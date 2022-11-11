@@ -79,7 +79,7 @@ class Torneo extends BaseController
         return $this->response->redirect(site_url('/torneos'));
     }
 
-    public function obtenerTorneo($id_torneo)
+    public function torneoAgregarFase($id_torneo)
     {
         $torneoModelo = new TorneoModel();
         $torneo = $torneoModelo->find($id_torneo);
@@ -88,7 +88,7 @@ class Torneo extends BaseController
         $fases = $faseModel->findAll();
         //dd($torneo);
         $data = array(
-            'nombre' => $torneo['nombre'],
+            'nombre_torneo' => $torneo['nombre'],
             'id_torneo' => $id_torneo,
             'faseEditar' => false,
             'titulo' => 'Agregar fase',

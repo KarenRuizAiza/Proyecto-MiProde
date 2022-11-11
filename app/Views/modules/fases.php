@@ -18,7 +18,9 @@
       <!-- /.card-header -->
       <!-- /form -->
       <div class="form-container">
-        <h4><?php echo $faseEditar ? 'Editar fase:' : 'Añadir fase: ' . $nombre ?></h4>
+        
+        <h2> <?php echo $torneo["nombre"] ?></h2>
+        <h4><?php echo $faseEditar  ? 'Editar fase' : 'Añadir fase ' ?></h4>
         <form class="form-card" action="<?php echo base_url('agregarModificarFase');?>" method="post" name="agregarModificarFase">
             <input type="hidden" name="id" value="<?php echo $faseEditar ? $faseEditar['id'] : '' ?>">
 
@@ -46,13 +48,12 @@
                 </div>
             </div>
 
-            <input type="hidden" name="id_torneo" value="<?php echo $id_torneo ?>">
-
+            <input type="hidden" name="id_torneo" value="<?php echo $torneo["id"] ?>">
             <div class="col-sm-8 flex-row d-flex">
                 <button type="submit" name="submit" class="form-control col-sm-2 btn-primary"
                         onclick="return alert('¿Desea guardar la fase con los datos ingresados?')">Guardar</button>
                 <button type="button" name="cancel" class="form-control col-sm-2 ml-2 btn-danger"
-                        onclick="location.href='<?php echo base_url('fases'); ?>'">Cancelar</button>
+                        onclick="location.href='<?php echo base_url('/fases'); ?>'">Cancelar</button>
             </div>
 
         </form>
@@ -74,9 +75,8 @@
             <?php foreach ($fases as $f) : ?>
               <tr>
                 <td><?= $f['nombre'] ?></td>
+                <td><?= $f['fecha_inicio'] ?></td>
                 <td><?= $f['fecha_fin'] ?></td>
-                <td><?= $f['fecha_fin'] ?></td>
-                <td><?= $f['id_torneo'] ?></td>
                 <td>
                   <a href="<?php echo base_url('deleteFase/'.$f['id']);?>" onclick="return alert('¿Desea eliminar la fase seleccionada?')"><i class="fa-solid fa-trash-can"></i></a>
                   <a href="<?php echo base_url('updateFase/'.$f['id']);?>"><i class="fa-solid fa-pen"></i></a>

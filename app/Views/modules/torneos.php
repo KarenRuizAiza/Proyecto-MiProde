@@ -70,6 +70,7 @@
               <th>Descripcion</th>
               <th>Fecha Inicio</th>
               <th>Fecha Fin</th>
+              <th>Fases</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -81,10 +82,13 @@
                 <td><?= $t['fecha_inicio'] ?></td>
                 <td><?= $t['fecha_fin'] ?></td>
                 <td>
+                  <a href="<?php echo base_url('fases/'.$t['id']);?>"> <i class="fa-solid fa-table-list"></i> Ver </a>
+                  <a href="<?php echo base_url('torneoAgregarFase/'.$t['id']); ?>"><i class="fa-solid fa-plus"></i> Agregar  </a>
+                </td>
+                <td>
                   <a href="<?php echo base_url('deleteTorneo/'.$t['id']);?>" onclick="return alert('¿Desea eliminar el torneo seleccionado?')"><i class="fa-solid fa-trash-can"></i></a>
                   <a href="<?php echo base_url('updateTorneo/'.$t['id']);?>"><i class="fa-solid fa-pen"></i></a>
-                  <button type="button" name="agregar" class="form-control col-sm-6 ml-2 btn-primary"
-                        onclick="location.href='<?php echo base_url('obtenerTorneo/'.$t['id']); ?>'">Agregar Fase</button>
+                  
                 </td>
               </tr>
             <?php endforeach; ?>
