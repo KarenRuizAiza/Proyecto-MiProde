@@ -19,7 +19,7 @@
         <!-- /.card-header -->
         <!-- /form -->
         <div class="form-container">
-        <h4><?php echo $equipoEditar ? 'Editar equipo:' : 'Añadir equipo:' ?></h4>
+        <h4><?php echo $equipoEditar ? 'Editar equipo' : 'Añadir equipo' ?></h4>
         <form class="form-card" action="<?php echo base_url('agregarModificar');?>" method="post" name="agregarModificarEquipo">
             <input type="hidden" name="id" value="<?php echo $equipoEditar ? $equipoEditar['id'] : '' ?>">
 

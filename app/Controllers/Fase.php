@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\PartidoModel;
 use DateTime;
 
 use App\Models\FaseModel;
@@ -13,35 +14,38 @@ class Fase extends BaseController
         $faseModel = new FaseModel();
         $torneoModel = new TorneoModel();
        
-        $data["torneo"] = $torneoModel->find($id_torneo); 
-        $data["faseEditar"] = false;
-        $data["titulo"] = "Lista de Fases"; 
-        $data["fases"] = $faseModel->listarFasesPorTorneo($id_torneo);
-       //$fases[0]['nombre_torneo']
-        /*  $fases = $faseModel->listarFasesPorTorneo($id_torneo);
+        $torneo = $torneoModel->find($id_torneo);
+        $fases = $faseModel->listarFasesPorTorneo($id_torneo);
+
         $data = array(
             'titulo' => 'Lista de Fases',
-            'torneo' => $fases[0]['nombre_torneo'],
+            'torneo' => $torneo,
             'fases' => $fases,
+            'listado' => true,
             'faseEditar' => false,
-        );*/
-       //dd( $data);
+        );
+
         return view('template/header')
             . view('template/sidebar')
             . view('modules/fases', $data)
             . view('template/footer');
     }
    
-    public function faseSeleccionada($id = null)
+    public function faseSeleccionada($id = null, $id_torneo = null)
     {
         $faseModel = new FaseModel();
-        $fases = $faseModel->findAll();
+        $torneoModel = new TorneoModel();
+
+        $torneo = $torneoModel->find($id_torneo);
+        $fases = $faseModel->listarFasesPorTorneo($id_torneo);
 
         $faseEditar = $faseModel->find($id);
 
         $data = array(
             'titulo' => 'Lista de Fases',
+            'torneo' => $torneo,
             'fases' => $fases,
+            'listado' => false,
             'faseEditar' => $faseEditar,
         );
 
@@ -89,5 +93,25 @@ class Fase extends BaseController
         return redirect()->to(base_url()."/fases"."/".$id_torneo);
     }
 
-    
+    public function agregarPartido($id_fase)
+    {
+        $faseModel = new FaseModel();
+        $fase = $faseModel->find($id_fase);
+
+        $partidoModel = new PartidoModel();
+        $partidos = $partidoModel->findAll();
+        //dd($torneo);
+        $data = array(
+            'fase' => $fase,
+            'listado' => false,
+            'partidoEditar' => false,
+            'titulo' => 'Agregar partido',
+            'partidos' => $partidos
+        );
+
+        return view('template/header')
+            . view('template/sidebar')
+            . view('modules/partidos', $data)
+            . view('template/footer');
+    }
 }

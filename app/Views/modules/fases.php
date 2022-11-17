@@ -18,10 +18,10 @@
       <!-- /.card-header -->
       <!-- /form -->
       <div class="form-container">
-        
         <h2> <?php echo $torneo["nombre"] ?></h2>
         <h4><?php echo $faseEditar  ? 'Editar fase' : 'Añadir fase ' ?></h4>
-        <form class="form-card" action="<?php echo base_url('agregarModificarFase');?>" method="post" name="agregarModificarFase">
+        <form class="form-card" action="<?php echo base_url('agregarModificarFase');?>" method="post" name="agregarModificarFase" id="formFase"
+            <?php if($listado){ echo 'style="visibility:hidden;"'; } else { echo 'style="visibility:visible;"';} ?>>
             <input type="hidden" name="id" value="<?php echo $faseEditar ? $faseEditar['id'] : '' ?>">
 
             <label for="nombre" class="form-label">Nombre</label>
@@ -53,7 +53,7 @@
                 <button type="submit" name="submit" class="form-control col-sm-2 btn-primary"
                         onclick="return alert('¿Desea guardar la fase con los datos ingresados?')">Guardar</button>
                 <button type="button" name="cancel" class="form-control col-sm-2 ml-2 btn-danger"
-                        onclick="location.href='<?php echo base_url('/fases'); ?>'">Cancelar</button>
+                        onclick="location.href='<?php echo base_url('fases/'.$torneo['id']); ?>'">Cancelar</button>
             </div>
 
         </form>
@@ -68,6 +68,7 @@
               <th>Nombre</th>
               <th>Fecha Inicio</th>
               <th>Fecha Fin</th>
+              <th>Partidos</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -78,8 +79,12 @@
                 <td><?= $f['fecha_inicio'] ?></td>
                 <td><?= $f['fecha_fin'] ?></td>
                 <td>
+                  <a href="<?php echo base_url('partidos/'.$f['id']);?>"> <i class="fa-solid fa-table-list"></i> Ver </a>
+                  <a href="<?php echo base_url('agregarPartido/'.$f['id']); ?>"><i class="fa-solid fa-plus"></i> Agregar  </a>
+                </td>
+                <td>
                   <a href="<?php echo base_url('deleteFase/'.$f['id']);?>" onclick="return alert('¿Desea eliminar la fase seleccionada?')"><i class="fa-solid fa-trash-can"></i></a>
-                  <a href="<?php echo base_url('updateFase/'.$f['id']);?>"><i class="fa-solid fa-pen"></i></a>
+                  <a href="<?php echo base_url('modificar/fase='.$f['id']).'/torneo='.($torneo['id']);?>"><i class="fa-solid fa-pen"></i></a>
                 </td>
               </tr>
             <?php endforeach; ?>

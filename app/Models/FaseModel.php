@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Models;
-
 use CodeIgniter\Model;
-use App\Controllers\Fase;
 
 class FaseModel extends Model
 {

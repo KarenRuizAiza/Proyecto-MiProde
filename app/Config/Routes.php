@@ -41,16 +41,22 @@ $routes->get('login', 'Login::index');
 $routes->post('auth', 'Login::autenticar');
 $routes->post('logout', 'Login::logout');
 
-$routes->get('fases/(:num)', 'Fase::index/$1');
-$routes->post('agregarModificarFase', 'Fase::agregarModificarFase');
-$routes->get('/updateFase/(:num)', 'Fase::faseSeleccionada/$1');
-$routes->get('/deleteFase/(:num)','Fase::eliminarFase/$1');
-
 $routes->get('torneos', 'Torneo::index');
 $routes->post('agregarModificarTorneo', 'Torneo::agregarModificarTorneo');
 $routes->get('/updateTorneo/(:num)', 'Torneo::torneoSeleccionado/$1');
 $routes->get('/deleteTorneo/(:num)','Torneo::eliminarTorneo/$1');
-$routes->get('/torneoAgregarFase/(:num)', 'Torneo::torneoAgregarFase/$1');
+$routes->get('/agregarFase/(:num)', 'Torneo::agregarFase/$1');
+
+$routes->get('fases/(:num)', 'Fase::index/$1');
+$routes->post('agregarModificarFase', 'Fase::agregarModificarFase');
+$routes->get('/modificar/fase=(:num)/torneo=(:num)', 'Fase::faseSeleccionada/$1/$2');
+$routes->get('/deleteFase/(:num)','Fase::eliminarFase/$1');
+$routes->get('/agregarPartido/(:num)', 'Fase::agregarPartido/$1');
+
+$routes->get('partidos/(:num)', 'Partido::index/$1');
+$routes->post('agregarModificarPartido', 'Fase::agregarModificarPartido');
+$routes->get('/modificar/partido=(:num)/fase=(:num)', 'Partido::partidoSeleccionado/$1/$2');
+$routes->get('/deletePartido/(:num)','Partido::eliminarFase/$1');
 
 $routes->get('equipos', 'Equipo::index');
 $routes->post('agregarModificar', 'Equipo::agregarModificarEquipo');

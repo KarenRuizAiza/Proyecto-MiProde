@@ -83,7 +83,7 @@
                 <td><?= $t['fecha_fin'] ?></td>
                 <td>
                   <a href="<?php echo base_url('fases/'.$t['id']);?>"> <i class="fa-solid fa-table-list"></i> Ver </a>
-                  <a href="<?php echo base_url('torneoAgregarFase/'.$t['id']); ?>"><i class="fa-solid fa-plus"></i> Agregar  </a>
+                  <a href="<?php echo base_url('agregarFase/'.$t['id']); ?>"><i class="fa-solid fa-plus"></i> Agregar  </a>
                 </td>
                 <td>
                   <a href="<?php echo base_url('deleteTorneo/'.$t['id']);?>" onclick="return alert('¿Desea eliminar el torneo seleccionado?')"><i class="fa-solid fa-trash-can"></i></a>
