@@ -13,11 +13,37 @@ class Equipo extends BaseController
         $equipos = $equipoModel->findAll();
 
         $data = array(
-            'titulo' => 'Lista de Equipos',
+            /*'titulo' => 'Lista de Equipos',
             'equipos' => $equipos,
             'equipoEditar' => '',
+            'grupo' => $grupo,*/
+            'listado' => false,
+            'titulo' => 'Agregar Equipo',
+            'equipos' => $equipos,
+            'equipoEditar' => false,
         );
 
+        return view('template/header')
+            . view('template/sidebar')
+            . view('modules/equipos', $data)
+            . view('template/footer');
+    }
+    public function equiposPorGrupo($id_grupo)
+    {
+        $equipoModel = new EquipoModel();
+        $equipos = $equipoModel->listarEquiposPorGrupo($id_grupo);
+        dd($equipos);
+        $data = array(
+            /*'titulo' => 'Lista de Equipos',
+            'equipos' => $equipos,
+            'equipoEditar' => false,
+            'grupo' => $grupo,*/
+            'listado' => false,
+            'titulo' => 'Agregar Equipo',
+            'equipos' => $equipos,
+            'equipoEditar' => false,
+        );
+        dd($data);
         return view('template/header')
             . view('template/sidebar')
             . view('modules/equipos', $data)

@@ -26,19 +26,7 @@
             <label for="nombre" class="form-label">Nombre</label>
             <input name="nombre" class="form-control col-sm-4 flex-column d-flex" value="<?php echo $equipoEditar ? $equipoEditar['nombre'] : '' ?>">
             <br>
-
-            <label for="mundiales_jugados" class="form-label">Mundiales jugados</label>
-            <input type="number" name="mundiales_jugados" class="form-control col-sm-4 flex-column d-flex" value="<?php echo $equipoEditar ? $equipoEditar['mundiales_jugados'] : '' ?>">
-            <br>
-
-            <label for="mundiales_ganados" class="form-label">Mundiales ganados</label>
-            <input type="number" name="mundiales_ganados" class="form-control col-sm-4 flex-column d-flex" value="<?php echo $equipoEditar ? $equipoEditar['mundiales_ganados'] : '' ?>">
-            <br>
-
-            <label for="ranking_fifa" class="form-label">Ranking FIFA</label>
-            <input type="number" name="ranking_fifa" class="form-control col-sm-4 flex-column d-flex" value="<?php echo $equipoEditar ? $equipoEditar['ranking_fifa'] : '' ?>">
-            <br>
-
+            
             <div class="col-sm-8 flex-row d-flex">
                 <button type="submit" name="submit" class="form-control col-sm-2 btn-primary"
                         onclick="return alert('¿Desea guardar el equipo con los datos ingresados?')">Guardar</button>
@@ -55,22 +43,14 @@
         <table class="table table-head-fixed text-nowrap">
           <thead>
             <tr>
-              <th style="visibility: hidden;">Id</th>
               <th>Nombre</th>
-              <th>Mundiales ganados</th>
-              <th>Ranking FIFA</th>
-              <th>Mundiales Jugados</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             <?php foreach ($equipos as $e) : ?>
               <tr>
-                <td style="visibility: hidden;"><?= $e['id'] ?></td>
                 <td><?= $e['nombre'] ?></td>
-                <td><?= $e['mundiales_ganados'] ?></td>
-                <td><?= $e['ranking_fifa'] ?></td>
-                <td><?= $e['mundiales_jugados'] ?></td>
                 <td>
                   <a href="<?php echo base_url('delete/'.$e['id']);?>" onclick="return alert('¿Desea eliminar el equipo seleccionado?')"><i class="fa-solid fa-trash-can"></i></a>
                   <a href="<?php echo base_url('update/'.$e['id']);?>"><i class="fa-solid fa-pen"></i></a>
