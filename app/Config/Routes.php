@@ -58,7 +58,15 @@ $routes->post('agregarModificarPartido', 'Fase::agregarModificarPartido');
 $routes->get('/modificar/partido=(:num)/fase=(:num)', 'Partido::partidoSeleccionado/$1/$2');
 $routes->get('/deletePartido/(:num)','Partido::eliminarFase/$1');
 
+$routes->get('grupos', 'Grupo::index');
+$routes->post('agregarModificarGrupo', 'Grupo::agregarModificarGrupo');
+$routes->get('/updateGrupo/(:num)', 'Grupo::grupoSeleccionado/$1');
+$routes->get('/deleteGrupo/(:num)','Grupo::eliminarGrupo/$1');
+$routes->get('/agregarEquipo/(:num)', 'Grupo::agregarEquipo/$1');
+
+
 $routes->get('equipos', 'Equipo::index');
+$routes->get('equipos/(:num)', 'Equipo::equiposPorGrupo/$1');
 $routes->post('agregarModificar', 'Equipo::agregarModificarEquipo');
 $routes->get('/update/(:num)', 'Equipo::equipoSeleccionado/$1');
 $routes->get('/delete/(:num)','Equipo::eliminarEquipo/$1');
