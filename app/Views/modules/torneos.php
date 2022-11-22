@@ -31,22 +31,22 @@
             <br>
 
             <div class="form-group">
-              <label>Fecha Inicio</label>
-                <div class="input-group date" data-target-input="nearest">
-                  <input type="text" name="fecha_inicio" class="datepicker col-sm-4" class="form-control datetimepicker-input"  value="<?php echo $torneoEditar ? $torneoEditar['fecha_inicio'] : '' ?>"/>
-                  <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                  </div>
+                <label>Fecha de inicio</label>
+                <div class="input-group date" id="reservationdateStart" data-target-input="nearest">
+                    <input type="text" name="fecha_inicio" class="datepicker col-sm-4" class="form-control datetimepicker-input" value="<?php echo $torneoEditar ? $torneoEditar['fecha_inicio'] : '' ?>"/>
+                    <div class="input-group-append" data-target="#reservationdateStart" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
                 </div>
             </div>
 
             <div class="form-group">
-              <label>Fecha Fin</label>
-                <div class="input-group date" data-target-input="nearest">
-                  <input type="text" name="fecha_fin" class="datepicker col-sm-4" class="form-control datetimepicker-input"  value="<?php echo $torneoEditar ? $torneoEditar['fecha_fin'] : '' ?>"/>
-                  <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                  </div>
+                <label>Fecha de fin</label>
+                <div class="input-group date" id="reservationdateEnd" data-target-input="nearest">
+                    <input type="text" name="fecha_fin" class="datepicker col-sm-4" class="form-control datetimepicker-input" value="<?php echo $torneoEditar ? $torneoEditar['fecha_fin'] : '' ?>"/>
+                    <div class="input-group-append" data-target="#reservationdateEnd" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
                 </div>
             </div>
 
@@ -79,11 +79,11 @@
               <tr>
                 <td><?= $t['nombre'] ?></td>
                 <td><?= $t['descripcion'] ?></td>
-                <td><?= $t['fecha_inicio'] ?></td>
-                <td><?= $t['fecha_fin'] ?></td>
+                <td><?= DateTime::createFromFormat('Y-m-d', $t['fecha_inicio'])->format('d/m/Y') ?></td>
+                <td><?= DateTime::createFromFormat('Y-m-d', $t['fecha_fin'])->format('d/m/Y') ?></td>
                 <td>
-                  <a href="<?php echo base_url('fases/'.$t['id']);?>"> <i class="fa-solid fa-table-list"></i> Ver </a>
-                  <a href="<?php echo base_url('agregarFase/'.$t['id']); ?>"><i class="fa-solid fa-plus"></i> Agregar  </a>
+                  <a href="<?php echo base_url('fases/torneo='.$t['id']);?>"> <i class="fa-solid fa-table-list"></i> Ver </a>
+                  <a href="<?php echo base_url('agregarFase/torneo='.$t['id']); ?>"><i class="fa-solid fa-plus"></i> Agregar  </a>
                 </td>
                 <td>
                   <a href="<?php echo base_url('deleteTorneo/'.$t['id']);?>" onclick="return alert('¿Desea eliminar el torneo seleccionado?')"><i class="fa-solid fa-trash-can"></i></a>

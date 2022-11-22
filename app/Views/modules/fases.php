@@ -27,7 +27,6 @@
                                     <?php if($listado){ echo 'style="visibility:hidden;"'; } else { echo 'style="visibility:visible;"';} ?>>
                                     <?= csrf_field() ?>
 
-
                                     <input type="hidden" name="id" value="<?php echo $faseEditar ? $faseEditar['id'] : '' ?>">
 
                                     <label for="nombre" class="form-label">Nombre</label>
@@ -35,20 +34,20 @@
                                     <br>
 
                                     <div class="form-group">
-                                        <label>Fecha Inicio</label>
-                                        <div class="input-group date" data-target-input="nearest">
-                                            <input type="text" name="fecha_inicio" class="datepicker col-sm-4" class="form-control datetimepicker-input"  value="<?php echo $faseEditar ? $faseEditar['fecha_inicio'] : '' ?>"/>
-                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                        <label>Fecha de inicio</label>
+                                        <div class="input-group date" id="reservationdateStart" data-target-input="nearest">
+                                            <input type="text" name="fecha_inicio" class="datepicker col-sm-4" class="form-control datetimepicker-input" value="<?php echo $faseEditar ? $faseEditar['fecha_inicio'] : '' ?>"/>
+                                            <div class="input-group-append" data-target="#reservationdateStart" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Fecha Fin</label>
-                                        <div class="input-group date" data-target-input="nearest">
-                                            <input type="text" name="fecha_fin" class="datepicker col-sm-4" class="form-control datetimepicker-input"  value="<?php echo $faseEditar ? $faseEditar['fecha_fin'] : '' ?>"/>
-                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                        <label>Fecha de fin</label>
+                                        <div class="input-group date" id="reservationdateEnd" data-target-input="nearest">
+                                            <input type="text" name="fecha_fin" class="datepicker col-sm-4" class="form-control datetimepicker-input" value="<?php echo $faseEditar ? $faseEditar['fecha_fin'] : '' ?>"/>
+                                            <div class="input-group-append" data-target="#reservationdateEnd" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
@@ -59,7 +58,7 @@
                                         <button type="submit" name="submit" class="form-control col-sm-2 btn-primary"
                                                 onclick="return alert('¿Desea guardar la fase con los datos ingresados?')">Guardar</button>
                                         <button type="button" name="cancel" class="form-control col-sm-2 ml-2 btn-danger"
-                                                onclick="location.href='<?php echo base_url('fases/'.$torneo['id']); ?>'">Cancelar</button>
+                                                onclick="location.href='<?php echo base_url('fases/torneo='.$torneo['id']); ?>'">Cancelar</button>
                                     </div>
                                 </form>
                             </div><!-- /.form -->
@@ -78,11 +77,11 @@
                                     <?php foreach ($fases as $f) : ?>
                                         <tr>
                                             <td><?= $f['nombre'] ?></td>
-                                            <td><?= $f['fecha_inicio'] ?></td>
-                                            <td><?= $f['fecha_fin'] ?></td>
+                                            <td><?= DateTime::createFromFormat('Y-m-d', $f['fecha_inicio'])->format('d/m/Y') ?></td>
+                                            <td><?= DateTime::createFromFormat('Y-m-d', $f['fecha_fin'])->format('d/m/Y') ?></td>
                                             <td>
-                                                <a href="<?php echo base_url('partidos/'.$f['id']);?>"> <i class="fa-solid fa-table-list"></i> Ver </a>
-                                                <a href="<?php echo base_url('agregarPartido/'.$f['id']); ?>"><i class="fa-solid fa-plus"></i> Agregar  </a>
+                                                <a href="<?php echo base_url('partidos/fase='.$f['id']);?>"> <i class="fa-solid fa-table-list"></i> Ver </a>
+                                                <a href="<?php echo base_url('agregarPartido/fase='.$f['id']); ?>"><i class="fa-solid fa-plus"></i> Agregar  </a>
                                             </td>
                                             <td>
                                                 <a href="<?php echo base_url('eliminar/fase='.$f['id']);?>" onclick="return alert('¿Desea eliminar la fase seleccionada?')"><i class="fa-solid fa-trash-can"></i></a>
