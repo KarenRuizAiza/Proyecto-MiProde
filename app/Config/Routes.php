@@ -50,7 +50,7 @@ $routes->get('/agregarFase/(:num)', 'Torneo::agregarFase/$1');
 $routes->get('fases/(:num)', 'Fase::index/$1');
 $routes->post('agregarModificarFase', 'Fase::agregarModificarFase');
 $routes->get('/modificar/fase=(:num)/torneo=(:num)', 'Fase::faseSeleccionada/$1/$2');
-$routes->get('/deleteFase/(:num)','Fase::eliminarFase/$1');
+$routes->get('/eliminar/fase=(:num)','Fase::eliminarFase/$1');
 $routes->get('/agregarPartido/(:num)', 'Fase::agregarPartido/$1');
 
 $routes->get('partidos/(:num)', 'Partido::index/$1');

@@ -57,20 +57,22 @@ class Fase extends BaseController
 
     public function agregarModificarFase()
     {
-        
         if ($this->request->getPost()) {
+
             $fase = [
                 'nombre' => $this->request->getPost('nombre'),
                 'fecha_inicio' => $this->request->getPost('fecha_inicio'),
                 'fecha_fin' => $this->request->getPost('fecha_fin'),
                 'id_torneo' => $this->request->getPost('id_torneo')
             ];
-            //dd(base_url()."/fases"."/".$fase['id_torneo']);
-           
+
+
             $faseModelo = new FaseModel();
             
-            $fase['fecha_inicio'] = DateTime::createFromFormat("d-m-Y", $fase['fecha_inicio'])->format('Y-m-d');
-            $fase['fecha_fin'] = DateTime::createFromFormat("d-m-Y", $fase['fecha_fin'])->format('Y-m-d');
+//            $fase['fecha_inicio'] =  new Date($fase['fecha_inicio']); //DateTime::createFromFormat("d-m-Y", $fase['fecha_inicio'])->format('Y-m-d');
+//            $fase['fecha_fin'] = new Date($fase['fecha_fin']);  //DateTime::createFromFormat("d-m-Y", $fase['fecha_fin'])->format('Y-m-d');
+//            print_r($fase);
+//            die();
             if ($this->request->getPost('id')) {
                 $fase['id'] = $this->request->getPost('id');
                 $faseModelo->update($this->request->getPost('id'), $fase);
@@ -83,7 +85,7 @@ class Fase extends BaseController
         return redirect()->to(base_url()."/fases"."/".$fase['id_torneo']);
     }
 
-    public function eliminarFase($id = NULL)
+    public function eliminar($id = NULL)
     {
         $faseModelo = new FaseModel();
         $fase = $faseModelo->find($id);
