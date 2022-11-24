@@ -73,7 +73,7 @@ class Filters extends BaseConfig
      * @var array
      */
     public $filters = [
-        'loggedFilter' => ['before' => ['equipos']],
-        'adminFilter'  => ['before' => ['equipos', 'equipos/*']]
+        'loggedFilter' => ['before' => ['equipos', 'torneos', 'fases/torneo=(:num)', 'partidos/fase=(:num)']],
+        'adminFilter'  => ['before' => ['equipos', 'torneos/*', 'fases/*', 'partidos/*', 'agregarFase', 'agregarPartido', 'modificar/*', 'eliminar/*']]
     ];
 }
