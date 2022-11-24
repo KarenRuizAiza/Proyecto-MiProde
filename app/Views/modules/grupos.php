@@ -25,7 +25,7 @@
             <label for="nombre" class="form-label">Nombre</label>
             <input name="nombre" class="form-control col-sm-4 flex-column d-flex" value="<?php echo $grupoEditar ? $grupoEditar['nombre'] : '' ?>">
             <br>
-
+            
             <div class="col-sm-8 flex-row d-flex">
                 <button type="submit" name="submit" class="form-control col-sm-2 btn-primary"
                         onclick="return alert('¿Desea guardar el grupo con los datos ingresados?')">Guardar</button>
