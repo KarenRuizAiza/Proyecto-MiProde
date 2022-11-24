@@ -100,4 +100,15 @@ class Torneo extends BaseController
         . view('modules/fases', $data)
         . view('template/footer');
     }
+    public function torneosVigentes()
+    {
+        $torneo = new TorneoModel();
+        $data['titulo'] = "Torneos disponibles";
+        $data['torneos'] = $torneo->where('fecha_fin >', date("Y-m-d"))->orderBy('id', 'ASC')->findAll();
+        
+        return view('template/header')
+        . view('template/sidebar')
+        . view('modules/torneosVigentes', $data)
+        . view('template/footer');
+    }
 }

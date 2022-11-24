@@ -11,22 +11,23 @@ class Equipo extends BaseController
     public function index()
     {
         $equipoModel = new EquipoModel();
+        
         $grupoModel = new GrupoModel();
 
         $id_grupo = $equipoModel->id_grupo;
+        $grupo = $equipoModel->find($id_grupo);
 
-        $grupo = $grupoModel->find($id_grupo);
-        $nombre_grupo = $grupo->nombre;
-        dd($nombre_grupo);
-        $equipos = $equipoModel->listarEquiposPorGrupo($id_grupo);
+        $nombre_grupo = $grupo["nombre"];
+        
+        $equipos = $equipoModel->find($id_grupo);
         
         $data = array(
             'grupo' => $grupo,
             'nombre_grupo' => $nombre_grupo,
             'id_grupo' => $id_grupo,
-            'listado' => false,
-            'titulo' => 'Agregar Equipo',
+            'titulo' => 'Equipos',
             'equipos' => $equipos,
+            'listado' => true,
             'equipoEditar' => false,
         );
 
@@ -41,14 +42,14 @@ class Equipo extends BaseController
         $grupoModel = new GrupoModel();
 
         $grupo = $grupoModel->find($id_grupo);
-        $nombre_grupo = $grupo->nombre;
-        dd($nombre_grupo);
+        $nombre_grupo = $grupo["nombre"];
+        //dd($nombre_grupo);
         $equipos = $equipoModel->listarEquiposPorGrupo($id_grupo);
         $data = array(
             'grupo' => $grupo,
             'nombre_grupo' => $nombre_grupo,
             'id_grupo' => $id_grupo,
-            'listado' => false,
+            'listado' => true,
             'titulo' => 'Equipos',
             'equipos' => $equipos,
             'equipoEditar' => false,
@@ -66,8 +67,7 @@ class Equipo extends BaseController
         $grupoModel = new GrupoModel();
 
         $grupo = $grupoModel->find($id_grupo);
-        $nombre_grupo = $grupo->nombre;
-        
+        $nombre_grupo = $grupo["nombre"];
         $equipos = $equipoModel->listarEquiposPorGrupo($id_grupo);
         $equipoEditar = $equipoModel->find($id);
 

@@ -65,10 +65,14 @@ $routes->get('/deleteGrupo/(:num)','Grupo::eliminarGrupo/$1');
 $routes->get('/agregarEquipo/(:num)', 'Grupo::agregarEquipo/$1');
 
 $routes->get('equipos/(:num)', 'Equipo::equiposPorGrupo/$1');
-$routes->get('equipos', 'Equipo::index');
+$routes->get('equipos/', 'Equipo::index/$1');
 $routes->post('agregarModificar', 'Equipo::agregarModificarEquipo');
 $routes->get('/update/(:num)', 'Equipo::equipoSeleccionado/$1');
 $routes->get('/delete/(:num)','Equipo::eliminarEquipo/$1');
+
+//fixture
+$routes->get('fixture/verTorneos', 'Torneo::torneosVigentes');
+$routes->get('fixture/fasesFull/(:num)', 'Fase::listadoFasesFull/$1');
 
 
 

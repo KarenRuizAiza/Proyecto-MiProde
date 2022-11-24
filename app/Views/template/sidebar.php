@@ -47,6 +47,24 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="fixture/verTorneos" class="nav-link">
+                            <i class="nav-icon fa-solid fa-table"></i>
+                            <p>
+                                Fixture
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="fixture/verTorneos" class="nav-link">
+                            <i class="nav-icon fa-solid fa-circle-dollar-to-slot"></i>
+                            <p>
+                                Apuesta
+                            </p>
+                        </a>
+                    </li>
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

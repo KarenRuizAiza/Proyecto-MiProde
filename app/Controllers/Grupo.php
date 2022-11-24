@@ -73,13 +73,12 @@ class Grupo extends BaseController
 
     public function agregarEquipo($id_grupo)
     {
-        $equipoModel = new EquipoModel();
         $grupoModel = new GrupoModel();
-
         $grupo = $grupoModel->find($id_grupo);
-        $nombre_grupo = $grupo->nombre;
-        
-        $equipos = $equipoModel->findAll();
+        $nombre_grupo = $grupo["nombre"];
+        //dd($nombre_grupo);
+        $equipoModel = new EquipoModel();
+        $equipos = $equipoModel->listarEquiposPorGrupo($id_grupo);
         
         $data = array(
             'grupo' => $grupo,

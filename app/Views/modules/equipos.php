@@ -1,7 +1,8 @@
 <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                      <h2> <?= $nombre_grupo ?></h2>
+                      <h2> <?= $nombre_grupo?></h2>
+                      <? dd($nombre_grupo);?>
                     </div>
                 </div>
 </section>
@@ -25,7 +26,8 @@
         <div class="card-body" >
           <div class="form-container">
             <h4><?php echo $equipoEditar ? 'Editar equipo' : 'Añadir equipo' ?></h4>
-            <form class="form-card" action="<?php echo base_url('agregarModificar');?>" method="post" name="agregarModificarEquipo">
+            <form class="form-card" action="<?php echo base_url('agregarModificar');?>" method="post" name="agregarModificarEquipo" id="form-equipo">
+              
               <input type="hidden" name="id" value="<?php echo $equipoEditar ? $equipoEditar['id'] : '' ?>">
 
               <label for="nombre" class="form-label">Nombre</label>
@@ -38,7 +40,7 @@
                 <button type="submit" name="submit" class="form-control col-sm-2 btn-primary"
                         onclick="return alert('¿Desea guardar el equipo con los datos ingresados?')">Guardar</button>
                 <button type="button" name="cancel" class="form-control col-sm-2 ml-2 btn-danger"
-                        onclick="location.href='<?php echo base_url('equipos'); ?>'">Cancelar</button>
+                        onclick="location.href='<?php echo base_url('grupos'); ?>'">Cancelar</button>
               </div>
 
             </form><!-- /.form -->
