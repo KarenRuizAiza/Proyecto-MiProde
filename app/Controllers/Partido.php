@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\FaseModel;
 use App\Models\PartidoModel;
 use App\Models\TorneoModel;
+use DateTime;
 
 class Partido extends BaseController
 {
@@ -17,7 +18,7 @@ class Partido extends BaseController
         $partidos = $partidoModel->listarPorFase($id_fase);
 
         $data = array(
-            'titulo' => 'Lista de Partidos',
+            'titulo' => 'Partidos',
             'fase' => $fase,
             'partidos' => $partidos,
             'listado' => true,
@@ -39,9 +40,11 @@ class Partido extends BaseController
         $partidos = $partidoModel->listarPorFase($id_fase);
 
         $partidoEditar = $partidoModel->find($id);
+        $partidoEditar['fecha'] = DateTime::createFromFormat('Y-m-d', $partidoEditar['fecha'])->format('d-m-Y');
+        $partidoEditar['hora'] = date("H:i", strtotime($partidoEditar['hora']));
 
         $data = array(
-            'titulo' => 'Lista de Partidos',
+            'titulo' => 'Partidos',
             'fase' => $fase,
             'partidos' => $partidos,
             'listado' => false,
@@ -56,19 +59,16 @@ class Partido extends BaseController
 
     public function agregarModificarPartido()
     {
-
         if ($this->request->getPost()) {
             $partido = [
                 'fecha' => $this->request->getPost('fecha'),
                 'hora' => $this->request->getPost('hora'),
                 'id_fase' => $this->request->getPost('id_fase')
             ];
-            //dd(base_url()."/fases"."/".$partido['id_torneo']);
+
+            $partido['fecha'] = DateTime::createFromFormat('d/m/Y', $partido['fecha'])->format('Y-m-d');
 
             $partidoModel = new PartidoModel();
-
-            $partido['fecha'] = DateTime::createFromFormat("d-m-Y", $partido['fecha_inicio'])->format('Y-m-d');
-            $partido['hora'] = Time::createFromFormat("d-m-Y", $partido['fecha_fin'])->format('Y-m-d');
             if ($this->request->getPost('id')) {
                 $partido['id'] = $this->request->getPost('id');
                 $partidoModel->update($this->request->getPost('id'), $partido);
@@ -78,7 +78,7 @@ class Partido extends BaseController
             }
         }
 
-        return redirect()->to(base_url()."/partidos"."/".$partido['id_fase']);
+        return redirect()->to(base_url()."/partidos"."/fase=".$partido['id_fase']);
     }
 
     public function eliminarPartido($id = NULL)
@@ -88,6 +88,6 @@ class Partido extends BaseController
         $id_fase = $partido['id_fase'];
         $data['user'] = $partidoModel->where('id', $id)->delete($id);
 
-        return redirect()->to(base_url()."/partidos"."/".$id_fase);
+        return redirect()->to(base_url()."/partidos"."/fase=".$id_fase);
     }
 }

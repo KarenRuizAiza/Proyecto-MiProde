@@ -40,6 +40,8 @@ class Fase extends BaseController
         $fases = $faseModel->listarFasesPorTorneo($id_torneo);
 
         $faseEditar = $faseModel->find($id);
+        $faseEditar['fecha_inicio'] = DateTime::createFromFormat('Y-m-d', $faseEditar['fecha_inicio'])->format('d-m-Y');
+        $faseEditar['fecha_fin'] = DateTime::createFromFormat('Y-m-d', $faseEditar['fecha_fin'])->format('d-m-Y');
 
         $data = array(
             'titulo' => 'Lista de Fases',
@@ -66,13 +68,10 @@ class Fase extends BaseController
                 'id_torneo' => $this->request->getPost('id_torneo')
             ];
 
+            $fase['fecha_inicio'] = DateTime::createFromFormat('d-m-Y', $fase['fecha_inicio'])->format('Y-m-d');
+            $fase['fecha_fin'] = DateTime::createFromFormat('d-m-Y', $fase['fecha_fin'])->format('Y-m-d');
 
             $faseModelo = new FaseModel();
-            
-//            $fase['fecha_inicio'] =  new Date($fase['fecha_inicio']); //DateTime::createFromFormat("d-m-Y", $fase['fecha_inicio'])->format('Y-m-d');
-//            $fase['fecha_fin'] = new Date($fase['fecha_fin']);  //DateTime::createFromFormat("d-m-Y", $fase['fecha_fin'])->format('Y-m-d');
-//            print_r($fase);
-//            die();
             if ($this->request->getPost('id')) {
                 $fase['id'] = $this->request->getPost('id');
                 $faseModelo->update($this->request->getPost('id'), $fase);
@@ -82,17 +81,17 @@ class Fase extends BaseController
             }
         }
         
-        return redirect()->to(base_url()."/fases"."/".$fase['id_torneo']);
+        return redirect()->to(base_url()."/fases"."/torneo=".$fase['id_torneo']);
     }
 
-    public function eliminar($id = NULL)
+    public function eliminarFase($id = NULL)
     {
         $faseModelo = new FaseModel();
         $fase = $faseModelo->find($id);
         $id_torneo = $fase['id_torneo'];
         $data['user'] = $faseModelo->where('id', $id)->delete($id);
 
-        return redirect()->to(base_url()."/fases"."/".$id_torneo);
+        return redirect()->to(base_url()."/fases"."/torneo=".$id_torneo);
     }
 
     public function agregarPartido($id_fase)

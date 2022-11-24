@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 class PartidoModel extends Model
 {
     protected $table = 'partido';
-    protected $allowedFields = ['id', 'fecha', 'hora'];
+    protected $allowedFields = ['id', 'fecha', 'hora', 'id_fase'];
 
     public function listarPorFase($id_fase) {
 

@@ -3,8 +3,6 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <h2> <?php echo $fase["nombre"] ?></h2>
-
-                        <h4><h1> <?= $titulo ?> </h1></h4>
                     </div>
                 </div>
             </section>
@@ -30,10 +28,11 @@
                                 <form class="form-card" action="<?php echo base_url('agregarModificarPartido');?>" method="post" name="agregarModificarPartido"
                                     <?php if($listado){ echo 'style="visibility:hidden;"'; } else { echo 'style="visibility:visible;"';} ?>>
                                     <input type="hidden" name="id" value="<?php echo $partidoEditar ? $partidoEditar['id'] : '' ?>">
+                                    <input type="hidden" name="id_fase" value="<?php echo $fase["id"] ?>">
 
                                     <div class="form-group">
                                         <label>Fecha</label>
-                                        <div class="input-group date" data-target-input="nearest">
+                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                             <input type="text" name="fecha" class="datepicker col-sm-4" class="form-control datetimepicker-input" value="<?php echo $partidoEditar ? $partidoEditar['fecha'] : '' ?>"/>
                                             <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -45,7 +44,7 @@
                                         <div class="form-group">
                                             <label>Hora</label>
                                             <div class="input-group date" id="timepicker" data-target-input="nearest">
-                                                <input type="time" name="hora" class="form-control datetimepicker-input" data-target="#timepicker"/>
+                                                <input type="text" name="hora" class="form-control datetimepicker-input" data-target="#timepicker" value="<?php echo $partidoEditar ? $partidoEditar['hora'] : '' ?>"/>
                                                 <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="far fa-clock"></i></div>
                                                 </div>
@@ -57,9 +56,9 @@
 
                                     <div class="col-sm-8 flex-row d-flex">
                                         <button type="submit" name="submit" class="form-control col-sm-2 btn-primary"
-                                                onclick="return alert('¿Desea guardar el torneo con los datos ingresados?')">Guardar</button>
+                                                onclick="return alert('¿Desea guardar el partido con los datos ingresados?')">Guardar</button>
                                         <button type="button" name="cancel" class="form-control col-sm-2 ml-2 btn-danger"
-                                                onclick="location.href='<?php echo base_url('partidos/'.$fase['id']); ?>'">Cancelar</button>
+                                                onclick="location.href='<?php echo base_url('partidos/fase='.$fase['id']); ?>'">Cancelar</button>
                                     </div>
 
                                 </form>
@@ -67,6 +66,8 @@
                             <!-- /.form -->
 
                             <div class="table-responsive p-0" style="height: 300px;">
+                                <h4> <?= $titulo ?> </h4>
+
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
                                     <tr>
@@ -80,11 +81,11 @@
                                     <?php foreach ($partidos as $p) : ?>
                                         <tr>
                                             <td style="visibility: hidden;"><?= $p['id'] ?></td>
-                                            <td><?= $p['fecha'] ?></td>
-                                            <td><?= $p['hora'] ?></td>
+                                            <td><?= DateTime::createFromFormat('Y-m-d', $p['fecha'])->format('d/m/Y') ?></td>
+                                            <td><?= date("H:i", strtotime($p['hora'])) ?></td>
                                             <td>
-                                                <a href="<?php echo base_url('delete/'.$p['id']);?>" onclick="return alert('¿Desea eliminar el partido seleccionado?')"><i class="fa-solid fa-trash-can"></i></a>
-                                                <a href="<?php echo base_url('modificar/'.$p['id']);?>"><i class="fa-solid fa-pen"></i></a>
+                                                <a href="<?php echo base_url('eliminar/partido='.$p['id']);?>" onclick="return alert('¿Desea eliminar el partido seleccionado?')"><i class="fa-solid fa-trash-can"></i></a>
+                                                <a href="<?php echo base_url('modificar/partido='.$p['id'].'/fase='.$fase['id']);?>"><i class="fa-solid fa-pen"></i></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
