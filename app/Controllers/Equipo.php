@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\EquipoModel;
+use App\Models\GrupoModel;
 
 class Equipo extends BaseController
 {
@@ -10,13 +11,19 @@ class Equipo extends BaseController
     public function index()
     {
         $equipoModel = new EquipoModel();
-        $equipos = $equipoModel->findAll();
+        $grupoModel = new GrupoModel();
 
+        $id_grupo = $equipoModel->id_grupo;
+
+        $grupo = $grupoModel->find($id_grupo);
+        $nombre_grupo = $grupo->nombre;
+        dd($nombre_grupo);
+        $equipos = $equipoModel->listarEquiposPorGrupo($id_grupo);
+        
         $data = array(
-            /*'titulo' => 'Lista de Equipos',
-            'equipos' => $equipos,
-            'equipoEditar' => '',
-            'grupo' => $grupo,*/
+            'grupo' => $grupo,
+            'nombre_grupo' => $nombre_grupo,
+            'id_grupo' => $id_grupo,
             'listado' => false,
             'titulo' => 'Agregar Equipo',
             'equipos' => $equipos,
@@ -31,34 +38,45 @@ class Equipo extends BaseController
     public function equiposPorGrupo($id_grupo)
     {
         $equipoModel = new EquipoModel();
+        $grupoModel = new GrupoModel();
+
+        $grupo = $grupoModel->find($id_grupo);
+        $nombre_grupo = $grupo->nombre;
+        dd($nombre_grupo);
         $equipos = $equipoModel->listarEquiposPorGrupo($id_grupo);
-        dd($equipos);
         $data = array(
-            /*'titulo' => 'Lista de Equipos',
-            'equipos' => $equipos,
-            'equipoEditar' => false,
-            'grupo' => $grupo,*/
+            'grupo' => $grupo,
+            'nombre_grupo' => $nombre_grupo,
+            'id_grupo' => $id_grupo,
             'listado' => false,
-            'titulo' => 'Agregar Equipo',
+            'titulo' => 'Equipos',
             'equipos' => $equipos,
             'equipoEditar' => false,
         );
-        dd($data);
+        //dd($data);
         return view('template/header')
             . view('template/sidebar')
             . view('modules/equipos', $data)
             . view('template/footer');
     }
 
-    public function equipoSeleccionado($id = null)
+    public function equipoSeleccionado($id = null, $id_grupo = null)
     {
         $equipoModel = new EquipoModel();
-        $equipos = $equipoModel->findAll();
+        $grupoModel = new GrupoModel();
 
+        $grupo = $grupoModel->find($id_grupo);
+        $nombre_grupo = $grupo->nombre;
+        
+        $equipos = $equipoModel->listarEquiposPorGrupo($id_grupo);
         $equipoEditar = $equipoModel->find($id);
 
         $data = array(
-            'titulo' => 'Lista de Equipos',
+            'grupo' => $grupo,
+            'nombre_grupo' => $nombre_grupo,
+            'id_grupo' => $id_grupo,
+            'listado' => false,
+            'titulo' => 'Equipos',
             'equipos' => $equipos,
             'equipoEditar' => $equipoEditar,
         );
@@ -74,9 +92,7 @@ class Equipo extends BaseController
         if ($this->request->getPost()) {
             $equipo = [
                 'nombre' => $this->request->getPost('nombre'),
-                'mundiales_jugados' => $this->request->getPost('mundiales_jugados'),
-                'mundiales_ganados' => $this->request->getPost('mundiales_ganados'),
-                'ranking_fifa' => $this->request->getPost('ranking_fifa')
+                'id_grupo' => $this->request->getPost('id_grupo'),
             ];
             $equipoModelo = new EquipoModel();
             if ($this->request->getPost('id')) {
@@ -88,7 +104,7 @@ class Equipo extends BaseController
             }
         }
 
-        return $this->response->redirect(site_url('/equipos'));
+        return redirect()->to(base_url()."/equipos"."/".$equipo['id_grupo']);
     }
 
     public function eliminarEquipo($id = NULL)
