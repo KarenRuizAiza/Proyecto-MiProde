@@ -55,7 +55,7 @@
             })
             //Timepicker
             $('#timepicker')?.datetimepicker({
-                format: 'LT'
+                format : 'HH:mm'
             });
         });
       </script>

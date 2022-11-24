@@ -22,6 +22,7 @@ class Login extends BaseController
                 if ($usuario != null && count($usuario) > 0) {
                     $usuario = $usuario[0];
                     if ($usuario["contraseña"] == $this->request->getPost('contraseña')) {
+                        $this->session->usuarioId = $usuario["id"];
                         $this->session->usuario = $usuario["nombre"];
                         $this->session->rol = $usuario["rol"];
                         $this->session->logged = true;

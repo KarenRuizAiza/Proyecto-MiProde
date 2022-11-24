@@ -15,7 +15,7 @@ class Torneo extends BaseController
         $torneos = $torneoModel->findAll();
 
         $data = array(
-            'titulo' => 'Lista de Torneos',
+            'titulo' => 'Torneos',
             'torneos' => $torneos,
             'torneoEditar' => '',
         );

@@ -55,6 +55,8 @@ $routes->get('/agregarPartido/fase=(:num)', 'Fase::agregarPartido/$1');
 
 $routes->get('partidos/fase=(:num)', 'Partido::index/$1');
 $routes->post('agregarModificarPartido', 'Partido::agregarModificarPartido');
+$routes->get( 'cargarPrediccion/partido=(:num)/fase=(:num)', 'Partido::cargarPrediccion/$1/$2');
+$routes->post('agregarPrediccion', 'Partido::agregarPrediccion');
 $routes->get('/modificar/partido=(:num)/fase=(:num)', 'Partido::partidoSeleccionado/$1/$2');
 $routes->get('/eliminar/partido=(:num)','Partido::eliminarPartido/$1');
 

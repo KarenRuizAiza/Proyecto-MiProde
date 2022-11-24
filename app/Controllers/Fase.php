@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\EquipoModel;
 use App\Models\PartidoModel;
 use DateTime;
 
@@ -96,18 +97,21 @@ class Fase extends BaseController
 
     public function agregarPartido($id_fase)
     {
-        $faseModel = new FaseModel();
-        $fase = $faseModel->find($id_fase);
-
         $partidoModel = new PartidoModel();
-        $partidos = $partidoModel->findAll();
-        //dd($torneo);
+        $equipoModel = new EquipoModel();
+
+        $equipos = $equipoModel->findAll();
+        $partidos = $partidoModel->listarPorFase($id_fase, $this->session->usuarioId);
+        echo (count($partidos) == 0);
+
         $data = array(
-            'fase' => $fase,
+            'partidos' => $partidos,
+            'equipos' => $equipos,
             'listado' => false,
             'partidoEditar' => false,
             'titulo' => 'Agregar partido',
-            'partidos' => $partidos
+            'partidoPrediccion' => false,
+            'apuesta' => false
         );
 
         return view('template/header')

@@ -1,0 +1,127 @@
+.form-partido {
+    width: 100%;
+    display: flex !important;
+    flex-direction: row;
+    gap: 2em;
+    justify-content: center;
+}
+.form-buttons-partido {
+    align-items: center;
+    margin-top: 0.8em;
+}
+.match-container {
+    margin-top: 20px;
+    display: flex;
+}
+.body-partidos {
+    height: 40em;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.card {
+    width: 90%;
+    height: 20%;
+    margin: auto;
+    padding: 1em;
+    font-family: sans-serif;
+    border: 1px solid #e0e2e8;
+    border-radius: 2px;
+}
+.card-title {
+    margin: 0 0 15px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.matches {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 35px;
+}
+
+.match-card {
+    width: 45%;
+    display: inline-grid;
+    margin: 0.5em 2em;
+    padding: 1em;
+    font-family: sans-serif;
+    border: 1px solid #e0e2e8;
+    border-radius: 10px;
+    box-shadow: 0 4px 2px -2px grey;
+}
+
+.match-card-tittle {
+    color: #7596c1;
+    font-size: small;
+}
+
+.match-info {
+    border-bottom: 1px solid #e0e2e8;
+    display: flex;
+    flex-direction: row;
+    margin: 15px ;
+    padding-bottom: 15px;
+}
+
+.team-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    text-align: right;
+}
+
+.team {
+    display: flex;
+    gap: 10px;
+}
+
+.team img {
+    height: 20px;
+    width: 20px;
+    margin: 8px 0;
+}
+
+.team span {
+    align-self: center;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    font-variant-caps: all-small-caps;
+}
+
+.time-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    text-align: right;
+}
+
+.time span {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.match-detail {
+    display: flex;
+    padding-right: 15px;
+    text-align: right;
+}
+.match-detail .actions {
+    width: 13%;
+    margin-left: 1em;
+}
+.match-detail span {
+    width: 90%;
+}
+
+.match-detail span {
+    cursor: pointer;
+    font-variant-caps: all-small-caps;
+}
+
+.detail-arrow {
+    color: #0c8de8;
+}
