@@ -123,20 +123,24 @@ class Fase extends BaseController
     public function listadoFasesFull($id)
     {
         $fase = new FaseModel();
-        $data['partidos'] =  $fase->listarFasesPorTorneo($id);
-        
-        if (empty($data['partidos'])) {
-            $data['titulo'] = "No hay partidos disponibles en el torneo";
-        } else {
-            $data['titulo'] = "Fixture del " . $data['partidos'][0]['torneo'];
-        }
 
-        if ($logged) {
-            return view('template/header')
+        $partidoModel = new PartidoModel();
+        $partidos = $partidoModel->partidos();
+
+        $data['partidos'] =  $partidos;
+        $data['titulo'] =  'Fixture';
+
+//        if (empty($data['partidos'])) {
+//            $data['titulo'] = "No hay partidos disponibles en el torneo";
+//        } else {
+//            $data['titulo'] = "Fixture del " . $data['partidos'][0]['nombre_torneo'];
+//        }
+
+
+        return view('template/header')
             . view('template/sidebar')
             . view('modules/fixture', $data)
             . view('template/footer');
-        }
       
     }
 }

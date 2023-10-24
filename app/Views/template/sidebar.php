@@ -39,15 +39,6 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item">
-                        <a href="../gallery.html" class="nav-link">
-                            <i class="nav-icon far fa-image"></i>
-                            <p>
-                                Gallery
-                            </p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
                         <a href="fixture/verTorneos" class="nav-link">
                             <i class="nav-icon fa-solid fa-table"></i>
                             <p>

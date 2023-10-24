@@ -35,7 +35,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'qatar_proyecto',
+        'database' => 'proyecto',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

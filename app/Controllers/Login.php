@@ -27,7 +27,7 @@ class Login extends BaseController
                         $this->session->rol = $usuario["rol"];
                         $this->session->logged = true;
 
-                        return $this->response->redirect(site_url('/equipos'));
+                        return $this->response->redirect(site_url('/torneos'));
                     } else return "Contraseña inválida.";
                 }
 

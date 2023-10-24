@@ -45,4 +45,19 @@ class PartidoModel extends Model
         return $results;
     }
 
+    public function partidos() {
+
+        $builder = $this->db->table('partido p');
+
+        $builder->select('p.*, f.nombre nombre_fase, f.id id_fase, l.nombre local, v.nombre visitante, g.nombre grupo')
+            ->join('fase f', 'p.id_fase = f.id')
+            ->join('equipo l', 'p.id_equipo_local = l.id')
+            ->join('equipo v', 'p.id_equipo_visitante = v.id')
+            ->join('grupo g', 'p.id_grupo = g.id');
+
+        $results = $builder->get()->getResultArray();
+
+        return $results;
+    }
+
 }

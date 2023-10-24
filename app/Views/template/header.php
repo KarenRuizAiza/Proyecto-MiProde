@@ -36,19 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link">Home</a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
-            <a href="equipos" class="nav-link">Equipos</a>
-          </li>
-          <li class="nav-item d-none d-sm-inline-block">
             <a href="torneos" class="nav-link">Torneos</a>
-          </li>
-          <li class="nav-item d-none d-sm-inline-block">
-            <a href="fases" class="nav-link">Fases</a>
-          </li>
-          <li class="nav-item d-none d-sm-inline-block">
-            <a href="partidos" class="nav-link">Partidos</a>
-          </li>
-          <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Contact</a>
           </li>
         </ul>
 
