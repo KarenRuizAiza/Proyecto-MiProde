@@ -9,8 +9,8 @@ class Login extends BaseController
 {
     public function index()
     {
-
-        return view('sessions/log-in');
+        $error = session()->getFlashdata('error');
+        return view('sessions/log-in', ['error' => $error]);
     }
 
     public function autenticar()
@@ -27,14 +27,22 @@ class Login extends BaseController
                         $this->session->rol = $usuario["rol"];
                         $this->session->logged = true;
 
-                        return $this->response->redirect(site_url('/torneos'));
-                    } else return "Contraseña inválida.";
+                        return $this->response->redirect(site_url('/'));
+                    } else  {
+                        return $this->errorMessage();
+                    }
+                }
+                else {
+                    return $this->errorMessage();
                 }
 
-                else {
-                    echo "No existe el usuario ingresado.";
-                }
             } else return $this->response->redirect(site_url('/login'));
+        }
+
+    private function errorMessage()
+        {
+            session()->setFlashdata('error', 'Usuario y/o contraseña incorrectos.');
+            return $this->response->redirect(site_url('/login'));
         }
 
     public function logout()

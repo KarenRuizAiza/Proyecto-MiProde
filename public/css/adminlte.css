@@ -10795,6 +10795,10 @@ body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar .side
   background-color: #fff;
 }
 
+.layout-navbar-fixed .wrapper .sidebar-prode-primary .brand-link:not([class*="navbar"]) {
+  background-color: #38c2c2 !importa;
+}
+
 .layout-navbar-fixed .wrapper .sidebar-dark-secondary .brand-link:not([class*="navbar"]) {
   background-color: #343a40;
 }

@@ -33,13 +33,22 @@ $routes->set404Override();
  * --------------------------------------------------------------------
  */
 
-// We get a performance increase by specifying the default
+// We get a performance increase by specifying the defaults
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+$routes->get('register', 'Register::index');
+$routes->post('saveUser', 'Register::agregarModificarUsuario');
 $routes->get('login', 'Login::index');
 $routes->post('auth', 'Login::autenticar');
 $routes->post('logout', 'Login::logout');
+
+$routes->get('usuarios', 'Usuario::index');
+$routes->post('agregarModificarUsuario', 'Usuario::agregarModificarUsuario');
+$routes->get('/updateUsuario/(:num)', 'Usuario::usuarioSeleccionado/$1');
+$routes->get('/restablecerContraseña/(:num)', 'Usuario::restablecerContraseña/$1');
+$routes->get('/deleteUsuario/(:num)','Usuario::eliminarUsuario/$1');
+
 
 $routes->get('torneos', 'Torneo::index');
 $routes->post('agregarModificarTorneo', 'Torneo::agregarModificarTorneo');

@@ -100,6 +100,7 @@ class Torneo extends BaseController
         . view('modules/fases', $data)
         . view('template/footer');
     }
+    
     public function torneosVigentes()
     {
         $torneo = new TorneoModel();
