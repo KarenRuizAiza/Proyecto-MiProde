@@ -24,6 +24,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- MiProde Styles -->
     <link rel="stylesheet" href="<?= base_url('/css/miprode/partido.css')?>">
     <link rel="stylesheet" href="<?= base_url('/css/miprode/formularios.css')?>">
+    <link rel="stylesheet" href="<?= base_url('/css/miprode/fixture.css')?>">
 </head>
 <body class="hold-transition sidebar-mini" style="overflow: hidden">
     <div class="wrapper">

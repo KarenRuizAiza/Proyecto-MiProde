@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class PrediccionModel extends Model
 {
     protected $table = 'prediccion';
-    protected $allowedFields = ['id', 'resultado', 'id_partido', 'id_apuesta'];
+    protected $allowedFields = ['id', 'resultado', 'id_equipo_local', 'id_equipo_visitante','id_partido', 'id_apuesta'];
 
     public function existePrediccion($id_partido, $id_apuesta) {
 

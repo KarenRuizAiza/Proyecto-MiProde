@@ -8,11 +8,10 @@
             <table class="table table-striped projects" id="equipos-list">
                 <thead>
                     <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descripcion</th>
+                        <th scope="col">Torneo</th>
                         <th scope="col">Fecha Inicio</th>
                         <th scope="col">Fecha Fin</th>
-                        <th scope="col">Fixture Partidos</th>
+                        <th scope="col">Fixture</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,15 +19,14 @@
                         <?php foreach ($torneos as $torneo) : ?>
                             <tr>
                                 <td><?php echo $torneo['nombre']; ?></td>
-                                <td><?php echo $torneo['descripcion']; ?></td>
                                 <td><?php echo $torneo['fecha_inicio']; ?></td>
                                 <td><?php echo $torneo['fecha_fin']; ?></td>
 
                                 
                                 <td class="project-actions text-right">
                                     <?php $logged = session('logged') ? 1 : 0 ?>
-                                    <a class="btn btn-success btn-sm" href="<?php echo base_url('fixture/fasesFull/' . $torneo['id']) ?>">
-                                        Ver
+                                    <a href="<?php echo base_url('fixture/' . $torneo['id']) ?>">
+                                        <i class='fa-solid fa-forward'></i>
                                     </a>
                                 </td>
                                 
