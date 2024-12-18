@@ -74,6 +74,29 @@
                         </a>
                     </li>
 
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-users-rectangle"></i>
+                            <p>
+
+                                Desafíos
+
+                            </p>
+                        </a>
+                        <ul class="dropdown-menu" >
+                            <li><a class="dropdown-item" href="#">Mis Desafíos</a></li>
+                            <li><a class="dropdown-item" href="#">Invitaciones</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-list"></i>
+                            <p>
+                                Listado de Pronosticos
+                            </p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
