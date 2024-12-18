@@ -49,6 +49,11 @@ $routes->get('/updateUsuario/(:num)', 'Usuario::usuarioSeleccionado/$1');
 $routes->get('/restablecerContraseña/(:num)', 'Usuario::restablecerContraseña/$1');
 $routes->get('/deleteUsuario/(:num)','Usuario::eliminarUsuario/$1');
 
+$routes->get('participantes/torneo=(:num)', 'Participante::index/$1');
+$routes->get('participantes/torneo', 'Participante::index/null');
+
+$routes->get('predicciones/participante=(:num)', 'Prediccion::index/$1');
+$routes->get('predicciones/participante', 'Prediccion::index/null');
 
 $routes->get('torneos', 'Torneo::index');
 $routes->post('agregarModificarTorneo', 'Torneo::agregarModificarTorneo');
@@ -64,8 +69,11 @@ $routes->get('/agregarPartido/fase=(:num)', 'Fase::agregarPartido/$1');
 
 $routes->get('partidos/fase=(:num)', 'Partido::index/$1');
 $routes->post('agregarModificarPartido', 'Partido::agregarModificarPartido');
+$routes->get( 'cargarResultado/partido=(:num)/fase=(:num)', 'Partido::cargarResultado/$1/$2');
+$routes->post('agregarResultado', 'Partido::agregarResultado');
 $routes->get( 'cargarPrediccion/partido=(:num)/fase=(:num)', 'Partido::cargarPrediccion/$1/$2');
 $routes->post('agregarPrediccion', 'Partido::agregarPrediccion');
+$routes->get('eliminarPrediccion/prediccion=(:num)', 'Partido::eliminarPrediccion/$1');
 $routes->get('/modificar/partido=(:num)/fase=(:num)', 'Partido::partidoSeleccionado/$1/$2');
 $routes->get('/eliminar/partido=(:num)','Partido::eliminarPartido/$1');
 
@@ -82,8 +90,8 @@ $routes->get('/update/(:num)', 'Equipo::equipoSeleccionado/$1');
 $routes->get('/delete/(:num)','Equipo::eliminarEquipo/$1');
 
 //fixture
-$routes->get('fixture/verTorneos', 'Torneo::torneosVigentes');
-$routes->get('fixture/fasesFull/(:num)', 'Fase::listadoFasesFull/$1');
+$routes->get('apuestas', 'Torneo::apuestasRealizadas');
+$routes->get('fixture/(:num)', 'Fase::recuperarFixture/$1');
 
 
 

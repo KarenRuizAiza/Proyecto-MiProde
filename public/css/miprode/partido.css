@@ -7,7 +7,7 @@
 }
 .form-buttons-partido {
     align-items: center;
-    margin-top: 0.8em;
+    margin-bottom: 1em;
 }
 .match-container {
     margin-top: 20px;
@@ -78,8 +78,9 @@
 }
 
 .team img {
-    height: 20px;
-    width: 20px;
+    height: 1.5rem;
+    width: 2rem;
+    object-fit: cover;
     margin: 8px 0;
 }
 
@@ -121,7 +122,18 @@
     cursor: pointer;
     font-variant-caps: all-small-caps;
 }
-
 .detail-arrow {
     color: #0c8de8;
+}
+
+.undefined-team {
+    background-color: #80808042;
+    width: 12em;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.disabled-item {
+    opacity: .5;
+    cursor: not-allowed!important;
 }

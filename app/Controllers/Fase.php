@@ -19,7 +19,7 @@ class Fase extends BaseController
         $fases = $faseModel->listarFasesPorTorneo($id_torneo);
 
         $data = array(
-            'titulo' => 'Lista de Fases',
+            'titulo' => 'Agregar Fase',
             'torneo' => $torneo,
             'fases' => $fases,
             'listado' => true,
@@ -45,7 +45,7 @@ class Fase extends BaseController
         $faseEditar['fecha_fin'] = DateTime::createFromFormat('Y-m-d', $faseEditar['fecha_fin'])->format('d-m-Y');
 
         $data = array(
-            'titulo' => 'Lista de Fases',
+            'titulo' => 'Editar fase',
             'torneo' => $torneo,
             'fases' => $fases,
             'listado' => false,
@@ -99,12 +99,14 @@ class Fase extends BaseController
     {
         $partidoModel = new PartidoModel();
         $equipoModel = new EquipoModel();
+        $faseModel = new FaseModel();
 
+        $fase = $faseModel->find($id_fase);
         $equipos = $equipoModel->findAll();
         $partidos = $partidoModel->listarPorFase($id_fase, $this->session->usuarioId);
-        echo (count($partidos) == 0);
 
         $data = array(
+            'fase'=> $fase,
             'partidos' => $partidos,
             'equipos' => $equipos,
             'listado' => false,
@@ -120,22 +122,37 @@ class Fase extends BaseController
             . view('template/footer');
     }
 
-    public function listadoFasesFull($id)
+    public function recuperarFixture($id_torneo)
     {
-        $fase = new FaseModel();
+        $torneoModel = new TorneoModel();
+        $nombre_torneo = $torneoModel->find($id_torneo)['nombre'];
+        
+        $faseModel = new FaseModel();
+        $fases = $faseModel->where('id_torneo', $id_torneo)->orderBy('fecha_inicio', 'ASC')->findAll();
 
         $partidoModel = new PartidoModel();
-        $partidos = $partidoModel->partidos();
+        $diccionario = [];
 
-        $data['partidos'] =  $partidos;
-        $data['titulo'] =  'Fixture';
+        $cantidada_aciertos = 0;
 
-//        if (empty($data['partidos'])) {
-//            $data['titulo'] = "No hay partidos disponibles en el torneo";
-//        } else {
-//            $data['titulo'] = "Fixture del " . $data['partidos'][0]['nombre_torneo'];
-//        }
+        foreach ($fases as $fase) {
+            $partidos = $partidoModel->listarPorFaseConApuestas($fase['id'], $this->session->usuarioId);
 
+            foreach ($partidos as $partido) {
+                $cantidada_aciertos += $partido['acerto_prediccion'];
+
+                if ($partido['grupo']) {
+                    // solo habia que agregar [] vacio, no tengo idea como funca php
+                    $diccionario[$fase['nombre'] . ' - Grupo ' . $partido['grupo']][] = $partido;
+                } else {
+                    $diccionario[$fase['nombre']][] = $partido;
+                }
+            }
+        }
+
+        $data['fixture'] =  $diccionario;
+        $data['titulo'] =  "Fixture " . $nombre_torneo;
+        $data['cantidada_aciertos'] = $cantidada_aciertos;
 
         return view('template/header')
             . view('template/sidebar')

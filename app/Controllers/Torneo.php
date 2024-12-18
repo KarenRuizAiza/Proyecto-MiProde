@@ -56,8 +56,8 @@ class Torneo extends BaseController
                 'fecha_fin' => $this->request->getPost('fecha_fin')
             ];
             $torneoModelo = new TorneoModel();
-            $torneo['fecha_inicio'] = DateTime::createFromFormat("d-m-Y", $torneo['fecha_inicio'])->format('Y-m-d');
-            $torneo['fecha_fin'] = DateTime::createFromFormat("d-m-Y", $torneo['fecha_fin'])->format('Y-m-d');
+            $torneo['fecha_inicio'] = DateTime::createFromFormat("d/m/Y", $torneo['fecha_inicio'])->format('Y-m-d');
+            $torneo['fecha_fin'] = DateTime::createFromFormat("d/m/Y", $torneo['fecha_fin'])->format('Y-m-d');
             if ($this->request->getPost('id')) {
                 $torneo['id'] = $this->request->getPost('id');
                 $torneoModelo->update($this->request->getPost('id'), $torneo);
@@ -85,7 +85,7 @@ class Torneo extends BaseController
         $torneo = $torneoModel->find($id_torneo);
         
         $faseModel = new FaseModel();
-        $fases = $faseModel->findAll();
+        $fases = $faseModel->listarFasesPorTorneo($id_torneo);
         //dd($torneo);
         $data = array(
             'torneo' => $torneo,
@@ -101,15 +101,16 @@ class Torneo extends BaseController
         . view('template/footer');
     }
     
-    public function torneosVigentes()
+    public function apuestasRealizadas()
     {
-        $torneo = new TorneoModel();
-        $data['titulo'] = "Torneos disponibles";
-        $data['torneos'] = $torneo->where('fecha_fin >', date("Y-m-d"))->orderBy('id', 'ASC')->findAll();
+        $torneoModel = new TorneoModel();
+        $data['titulo'] = "Apuestas Realizadas";
+        $data['torneos'] = $torneoModel->findAll();
+        //$data['torneos'] = $torneo->where('fecha_fin >', date("Y-m-d"))->orderBy('id', 'ASC')->findAll();
         
         return view('template/header')
         . view('template/sidebar')
-        . view('modules/torneosVigentes', $data)
+        . view('modules/apuestas', $data)
         . view('template/footer');
     }
 }

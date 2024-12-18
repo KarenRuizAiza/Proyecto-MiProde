@@ -1,0 +1,101 @@
+.fixture-body {
+    display: flex;
+    flex-flow: wrap;
+    gap: 2em;
+}
+.fase-container {
+    width: fit-content;
+    border: #00000042 solid 1px;
+    padding: 1em;
+    background: rgb(255,0,96);
+    background: radial-gradient(circle, rgba(255,0,96,0.1292892156862745) 0%, rgba(56,194,168,0.227328431372549) 100%);
+    border-radius: 15px;
+}
+.fixture-team-container, .resultado-team-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    width: 100%;
+    text-align: right;
+    justify-content: center;
+}
+.fixture-team-container {
+    background-color: beige;
+}
+.fixture-team {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+}
+.fixture-team img {
+    height: 1rem;
+    width: 1.5rem;
+    object-fit: cover;
+    margin: 8px 0;
+}
+.fixture-team span {
+    align-self: center;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    font-variant-caps: all-small-caps;
+}
+.fixture-time-container {
+    width: 30%;
+    font-size: 10px;
+}
+.vs {
+    margin-top: 1em;
+    font-size: x-small;
+}
+.resultado-fixture {
+    width: 50%;
+    font-variant-caps: all-small-caps;
+}
+.info-partido {
+    font-size: medium;
+    font-variant-caps: all-small-caps;
+    border-bottom: 1px solid;
+}
+.info-partido strong {
+    margin-right: 3px;
+}
+.info-partido span {
+    color: #38C2A8;
+    font-weight: bolder;
+    text-shadow: 0 0 1px rgba(84, 122, 146, 0.6);
+}
+.fixture-undefined-team {
+    background-color: #80808042;
+    width: 9em;
+    display: inline-flex;
+    justify-content: center;
+}
+.resultado-popover {
+    width: 7rem;
+    height: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3px 1px 0;
+    font-size: 15px;
+    font-variant: all-small-caps;
+    font-weight: bold;
+}
+.resultado-popover i {
+    margin-right: 0.5rem;
+}
+.acierta {
+    border: #6ac22b 2px solid;
+    box-shadow: 0px 0px 20px 0px rgba(101,222,118,0.82) inset;
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(101,222,118,0.82) inset;
+    -moz-box-shadow: 0px 0px 20px 0px rgba(101,222,118,0.82) inset;
+}
+.no-acierta {
+    border: #ff0060 2px solid;
+    box-shadow: 0px 0px 20px 0px rgba(255,0,96,0.82) inset;
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(255,0,96,0.82) inset;
+    -moz-box-shadow: 0px 0px 20px 0px rgba(255,0,96,0.82) inset;
+}

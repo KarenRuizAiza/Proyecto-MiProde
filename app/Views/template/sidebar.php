@@ -38,7 +38,7 @@
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    <li class="nav-item" <?php if(session()->rol == 'Participante'){ echo 'style="display:none;visibility:hidden;"'; } else { echo 'style="display:inherit;visibility:visible;"';}?>>
+                    <li class="nav-item" <?php if(session()->rol == 'Participante'){ echo 'style="display:none;visibility:hidden;"'; } else { echo 'style="visibility:visible;"';}?>>
                         <a href="<?= site_url('/usuarios')?>" class="nav-link">
                             <i class='fas fa-user-cog nav-icon'></i>
                             <p>
@@ -57,19 +57,28 @@
                     </li>    
                 
                     <li class="nav-item">
-                        <a href="fixture/verTorneos" class="nav-link">
-                            <i class="nav-icon fa-solid fa-table"></i>
+                        <a href="<?= site_url('/participantes/torneo');?>" class="nav-link">
+                            <i class="nav-icon fa-solid fa-ranking-star"></i>
                             <p>
-                                Fixture
+                                Ranking
                             </p>
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="fixture/verTorneos" class="nav-link">
+                    <li class="nav-item" <?php if(session()->rol == 'Administrador'){ echo 'style="display:none;visibility:hidden;"'; } else { echo 'style="visibility:visible;"';}?>>
+                        <a href="<?= site_url('/apuestas')?>" class="nav-link">
                             <i class="nav-icon fa-solid fa-circle-dollar-to-slot"></i>
                             <p>
-                                Apuesta
+                                Apuestas
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" <?php if(session()->rol == 'Participante'){ echo 'style="display:none;visibility:hidden;"'; } else { echo 'style="visibility:visible;"';}?>>
+                        <a href="<?= site_url('/predicciones/participante');?>" class="nav-link">
+                            <i class="nav-icon fa fa-coins"></i>
+                            <p>
+                                Predicciones
                             </p>
                         </a>
                     </li>
