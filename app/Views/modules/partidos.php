@@ -13,15 +13,10 @@
                             <div class="card-tools" style="width: 100%;">
                                 <div class="input-group input-group-sm">
                                     <h4 style="width: 80%;"><?php echo $partidoEditar  ? 'Editar partido' : $titulo ?></h4>
-<!--                                    <input type="text" name="table_search" class="form-control float-right" placeholder="Buscar">-->
-<!--                                    <div class="input-group-append">-->
-<!--                                        <button type="submit" class="btn btn-default">-->
-<!--                                            <i class="fas fa-search"></i>-->
-<!--                                        </button>-->
-<!--                                    </div>-->
                                 </div>
                             </div>
                         </div><!-- /.card-header -->
+                        
                         <div class="card-body body-partidos">
                             <!-- /form -->
                             <div class="form-container" <?php if($listado){ echo 'style="display:none;"'; } else { echo 'style="display:flex;"';} ?>>
@@ -60,7 +55,6 @@
                                             <?php foreach ($equipos as $e) : ?>
                                                 <option <?= $partidoEditar ? ($partidoEditar['id_equipo_local'] === $e['id'] ? 'selected="selected"': '') : '' ?>" value="<?= $e['id'] ?>"><?= $e['nombre'] ?></option>
                                             <?php endforeach; ?>
-
                                         </select>
                                     </div>
 
@@ -156,8 +150,6 @@
                                     <div class="match-detail">
                                         <?php 
                                             if (session()->rol == 'Administrador') {
-                                                
-
                                                 $currentDateTime = new DateTime();
                                                 $fecha_inicio = $p['fecha'];                                               
                                                 $hora_inicio = $p['hora'];                                               

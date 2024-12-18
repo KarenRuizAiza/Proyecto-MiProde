@@ -56,7 +56,16 @@
                                         
                                     </div>
                                     
-                                    <div class="fixture-team-container">
+                                    <?php 
+                                    if($p['id_prediccion'] == null || $p['resultado'] == null) { ?>
+                                        <div class="fixture-team-container">
+                                    <?php } else if($p['acerto_prediccion']) {?>
+                                        <div class="fixture-team-container acierta"> 
+                                    <?php } else { ?>
+                                        <div class="fixture-team-container no-acierta">
+                                    <?php }
+                                    ?>
+
                                         <div class="fixture-team" style="justify-content: right;">
                                             <?php
                                             if(isset($p['local_prediccion']) && $p['local_prediccion']){ ?>

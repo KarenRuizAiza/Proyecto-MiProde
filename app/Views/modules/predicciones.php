@@ -19,17 +19,18 @@
                                     <form class="form-card form-partido justify-content-start" action="<?php echo base_url('agregarModificarUsuario');?>" method="post" name="seleccionTorneo">
 
                                         <div class="flex-column d-flex col-sm-8">
-                                            <label>Torneo</label>
-                                            <select id="torneo" name="torneo" class="form-control select2" >
+                                            <label>Participante</label>
+                                            <select id="participante" name="prticipante" class="form-control select2" >
                                                 <option value="<?=null?>">Seleccionar...</option>
-                                                <?php foreach ($torneos as $t) : ?>
-                                                    <option <?= $torneo_seleccionado ? ($torneo_seleccionado === $t['id'] ? 'selected="selected"': '') : '' ?>" value="<?= $t['id'] ?>"><?= $t['nombre'] ?></option>
+                                                <?php foreach ($participantes as $p) : ?>
+                                                    <option <?= $participante_seleccionado ? ($participante_seleccionado === $p['id'] ? 'selected="selected"': '') : '' ?>" 
+                                                            value="<?= $p['id'] ?>"><?= $p['nombre'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
 
                                         <button type="button" name="buscar" title="Buscar" class="form-control col-sm-1 ml-1 btn-info align-self-end"
-                                                onclick="buscarParticipantes()">
+                                                onclick="buscarPredicciones()">
                                             <i class='fas fa-search-dollar'></i>
                                         </button>
                                     </form>
@@ -43,23 +44,29 @@
                             <table class="table table-head-fixed text-nowrap">
                                 <thead>
                                 <tr>
-                                    <th>Nombre</th>
-                                    <th>Puntaje</th>
+                                    <th>Torneo</th>
+                                    <th>Fase</th>
+                                    <th>Equipo Local</th>
+                                    <th>Equipo Visitante</th>
+                                    <th>Predicción</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php 
-                                if ($participantes) {
-                                    foreach ($participantes as $p) : ?>
+                                if ($predicciones) {
+                                    foreach ($predicciones as $p) : ?>
                                         <tr>
-                                            <td><?= $p['nombre_usuario'] ?></td>
-                                            <td style="white-space: break-spaces;text-align: justify;"><?= $p['puntaje'] ?></td>
+                                            <td style="white-space: break-spaces;text-align: justify;"><?= $p['nombre_torneo'] ?></td>
+                                            <td><?= $p['nombre_fase'] ?></td>
+                                            <td><?= $p['equipo_local_prediccion'] ?></td>
+                                            <td><?= $p['equipo_visitante_prediccion'] ?></td>
+                                            <td><?= $p['resultado'] ?></td>
                                         </tr>
                                     <?php endforeach;
                                     
                                 } else { ?>
                                     <tr style="text-align: center;">
-                                        <td colspan="3"> <?= $torneo_seleccionado != 'null' ? 'El torneo seleccionado no tiene ninguna apuesta realizada' : 'No ha seleccionado ningún torneo' ?></td>
+                                        <td colspan="5"> <?= $participante_seleccionado != 'null' ? 'El participante seleccionado no ha realizado ninguna predicción' : 'No ha seleccionado ningún participante' ?></td>
                                     </tr>
                                 <?php }?>
                                 </tbody>
@@ -72,15 +79,15 @@
 
 
         <script>
-            function buscarParticipantes() {
+            function buscarPredicciones() {
                 // Obtener el valor seleccionado del select
-                var opcionSeleccionada = document.getElementById('torneo').value;
+                var opcionSeleccionada = document.getElementById('participante').value;
 
                 // Redirigir a la URL con el valor seleccionado en el query string
                 if (!opcionSeleccionada)
-                    window.location.href = '<?php echo base_url('/participantes/torneo'); ?>';
+                    window.location.href = '<?php echo base_url('/predicciones/participante'); ?>';
 
                 else
-                    window.location.href = '<?php echo base_url('/participantes/torneo='); ?>' + opcionSeleccionada;
+                    window.location.href = '<?php echo base_url('/predicciones/participante='); ?>' + opcionSeleccionada;
             }
         </script>

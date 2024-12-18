@@ -52,6 +52,9 @@ $routes->get('/deleteUsuario/(:num)','Usuario::eliminarUsuario/$1');
 $routes->get('participantes/torneo=(:num)', 'Participante::index/$1');
 $routes->get('participantes/torneo', 'Participante::index/null');
 
+$routes->get('predicciones/participante=(:num)', 'Prediccion::index/$1');
+$routes->get('predicciones/participante', 'Prediccion::index/null');
+
 $routes->get('torneos', 'Torneo::index');
 $routes->post('agregarModificarTorneo', 'Torneo::agregarModificarTorneo');
 $routes->get('/updateTorneo/(:num)', 'Torneo::torneoSeleccionado/$1');

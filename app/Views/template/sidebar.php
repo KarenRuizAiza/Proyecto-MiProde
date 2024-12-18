@@ -74,6 +74,15 @@
                         </a>
                     </li>
 
+                    <li class="nav-item" <?php if(session()->rol == 'Participante'){ echo 'style="display:none;visibility:hidden;"'; } else { echo 'style="visibility:visible;"';}?>>
+                        <a href="<?= site_url('/predicciones/participante');?>" class="nav-link">
+                            <i class="nav-icon fa fa-coins"></i>
+                            <p>
+                                Predicciones
+                            </p>
+                        </a>
+                    </li>
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

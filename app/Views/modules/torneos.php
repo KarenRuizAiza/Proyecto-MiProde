@@ -65,15 +65,10 @@
                                             </div>
                                         </form>
                                     </div><!-- /.form -->
-<!--                                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">-->
-<!--                                    <div class="input-group-append">-->
-<!--                                        <button type="submit" class="btn btn-default">-->
-<!--                                            <i class="fas fa-search"></i>-->
-<!--                                        </button>-->
-<!--                                    </div>-->
                                 </div>
                             </div>
                         </div><!-- /.card-header -->
+                        
                         <div class="card-body" style="margin-top: 3em;">
                             <div class="table-responsive p-0" style="height: 300px;">
                                 <table class="table table-head-fixed text-nowrap">
