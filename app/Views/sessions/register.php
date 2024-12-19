@@ -11,6 +11,9 @@
   <link rel="stylesheet" href="<?= base_url()?>/plugins/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="<?= base_url()?>/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+
+  <link rel="stylesheet" href="<?= base_url()?>/plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url('/css/adminlte.min.css')?>">
   <link rel="stylesheet" href="<?= base_url('/css/miprode/sessions.css')?>">
@@ -73,7 +76,42 @@ session_start();
             </div>
           </div>
         </div>
-        
+        <div class="form-floating form-input input-group mb-3 col-12">
+          <input type="text" class="form-control" name="nombre_completo" placeholder="Nombre Completo" required>
+          <div class="input-group-append">
+            <div class="input-group-text form-icon">
+              <span class="fas fa-user-tag"></span>
+            </div>
+          </div>
+        </div>
+        <div class="form-floating form-input input-group mb-3 col-12">
+          <input type="text" class="form-control" name="apellido" placeholder="Apellido" required>
+          <div class="input-group-append">
+            <div class="input-group-text form-icon">
+              <span class="fas fa-user-tie"></span>
+            </div>
+          </div>
+        </div>
+        <div class="form-floating form-input input-group mb-3 col-12">
+          <input type="number" class="form-control" name="dni" placeholder="DNI" required>
+          <div class="input-group-append">
+            <div class="input-group-text form-icon">
+              <i class='fa fa-id-badge'></i>
+
+            </div>
+          </div>
+        </div>
+        <div class="form-floating form-input input-group mb-3 col-12">
+          <div class="input-group date" id="fechaNacimientoGroupDate" data-target-input="nearest">
+            <input type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha de nacimiento" class="form-control datetimepicker-input"/>
+            <div class="input-group-append" data-target="#fechaNacimientoGroupDate" data-toggle="datetimepicker">
+                <div class="input-group-text form-icon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+            </div>
+          </div>
+        </div>
+      
         <?php if (!empty($error)): ?>
           <div class="alert-error">
               <?= esc($error) ?>
@@ -118,10 +156,24 @@ session_start();
 <!-- /.register-box -->
 
 <!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="<?= base_url()?>/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?= base_url()?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+<script src="<?= base_url()?>/dist/js/adminlte.min.js"></script>
+
+<script src="<?= base_url('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') ?>"></script>
+<script src="<?= base_url('plugins/moment/moment.min.js')?>"></script>
+<script src="<?= base_url('plugins/daterangepicker/daterangepicker.js')?>"></script>
+<script src="<?= base_url('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') ?>"></script>
+
+<script>
+  $(function () {
+    //Date range picker with time picker
+    $('#fechaNacimientoGroupDate')?.datetimepicker({
+      format: 'DD/MM/YYYY',
+    })
+  });
+</script>
 </body>
 </html>

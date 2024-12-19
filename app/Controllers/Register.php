@@ -51,6 +51,10 @@ class Register extends BaseController
                 'contraseña' => $this->request->getPost('contraseña'), 
                 'contraseña_repetida' => $this->request->getPost('contraseña_repetida'),
                 'rol' => 'Participante',
+                'nombre_completo' => $this->request->getPost('nombre_completo'),
+                'apellido' => $this->request->getPost('apellido'),
+                'dni' => $this->request->getPost('dni'),
+                'fecha_nacimiento' => $this->request->getPost('fecha_nacimiento'),
             ];
 
             if ($this->verificarExistenciaUsuario($usuario) && $this->verificarCoincidenciaDeContraseña($usuario)) {
