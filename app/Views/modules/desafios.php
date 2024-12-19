@@ -16,7 +16,7 @@
                                     <!-- /form -->
                                     <div class="form-container">
                                         <form class="form-group form-card" style="place-items: center;" action="<?php echo base_url('agregarModificarDesafio');?>" method="post" name="agregarModificarDesafio" id="formFase">
-                                            <?= csrf_field() ?>
+                
                                             <input type="hidden" name="id" value="<?php echo $desafioEditar ? $desafioEditar['id'] : '' ?>">
 
                                             <div class="flex-column d-flex col-sm-5">
@@ -24,6 +24,8 @@
                                                 <input name="nombre" class="form-control" value="<?php echo $desafioEditar ? $desafioEditar['nombre'] : '' ?>">
                                             </div>
 
+                                            <input type="hidden" name="id_torneo" value="<?php echo $torneo["id"] ?>">
+                                            
                                             <div class="flex-column d-flex col-sm-3">
                                                 <label>Fecha</label>
                                                 <div class="input-group date" id="reservationdateStart" data-target-input="nearest">
@@ -49,7 +51,9 @@
                                             <span id="fecha-hora-requeridos" hidden="true">Los campos fecha y hora son obligatorios.</span>
 
 
-                                            <input type="hidden" name="id_torneo" value="<?php echo $torneo["id"] ?>">
+                                            
+                                            <input type="hidden" name="id_partido" value="<?php echo $partido["id"] ?>">
+
                                             <div class="flex-row d-flex col-sm-3" style="gap: 1rem; margin-top: 1.8rem">
                                                 <button type="submit" name="submit" class="form-control btn-primary"
                                                         onclick="return alert('¿Desea guardar el desafio los datos ingresados?')">
@@ -81,12 +85,14 @@
                                     
                                     <?php foreach ($desafios as $d) : ?> 
                                     <tr>
+                                        <td><?= $d['id_torneo'] ?></td>
                                         <td><?= $d['nombre'] ?></td>
-                                        <td><?= DateTime::createFromFormat('Y-m-d', $d['fecha'])->format('d/m/Y') ?></td>
-                                        <td><?= DateTime::createFromFormat('H:i', $d['hora'])->format('H:i') ?></td>
+                                        <td><?= $d['fecha'] ?></td>
+                                        <td><?= $d['hora'] ?></td>
+                                        <td><?= $d['id_partido'] ?></td>
                                         <td >
-                                            <a href="<?php echo base_url('delete/desafio='.$d['id']);?>" title="Eliminar" onclick="return confirm('¿Desea eliminar el desafio seleccionado?')"><i class="fa-solid fa-trash-can"></i></a>
-                                            <a href="<?php echo base_url('update/desafio='.$d['id']);?>." title="Modificar"><i class="fa-solid fa-pen"></i></a>
+                                            <a href="<?php echo base_url('deleteDesafio/desafio='.$d['id']);?>" title="Eliminar" onclick="return confirm('¿Desea eliminar el desafio seleccionado?')"><i class="fa-solid fa-trash-can"></i></a>
+                                            <a href="<?php echo base_url('updateDesafio/desafio='.$d['id']);?>." title="Modificar"><i class="fa-solid fa-pen"></i></a>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>

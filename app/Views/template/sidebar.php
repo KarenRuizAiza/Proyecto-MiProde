@@ -99,21 +99,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="<?= site_url('/invitaciones')?>">
                                     Mis Invitaciones
                                 </a>
                             </li>
                         </ul>
                     </li>
 
-                    <li class="nav-item" <?php if(session()->rol == 'Participante'){ echo 'style="display:none;visibility:hidden;"'; } else { echo 'style="visibility:visible;"';}?>>
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa-solid fa-list"></i>
-                            <p>
-                                Listado de Pronosticos
-                            </p>
-                        </a>
-                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

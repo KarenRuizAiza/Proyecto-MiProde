@@ -5,15 +5,15 @@ use App\Models\DesafioModel;
 use App\Models\UsuarioModel;
 use CodeIgniter\Controller;
 
-class DesafioController extends Controller
+class DesafioController extends BaseController
 {
     public function index()
     {
         $desafioModel = new DesafioModel();
 
-        $desafios = $desafioModel->getInvitacionesByUsuario();
+        $desafios = $desafioModel->listarInvitacionesPorUsuario($idUsuario);
         $data = array(
-            'titulo' => 'Lista de Invitaciones',
+            'titulo' => 'Desafíos',
             'desafios' => $desafios
         );
         return view('template/header') 
@@ -26,12 +26,10 @@ class DesafioController extends Controller
     public function misDesafios()
     {
         $desafioModel = new DesafioModel();
-        $usuarioModel = new UsuarioModel();
-
-        $usuario = $usuarioModel->find($idUsuario);
-        $desafios = $desafioModel->listarDesafiosPorUsuario($idUsuario);
+        
+        $desafios = $desafioModel->listarDesafiosPorUsuario($this->session->usuarioId);
         $data = array(
-            'titulo' => 'Lista de Desafios',
+            'titulo' => 'Lista de Desafios' ,
             'desafios' => $desafios
         );
 
@@ -51,9 +49,6 @@ class DesafioController extends Controller
                 'hora' => $this->request->getPost('hora'),
                 'id_partido' => $this->request->getPost('id_partido')
             ];
-
-            $desafio['fecha'] = DateTime::createFromFormat('d-m-Y', $desafio['fecha'])->format('Y-m-d');
-            $desafio['hora'] = date("H:i", strtotime($desafio['hora']));
 
             $desafioModelo = new DesafioModel();
 
@@ -75,5 +70,27 @@ class DesafioController extends Controller
         $desafioModel->delete($id);
         return redirect()->to('/desafios');
     }*/
+
+    public function desafioSeleccionado($id = null)
+    {
+        $desafioModel = new FaseModel();
+        
+        $desafios = $desafioModel->listarDesafiosPorUsuario($this->session->usuarioId);
+
+        $desafioEditar = $desafioModel->find($id);
+
+        $data = array(
+            'titulo' => 'Editar desafio',
+            'participante' => $this->session->usuarioId,
+            'desafios' => $desafios,
+            'listado' => false,
+            'desafioEditar' => $desafioEditar,
+        );
+
+        return view('template/header')
+            . view('template/sidebar')
+            . view('modules/desafios', $data)
+            . view('template/footer');
+    }
 
 }

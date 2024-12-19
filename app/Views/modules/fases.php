@@ -8,12 +8,12 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="card card-default">
-                        <div class="card-header" style="padding: 2em 0; background-color: aliceblue;">
+                        <div class="card-header" <?php if(session()->rol == 'Participante'){ echo 'style="display:none;visibility:hidden;"'; } else { echo 'style="visibility:visible;"';}?> style="padding: 2em 0; background-color: aliceblue;" >
                             <h4 class="form-titulo"><?php echo $faseEditar  ? 'Editar fase' : $titulo ?></h4>
                             <div class="card-tools" style="width: 100%;">
                                 <div class="input-group input-group-sm">
                                     <!-- /form -->
-                                    <div class="form-container">
+                                    <div class="form-container" >
                                         <form class="form-group form-card" style="place-items: center;" action="<?php echo base_url('agregarModificarFase');?>" method="post" name="agregarModificarFase" id="formFase">
                                             <?= csrf_field() ?>
                                             <input type="hidden" name="id" value="<?php echo $faseEditar ? $faseEditar['id'] : '' ?>">
@@ -61,6 +61,7 @@
                         </div><!-- /.card-header -->
 
                         <div class="card-body" style="margin-top: 3em;">
+                            <h4> Listado de Fases </h4>
                             <div class="table-responsive p-0" style="height: 300px;">
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
