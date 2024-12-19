@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class EquipoModel extends Model
 {
     protected $table = 'equipo';
-    protected $allowedFields = ['id', 'nombre', 'id_grupo'];
+    protected $allowedFields = ['id', 'nombre', 'id_grupo', 'imagen'];
 
     public function listarEquiposPorGrupo($id_grupo) {
     

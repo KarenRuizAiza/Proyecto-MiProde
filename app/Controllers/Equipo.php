@@ -12,18 +12,13 @@ class Equipo extends BaseController
     {
         $equipoModel = new EquipoModel();
         
-        $grupoModel = new GrupoModel();
-
         $id_grupo = $equipoModel->id_grupo;
         $grupo = $equipoModel->find($id_grupo);
 
-        $nombre_grupo = $grupo["nombre"];
-        
-        $equipos = $equipoModel->find($id_grupo);
+        $equipos = $equipoModel->findAll();
         
         $data = array(
             'grupo' => $grupo,
-            'nombre_grupo' => $nombre_grupo,
             'id_grupo' => $id_grupo,
             'titulo' => 'Equipos',
             'equipos' => $equipos,
@@ -43,7 +38,6 @@ class Equipo extends BaseController
 
         $grupo = $grupoModel->find($id_grupo);
         $nombre_grupo = $grupo["nombre"];
-        //dd($nombre_grupo);
         $equipos = $equipoModel->listarEquiposPorGrupo($id_grupo);
         $data = array(
             'grupo' => $grupo,
@@ -61,20 +55,14 @@ class Equipo extends BaseController
             . view('template/footer');
     }
 
-    public function equipoSeleccionado($id = null, $id_grupo = null)
+    public function equipoSeleccionado($id = null)
     {
         $equipoModel = new EquipoModel();
-        $grupoModel = new GrupoModel();
 
-        $grupo = $grupoModel->find($id_grupo);
-        $nombre_grupo = $grupo["nombre"];
-        $equipos = $equipoModel->listarEquiposPorGrupo($id_grupo);
+        $equipos = $equipoModel->findAll();
         $equipoEditar = $equipoModel->find($id);
 
         $data = array(
-            'grupo' => $grupo,
-            'nombre_grupo' => $nombre_grupo,
-            'id_grupo' => $id_grupo,
             'listado' => false,
             'titulo' => 'Equipos',
             'equipos' => $equipos,
@@ -89,11 +77,13 @@ class Equipo extends BaseController
 
     public function agregarModificarEquipo()
     {
+
         if ($this->request->getPost()) {
             $equipo = [
                 'nombre' => $this->request->getPost('nombre'),
-                'id_grupo' => $this->request->getPost('id_grupo'),
+
             ];
+
             $equipoModelo = new EquipoModel();
             if ($this->request->getPost('id')) {
                 $equipo['id'] = $this->request->getPost('id');
@@ -104,7 +94,8 @@ class Equipo extends BaseController
             }
         }
 
-        return redirect()->to(base_url()."/equipos"."/".$equipo['id_grupo']);
+        return redirect()->to(base_url()."/equipos");
+        
     }
 
     public function eliminarEquipo($id = NULL)
