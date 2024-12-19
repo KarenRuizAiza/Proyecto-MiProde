@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\EquipoModel;
+use App\Models\GrupoModel;
 use App\Models\PartidoModel;
 use DateTime;
 
@@ -69,8 +70,9 @@ class Fase extends BaseController
                 'id_torneo' => $this->request->getPost('id_torneo')
             ];
 
-            $fase['fecha_inicio'] = DateTime::createFromFormat('d-m-Y', $fase['fecha_inicio'])->format('Y-m-d');
-            $fase['fecha_fin'] = DateTime::createFromFormat('d-m-Y', $fase['fecha_fin'])->format('Y-m-d');
+            
+            $fase['fecha_inicio'] = DateTime::createFromFormat("d/m/Y", $fase['fecha_inicio'])->format('Y-m-d');
+            $fase['fecha_fin'] = DateTime::createFromFormat("d/m/Y", $fase['fecha_fin'])->format('Y-m-d');
 
             $faseModelo = new FaseModel();
             if ($this->request->getPost('id')) {
@@ -81,6 +83,8 @@ class Fase extends BaseController
                 $faseModelo->insert($fase);
             }
         }
+
+        print_r($fase);
         
         return redirect()->to(base_url()."/fases"."/torneo=".$fase['id_torneo']);
     }
@@ -99,16 +103,19 @@ class Fase extends BaseController
     {
         $partidoModel = new PartidoModel();
         $equipoModel = new EquipoModel();
+        $grupoModel = new GrupoModel();
         $faseModel = new FaseModel();
 
         $fase = $faseModel->find($id_fase);
         $equipos = $equipoModel->findAll();
-        $partidos = $partidoModel->listarPorFase($id_fase, $this->session->usuarioId);
+        $grupos = $grupoModel->findAll();
+        $partidos = $partidoModel->listarPorFaseConApuestas($id_fase, $this->session->usuarioId);
 
         $data = array(
             'fase'=> $fase,
             'partidos' => $partidos,
             'equipos' => $equipos,
+            'grupos' => $grupos,
             'listado' => false,
             'partidoEditar' => false,
             'titulo' => 'Agregar partido',

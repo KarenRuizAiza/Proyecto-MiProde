@@ -25,8 +25,20 @@
                                     <input type="hidden" name="id" value="<?php echo $partidoEditar ? $partidoEditar['id'] : '' ?>">
                                     <input type="hidden" name="id_fase" value="<?php echo $fase['id'] ?>">
 
+                                    <?php if (isset($grupos)) {?>
+                                        <div class="form-group align-items-center">
+                                            <label for="grupo">Grupo</label>
+                                            <select id="grupo" name="grupo" class="form-control select2">
+                                                <option value="<?=null?>">Seleccionar...</option>
+                                                <?php foreach ($grupos as $g) : ?>
+                                                    <option <?= $partidoEditar ? ($partidoEditar['id_grupo'] === $g['id'] ? 'selected="selected"': '') : '' ?>" value="<?= $g['id'] ?>"><?= $g['nombre'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    <?php } ?>
+
                                     <div class="form-group ">
-                                        <label>Fecha</label>
+                                        <label for="fecha">Fecha</label>
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                             <input type="text" id="fecha" name="fecha" class="form-control datetimepicker-input col-sm-10" value="<?= $partidoEditar ? $partidoEditar['fecha'] : '' ?>"/>
                                             <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
@@ -70,11 +82,16 @@
 
                                     <span id="error-equipos" hidden="true">Debe seleccionar equipos diferentes.</span>
 
-                                    <div class="form-buttons-partido col-sm-2 flex-row d-flex">
+                                    <div class="form-buttons-partido col-sm-1 flex-row d-flex">
                                         <button type="submit" name="submit" class="form-control btn-primary"
-                                                onclick="return confirm('¿Desea guardar el partido con los datos ingresados?')">Guardar</button>
+                                                onclick="return confirm('¿Desea guardar el partido con los datos ingresados?')">
+                                                <i class='fa fa-check'></i>
+
+                                        </button>
                                         <button type="button" name="cancel" class="form-control ml-2 btn-danger"
-                                                onclick="location.href='<?php echo base_url('partidos/fase='.$fase['id']); ?>'">Cancelar</button>
+                                                onclick="location.href='<?php echo base_url('partidos/fase='.$fase['id']); ?>'">
+                                            <i class='fas fa-redo'></i>
+                                        </button>
                                     </div>
 
                                 </form>

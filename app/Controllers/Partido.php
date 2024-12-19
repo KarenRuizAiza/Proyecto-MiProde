@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ApuestaModel;
+use App\Models\GrupoModel;
 use App\Models\EquipoModel;
 use App\Models\PartidoModel;
 use App\Models\FaseModel;
@@ -41,10 +42,12 @@ class Partido extends BaseController
     public function partidoSeleccionado($id = null, $id_fase = null)
     {
         $partidoModel = new PartidoModel();
+        $grupoModel = new GrupoModel();
         $equipoModel = new EquipoModel();
         $faseModel = new FaseModel();
 
         $fase = $faseModel->find($id_fase);
+        $grupos = $grupoModel->findAll();
         $equipos = $equipoModel->findAll();
         $partidos = $partidoModel->listarPorFaseConApuestas($id_fase, $this->session->usuarioId);
 
@@ -56,6 +59,7 @@ class Partido extends BaseController
             'titulo' => 'Partidos',
             'fase'=> $fase,
             'equipos' => $equipos,
+            'grupos'=> $grupos,
             'partidos' => $partidos,
             'listado' => false,
             'partidoEditar' => $partidoEditar,
@@ -168,10 +172,16 @@ class Partido extends BaseController
                 'hora' => $this->request->getPost('hora'),
                 'id_fase' => $this->request->getPost('id_fase'),
                 'id_equipo_local' => $this->request->getPost('local') ? $this->request->getPost('local') : null,
-                'id_equipo_visitante' => $this->request->getPost('visitante') ? $this->request->getPost('visitante') : null
+                'id_equipo_visitante' => $this->request->getPost('visitante') ? $this->request->getPost('visitante') : null,
             ];
 
             $partido['fecha'] = DateTime::createFromFormat('d/m/Y', $partido['fecha'])->format('Y-m-d');
+
+            if ($this->request->getPost('grupo')) {
+                $partido['id_grupo'] = $this->request->getPost('grupo');
+            } else {
+                $partido['id_grupo'] = null;
+            }
 
             $partidoModel = new PartidoModel();
             if ($this->request->getPost('id')) {
@@ -183,7 +193,7 @@ class Partido extends BaseController
             }
         }
 
-        return redirect()->to(base_url()."/partidos"."/fase=".$partido['id_fase']);
+        return redirect()->to(base_url()."/agregarPartido"."/fase=".$partido['id_fase']);
     }
 
     public function eliminarPartido($id = NULL)
@@ -200,9 +210,11 @@ class Partido extends BaseController
     {
         $faseModel = new FaseModel();
         $partidoModel = new PartidoModel();
+        $grupoModel = new GrupoModel();
         $equipoModel = new EquipoModel();
 
         $fase = $faseModel->find($id_fase);
+        $grupos = $grupoModel->findAll();
         $partidos = $partidoModel->listarPorFase($id_fase);
         $partidoSeleccionado = $partidoModel->partidoPorFase($id, $id_fase);
         $equipos = $equipoModel->findAll();
@@ -213,6 +225,7 @@ class Partido extends BaseController
             'titulo' => 'Partidos',
             'fase'=> $fase,
             'equipos' => $equipos,
+            'grupos' => $grupos,
             'partidos' => $partidos,
             'partidoResultado' => $partidoSeleccionado,
             'listado' => true,

@@ -16,13 +16,13 @@ class DesafioModel extends Model
     public function listarDesafiosPorUsuario($idUsuario)
     {
         return $this->db->table('desafio')
-            ->select('desafio.*, desafio_participante.puntos')
+            ->select('desafio.*')
             ->join('desafio_participante', 'desafio.id = desafio_participante.id_desafio')
             ->where('desafio_participante.id_participante', $idUsuario)
             ->get()->getResultArray();
         }
 
-   public function listarInvitacionesPorUsuario($idUsuario)
+   /* public function listarInvitacionesPorUsuario($idUsuario)
     {
         return $this->db->table('invitacion_desafio')
             ->select('invitacion_desafio.*, desafio.nombre as nombre, desafio.fecha as desafio_fecha, desafio.hora as desafio_hora')
@@ -30,5 +30,6 @@ class DesafioModel extends Model
             ->join('desafio_participante', 'desafio_participante.id_desafio = desafio.id')
             ->where('desafio_participante.id_participante', $idUsuario)
             ->get()->getResultArray();
-        }
+    }*/
+
 }

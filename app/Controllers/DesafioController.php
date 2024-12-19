@@ -3,7 +3,7 @@ namespace App\Controllers;
 
 use App\Models\DesafioModel;
 use App\Models\UsuarioModel;
-use CodeIgniter\Controller;
+use DateTime;
 
 class DesafioController extends BaseController
 {
@@ -11,7 +11,7 @@ class DesafioController extends BaseController
     {
         $desafioModel = new DesafioModel();
 
-        $desafios = $desafioModel->listarInvitacionesPorUsuario($idUsuario);
+        $desafios = $desafioModel->getInvitacionesByUsuario();
         $data = array(
             'titulo' => 'Desafíos',
             'desafios' => $desafios
@@ -26,8 +26,10 @@ class DesafioController extends BaseController
     public function misDesafios()
     {
         $desafioModel = new DesafioModel();
-        
-        $desafios = $desafioModel->listarDesafiosPorUsuario($this->session->usuarioId);
+        $usuarioModel = new UsuarioModel();
+
+        $usuario = $usuarioModel->find($idUsuario);
+        $desafios = $desafioModel->listarDesafiosPorUsuario($idUsuario);
         $data = array(
             'titulo' => 'Lista de Desafios' ,
             'desafios' => $desafios
@@ -41,14 +43,17 @@ class DesafioController extends BaseController
 
     public function agregarModificarDesafio()
     {
+
         if ($this->request->getPost()) {
             $desafio = [
                 'id_torneo' => $this->request->getPost('id_torneo'),
                 'nombre' => $this->request->getPost('nombre'),
                 'fecha' => $this->request->getPost('fecha'),
                 'hora' => $this->request->getPost('hora'),
-                'id_partido' => $this->request->getPost('id_partido')
             ];
+
+            $desafio['fecha'] = DateTime::createFromFormat('d-m-Y', $desafio['fecha'])->format('Y-m-d');
+            $desafio['hora'] = date("H:i", strtotime($desafio['hora']));
 
             $desafioModelo = new DesafioModel();
 
@@ -60,7 +65,7 @@ class DesafioController extends BaseController
                 $desafioModelo->insert($desafio);
             }
         }
-        return redirect()->to(base_url()."/desafios");
+        return redirect()->to(base_url("/desafios"));
     }
 
 

@@ -54,7 +54,16 @@
                                 Torneos
                             </p>
                         </a>
-                    </li>    
+                    </li>   
+
+                    <li class="nav-item" <?php if(session()->rol == 'Participante'){ echo 'style="display:none;visibility:hidden;"'; } else { echo 'style="visibility:visible;"';}?>>
+                        <a href="<?= site_url('/equipos')?>" class="nav-link">
+                            <i class='fa fa-user-group nav-icon'></i>
+                            <p>
+                                Equipos
+                            </p>
+                        </a>
+                    </li> 
                 
                     <li class="nav-item">
                         <a href="<?= site_url('/participantes/torneo');?>" class="nav-link">
@@ -106,6 +115,14 @@
                         </ul>
                     </li>
 
+                    <li class="nav-item" <?php if(session()->rol == 'Participante'){ echo 'style="display:none;visibility:hidden;"'; } else { echo 'style="visibility:visible;"';}?>>
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-list"></i>
+                            <p>
+                                Listado de Pronosticos
+                            </p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

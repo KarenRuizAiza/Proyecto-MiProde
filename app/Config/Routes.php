@@ -96,11 +96,9 @@ $routes->get('fixture/(:num)', 'Fase::recuperarFixture/$1');
 // desafío
 $routes->get('invitaciones', 'DesafioController::index');
 $routes->get('desafios', 'DesafioController::misDesafios');
-$routes->post('agregarModificarDesafio', 'DesafioController::agregarModificarDesafio');
-$routes->get('/updateDesafio/(:num)', 'DesafioController::desafioSeleccionado/$1');
-$routes->get('/deleteDesafio/(:num)','DesafioController::eliminarDesafio/$1');
-
-// invitaciones a desafios
+$routes->post('agregarModificar', 'Desafio::agregarModificarDesafio');
+$routes->get('/update/(:num)', 'Desafio::desafioSeleccionado/$1');
+$routes->get('/delete/(:num)','Desafio::eliminarDesafio/$1');
 
 /*
  * --------------------------------------------------------------------
