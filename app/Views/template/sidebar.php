@@ -83,22 +83,30 @@
                         </a>
                     </li>
 
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" <?php if(session()->rol == 'Administrador'){ echo 'style="display:none;visibility:hidden;"'; } else { echo 'style="visibility:visible;"';}?>>
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-users-rectangle"></i>
-                            <p>
+                            <i class="fa-solid fa-users-rectangle mr-2"></i>
+                            <span>
 
                                 Desafíos
 
-                            </p>
+                            </span>
                         </a>
                         <ul class="dropdown-menu" >
-                            <li><a class="dropdown-item" href="#">Mis Desafíos</a></li>
-                            <li><a class="dropdown-item" href="#">Invitaciones</a></li>
+                            <li>
+                                <a class="dropdown-item" href="<?= site_url('/desafios')?>">
+                                    Mis Desafíos
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    Mis Invitaciones
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item" <?php if(session()->rol == 'Participante'){ echo 'style="display:none;visibility:hidden;"'; } else { echo 'style="visibility:visible;"';}?>>
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa-solid fa-list"></i>
                             <p>
