@@ -3,15 +3,15 @@ namespace App\Controllers;
 
 use App\Models\DesafioModel;
 use App\Models\UsuarioModel;
-use CodeIgniter\Controller;
+use DateTime;
 
-class DesafioController extends Controller
+class DesafioController extends BaseController
 {
     public function index()
     {
         $desafioModel = new DesafioModel();
 
-        $desafios = $desafioModel->getInvitacionesByUsuario();
+        $desafios = $desafioModel->getInvitacionesByUsuario(session()->usuarioId);
         $data = array(
             'titulo' => 'Lista de Invitaciones',
             'desafios' => $desafios
@@ -28,6 +28,8 @@ class DesafioController extends Controller
         $desafioModel = new DesafioModel();
         $usuarioModel = new UsuarioModel();
 
+        $idUsuario = session()->usuarioId;
+
         $usuario = $usuarioModel->find($idUsuario);
         $desafios = $desafioModel->listarDesafiosPorUsuario($idUsuario);
         $data = array(
@@ -43,16 +45,16 @@ class DesafioController extends Controller
 
     public function agregarModificarDesafio()
     {
+
         if ($this->request->getPost()) {
             $desafio = [
                 'id_torneo' => $this->request->getPost('id_torneo'),
                 'nombre' => $this->request->getPost('nombre'),
                 'fecha' => $this->request->getPost('fecha'),
                 'hora' => $this->request->getPost('hora'),
-                'id_partido' => $this->request->getPost('id_partido')
             ];
 
-            $desafio['fecha'] = DateTime::createFromFormat('d-m-Y', $desafio['fecha'])->format('Y-m-d');
+            $desafio['fecha'] = DateTime::createFromFormat('d/m/Y', $desafio['fecha'])->format('Y-m-d');
             $desafio['hora'] = date("H:i", strtotime($desafio['hora']));
 
             $desafioModelo = new DesafioModel();
@@ -65,7 +67,7 @@ class DesafioController extends Controller
                 $desafioModelo->insert($desafio);
             }
         }
-        return redirect()->to(base_url()."/desafios");
+        return redirect()->to(base_url("/desafios"));
     }
 
 
