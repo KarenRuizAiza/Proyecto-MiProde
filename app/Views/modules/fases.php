@@ -8,7 +8,7 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="card card-default">
-                        <div class="card-header" style="padding: 2em 0; background-color: aliceblue;">
+                        <div class="card-header" <?php if(session()->rol == 'Participante'){ echo 'style="display:none;visibility:hidden;"'; } else { echo 'style="visibility:visible;"';}?> style="padding: 2em 0; background-color: aliceblue;">
                             <h4 class="form-titulo"><?php echo $faseEditar  ? 'Editar fase' : $titulo ?></h4>
                             <div class="card-tools" style="width: 100%;">
                                 <div class="input-group input-group-sm">

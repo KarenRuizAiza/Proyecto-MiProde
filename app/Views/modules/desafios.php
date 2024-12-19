@@ -29,7 +29,7 @@
                                             <div class="flex-column d-flex col-sm-3">
                                                 <label>Fecha</label>
                                                 <div class="input-group date" id="reservationdateStart" data-target-input="nearest">
-                                                    <input type="text" name="fecha" class="form-control datetimepicker-input" value="<?php echo isset($desafioEditar) ? $desafioEditar['fecha_inicio'] : '' ?>"/>
+                                                    <input type="text" name="fecha" class="form-control datetimepicker-input" value="<?php echo isset($desafioEditar) ? $desafioEditar['fecha'] : '' ?>"/>
                                                     <div class="input-group-append" data-target="#reservationdateStart" data-toggle="datetimepicker">
                                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                     </div>
@@ -38,8 +38,8 @@
 
                                             <div class="bootstrap-timepicker">
                                                 <div class="form-group">
-                                                    <label>Hora</label>
-                                                    <div class="input-group date" id="timepicker" data-target-input="nearest">
+                                                <label>Hora</label>
+                                                    <div class="input-group time" id="timepicker" data-target-input="nearest">
                                                         <input type="text" id="hora" readonly="readonly" name="hora" class="form-control datetimepicker-input col-sm-10" data-target="#timepicker" value="<?= isset($desafioEditar) ? $desafioEditar['hora'] : '' ?>"/>
                                                         <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
                                                         <div class="input-group-text"><i class="far fa-clock"></i></div>
@@ -51,7 +51,8 @@
                                             <span id="fecha-hora-requeridos" hidden="true">Los campos fecha y hora son obligatorios.</span>
 
 
-                                            <input type="hidden" name="id_torneo" value="<?php echo $torneo["id"] ?>">
+                                            <input type="hidden" name="id_partido" value="<?php echo $partido["id"] ?>">
+                                            
                                             <div class="flex-row d-flex col-sm-3" style="gap: 1rem; margin-top: 1.8rem">
                                                 <button type="submit" name="submit" class="form-control btn-primary"
                                                         onclick="return alert('¿Desea guardar el desafio los datos ingresados?')">
@@ -74,6 +75,7 @@
                                     <thead>
                                     <tr>
                                         <th>Nombre</th>
+                                        <th>id_torneo</th>
                                         <th>Fecha</th>
                                         <th>Hora</th>
                                         <th>Acciones</th>
@@ -83,14 +85,16 @@
                                     
                                     <?php foreach ($desafios as $d) : ?> 
                                     <tr>
-                                        <td><?= $d['id_torneo'] ?></td>
+                                        
                                         <td><?= $d['nombre'] ?></td>
+                                        <td><?= $d['id_torneo'] ?></td>
                                         <td><?= $d['fecha'] ?></td>
                                         <td><?= $d['hora'] ?></td>
-                                        <td><?= $d['id_partido'] ?></td>
+    
                                         <td >
-                                            <a href="<?php echo base_url('deleteDesafio/desafio='.$d['id']);?>" title="Eliminar" onclick="return confirm('¿Desea eliminar el desafio seleccionado?')"><i class="fa-solid fa-trash-can"></i></a>
-                                            <a href="<?php echo base_url('updateDesafio/desafio='.$d['id']);?>." title="Modificar"><i class="fa-solid fa-pen"></i></a>
+                                            <a href="<?php echo base_url('deleteDesafio/'.$d['id']);?>" title="Eliminar" onclick="return confirm('¿Desea eliminar el desafio seleccionado?')"><i class="fa-solid fa-trash-can"></i></a>
+                                            <a href="<?php echo base_url('updateDesafio/'.$d['id']);?>." title="Modificar"><i class="fa-solid fa-pen"></i></a>
+                                            <a href="<?php echo base_url('enviarinvitacion/'.$d['id']);?>." title="EnviarInvitacion"><i class="fa-solid fa-envelope"></i></a>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>

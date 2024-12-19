@@ -11,7 +11,7 @@ class DesafioController extends BaseController
     {
         $desafioModel = new DesafioModel();
 
-        $desafios = $desafioModel->getInvitacionesByUsuario();
+        $desafios = $desafioModel->listarInvitacionesPorUsuario();
         $data = array(
             'titulo' => 'Desafíos',
             'desafios' => $desafios
@@ -26,10 +26,8 @@ class DesafioController extends BaseController
     public function misDesafios()
     {
         $desafioModel = new DesafioModel();
-        $usuarioModel = new UsuarioModel();
 
-        $usuario = $usuarioModel->find($idUsuario);
-        $desafios = $desafioModel->listarDesafiosPorUsuario($idUsuario);
+        $desafios = $desafioModel->listarDesafiosPorUsuario($this->session->usuarioId);
         $data = array(
             'titulo' => 'Lista de Desafios' ,
             'desafios' => $desafios
@@ -51,9 +49,6 @@ class DesafioController extends BaseController
                 'fecha' => $this->request->getPost('fecha'),
                 'hora' => $this->request->getPost('hora'),
             ];
-
-            $desafio['fecha'] = DateTime::createFromFormat('d-m-Y', $desafio['fecha'])->format('Y-m-d');
-            $desafio['hora'] = date("H:i", strtotime($desafio['hora']));
 
             $desafioModelo = new DesafioModel();
 
@@ -97,5 +92,6 @@ class DesafioController extends BaseController
             . view('modules/desafios', $data)
             . view('template/footer');
     }
+    
 
 }

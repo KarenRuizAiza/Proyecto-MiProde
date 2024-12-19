@@ -6,17 +6,17 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Torneo</th>
+                        <th>Mensaje</th>
                         <th>Fecha</th>
                         <th>Hora</th>
-                        <th>Partido</th>
+                        <th>Estado</th>
+                        <th>Estado</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($desafios as $desafio): ?>
                         <tr>
-                            <td><?= $desafio['nombre'] ?></td>
+                            <td><?= $invitacion_participante['mensaje'] ?></td>
                             <td><?= $desafio['id_torneo'] ?></td>
                             <td><?= $desafio['fecha'] ?></td>
                             <td><?= $desafio['hora'] ?></td>
