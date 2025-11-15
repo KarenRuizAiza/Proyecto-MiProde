@@ -4,3 +4,10 @@
     gap: 0.8em;
     align-items: flex-end;
 }
+.form-titulo {
+    margin: 0em 1em 1em 0.7em;
+    font-variant: all-small-caps;
+    color: #38c2a8;
+    font-weight: bold;
+    border-bottom: 1px solid #0000004a;
+}

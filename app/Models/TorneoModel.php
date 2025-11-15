@@ -10,3 +10,4 @@ class TorneoModel extends Model
     protected $allowedFields = ['id', 'nombre', 'descripcion', 'fecha_inicio','fecha_fin'];
 
 }
+

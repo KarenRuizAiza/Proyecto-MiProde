@@ -20,10 +20,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="<?= base_url()?>/plugins/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- MiProde Styles -->
     <link rel="stylesheet" href="<?= base_url('/css/miprode/partido.css')?>">
     <link rel="stylesheet" href="<?= base_url('/css/miprode/formularios.css')?>">
+    <link rel="stylesheet" href="<?= base_url('/css/miprode/fixture.css')?>">
 </head>
 <body class="hold-transition sidebar-mini" style="overflow: hidden">
     <div class="wrapper">
