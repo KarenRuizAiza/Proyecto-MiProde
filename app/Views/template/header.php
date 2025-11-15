@@ -20,30 +20,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="<?= base_url()?>/plugins/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- MiProde Styles -->
     <link rel="stylesheet" href="<?= base_url('/css/miprode/partido.css')?>">
+    <link rel="stylesheet" href="<?= base_url('/css/miprode/formularios.css')?>">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini" style="overflow: hidden">
     <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            <a class="nav-link" data-widget="pushmenu" href="/" role="button"><i class="fas fa-bars"></i></a>
+          </li>
+          <!--<li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Equipos</a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Home</a>
-          </li>
-          <li class="nav-item d-none d-sm-inline-block">
-            <a href="torneos" class="nav-link">Torneos</a>
-          </li>
+            <a href="<?= site_url('/torneos')?>" class="nav-link">Torneos</a>
+          </li>-->
         </ul>
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
           <!-- Navbar Search -->
-          <li class="nav-item">
+          <!--<li class="nav-item">
             <a class="nav-link" data-widget="navbar-search" href="#" role="button">
               <i class="fas fa-search"></i>
             </a>
@@ -62,18 +64,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
               </form>
             </div>
-          </li>
+          </li>-->
 
           <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
               <i class="fas fa-expand-arrows-alt"></i>
             </a>
           </li>
-          <li class="nav-item">
+          <!--<li class="nav-item">
             <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
               <i class="fas fa-th-large"></i>
             </a>
-          </li>
+          </li>-->
         </ul>
       </nav>
     </div>

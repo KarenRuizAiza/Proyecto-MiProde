@@ -2,10 +2,16 @@
 
 namespace App\Controllers;
 
+use Config\Services;
+
+
 class Home extends BaseController
 {
     public function index()
     {
-        return view('welcome_message');
+        return view('template/header')
+            . view('template/sidebar')
+            . view('modules/home')
+            . view('template/footer');
     }
 }
