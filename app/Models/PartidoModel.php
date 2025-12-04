@@ -98,4 +98,16 @@ class PartidoModel extends Model
         return $results;
     }
 
+    public function getPartidosPaginados($perPage = 10) {
+        $this->select('partido.*, f.nombre as nombre_fase, f.id as id_fase, l.nombre as local, v.nombre as visitante, g.nombre as grupo')
+             ->join('fase f', 'partido.id_fase = f.id')
+             ->join('equipo l', 'partido.id_equipo_local = l.id')
+             ->join('equipo v', 'partido.id_equipo_visitante = v.id')
+             ->join('grupo g', 'partido.id_grupo = g.id')
+             ->orderBy('f.id', 'ASC') // Order by phase for grouping
+             ->orderBy('partido.fecha', 'ASC');
+             
+        return $this->paginate($perPage);
+    }
+
 }
