@@ -90,18 +90,24 @@ $routes->get('/update/(:num)', 'Equipo::equipoSeleccionado/$1');
 $routes->get('/delete/(:num)','Equipo::eliminarEquipo/$1');
 
 //fixture
-$routes->get('fixture/verTorneos', 'Torneo::torneosVigentes');
+$routes->get('fixture/verTorneos', 'Fase::recuperarFixtureActual');
 $routes->get('fixture/fasesFull/(:num)', 'Fase::listadoFasesFull/$1');
 
 $routes->get('apuestas', 'Torneo::apuestasRealizadas');
 $routes->get('fixture/(:num)', 'Fase::recuperarFixture/$1');
 
 // desafío
-$routes->get('invitaciones', 'DesafioController::index');
 $routes->get('desafios', 'DesafioController::misDesafios');
 $routes->post('agregarModificarDesafio', 'DesafioController::agregarModificarDesafio');
 $routes->get('/updateDesafio/(:num)', 'DesafioController::desafioSeleccionado/$1');
-$routes->get('/deleteDesafio/(:num)','DesafioCintroller::eliminarDesafio/$1');
+$routes->post('/enviarinvitacion', 'DesafioController::enviarInvitaciones');
+$routes->get('/deleteDesafio/(:num)','DesafioController::eliminarDesafio/$1');
+
+$routes->get('invitaciones', 'InvitacionController::index');
+$routes->get('/aceptarInvitacion/(:num)', 'InvitacionController::aceptarInvitacion/$1');
+$routes->get('rechazarInvitacion/(:num)', 'InvitacionController::rechazarInvitacion/$1');
+
+$routes->get('/desafio/ranking/desafio=(:num)', 'Participante::rankingDesafio/$1');
 
 /*
  * --------------------------------------------------------------------

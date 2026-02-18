@@ -56,11 +56,11 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="fixture/verTorneos" class="nav-link">
+                    <li class="nav-item" <?php if(session()->rol == 'Administrador'){ echo 'style="display:none;visibility:hidden;"'; } else { echo 'style="visibility:visible;"';}?>>
+                        <a href="<?= site_url('/fixture/verTorneos')?>" class="nav-link">
                             <i class="nav-icon fa-solid fa-table"></i>
                             <p>
-                                Fixture
+                                Fixture Actual
                             </p>
                         </a>
                     </li>
@@ -140,5 +140,5 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="max-height: 581.4px; overflow-y: auto; padding-bottom: 16px; overflow-x: hidden">
         <div class="content">

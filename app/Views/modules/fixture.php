@@ -30,8 +30,12 @@
                                             <strong>Predicción: </strong> <?= $p['resultado_prediccion'] ? $p['resultado_prediccion'] : 'Sin predicción' ?>
                                         </span>
                                         <?php if ($p['resultado']) { ?>
-                                            <button type="button" class="resultado-popover btn btn-outline-info" data-toggle="popover" data-trigger="focus" title="Resultado del Partido"
-                                                data-content="
+                                            <button type="button" class="resultado-popover btn btn-outline-info" 
+                                            data-bs-toggle="popover"
+                                            data-bs-trigger="focus"
+                                            data-bs-html="true"
+                                            title="Resultado del Partido"
+                                                data-bs-content="
                                                 <span class='info-partido d-flex'>
                                                    <strong>Ganador:</strong> <span><?=$p['resultado'] ? $p['resultado'] : 'Sin resultado'?></span>
                                                 </span>
@@ -115,15 +119,15 @@
 
             
             <script>
-                // Inicializamos los popovers cuando el documento esté listo
-                $(document).ready(function() {
-                    // Inicializar popover
-                    $('[data-toggle="popover"]').popover({
-                        html: true  // Esto permite que se interprete HTML dentro del popover
-                    });
-
-                    $('.popover-dismiss').popover({
-                        trigger: 'focus'
+                document.addEventListener("DOMContentLoaded", function () {
+                document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function (el) {
+                    new bootstrap.Popover(el, {
+                        html: true,
+                        trigger: 'focus',
+                        sanitize: false,
+                        title: el.getAttribute('data-original-title') || el.getAttribute('title'),
+                        content: el.getAttribute('data-bs-content')
                     });
                 });
+            });
             </script>

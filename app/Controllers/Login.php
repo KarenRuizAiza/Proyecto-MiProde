@@ -13,42 +13,46 @@ class Login extends BaseController
         return view('sessions/log-in', ['error' => $error]);
     }
 
+
     public function autenticar()
-        {
-            if ($this->request->getPost()) {
-                $model = new UsuarioModel();
-                $usuario = $model->where('nombre', $this->request->getPost('nombre'))->find();
+    {
+        if ($this->request->getPost()) {
 
-                if ($usuario != null && count($usuario) > 0) {
-                    $usuario = $usuario[0];
-                    if ($usuario["contraseña"] == $this->request->getPost('contraseña')) {
-                        $this->session->usuarioId = $usuario["id"];
-                        $this->session->usuario = $usuario["nombre"];
-                        $this->session->rol = $usuario["rol"];
-                        $this->session->logged = true;
+            $model = new UsuarioModel();
+            $usuario = $model->where('nombre', $this->request->getPost('nombre'))->first();
+            $contraseña = $this->request->getPost('contraseña');
 
-                        return $this->response->redirect(site_url('/'));
-                    } else  {
-                        return $this->errorMessage();
-                    }
-                }
-                else {
-                    return $this->errorMessage();
-                }
+            // TODO: password_verify Solo funciona cuando las contraseñas estan guardadas con hash en la base
+            // if ($usuario && password_verify($contraseña, $usuario['contraseña'])) {
+            if ($usuario && $contraseña === $usuario['contraseña']) {
+                
 
-            } else return $this->response->redirect(site_url('/login'));
-        }
+                $this->session->usuarioId = $usuario["id"];
+                $this->session->usuario = $usuario["nombre"];
+                $this->session->email = $usuario["email"];
+                $this->session->rol = $usuario["rol"];
+                $this->session->logged = true;
 
-    private function errorMessage()
-        {
-            session()->setFlashdata('error', 'Usuario y/o contraseña incorrectos.');
-            return $this->response->redirect(site_url('/login'));
-        }
+                return $this->response->redirect(site_url('/'));
+
+            } else { return $this->errorMessage(); }
+
+        } else { return $this->response->redirect(site_url('/login')); };
+    }
+
 
     public function logout()
     {
         $this->session->destroy();
         return $this->response->redirect(site_url('/login'));
     }
+
+
+    private function errorMessage()
+    {
+        session()->setFlashdata('error', 'Usuario y/o contraseña incorrectos.');
+        return $this->response->redirect(site_url('/login'));
+    }
+
 }
 ?>

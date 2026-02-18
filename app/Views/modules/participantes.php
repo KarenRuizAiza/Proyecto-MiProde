@@ -11,32 +11,40 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="card card-default">
+                    
                     <div class="card-header" style="padding: 2em 0; background-color: aliceblue;">
                         <div class="card-tools" style="width: 100%;">
-                            <div class="input-group input-group-sm">
-                                <!-- /form -->
-                                <div class="form-container w-100">
-                                    <form class="form-card form-partido justify-content-start" action="<?php echo base_url('agregarModificarUsuario');?>" method="post" name="seleccionTorneo">
+                            
+                            <?php if ($mostrarTorneo) { ?>
+                                <div class="input-group input-group-sm">
+                                    <!-- /form -->
+                                    <div class="form-container w-100">
+                                        <form class="form-card form-partido justify-content-start" action="<?php echo base_url('agregarModificarUsuario');?>" method="post" name="seleccionTorneo">
 
-                                        <div class="flex-column d-flex col-sm-8">
-                                            <label>Torneo</label>
-                                            <select id="torneo" name="torneo" class="form-control select2" >
-                                                <option value="<?=null?>">Seleccionar...</option>
-                                                <?php foreach ($torneos as $t) : ?>
-                                                    <option <?= $torneo_seleccionado ? ($torneo_seleccionado === $t['id'] ? 'selected="selected"': '') : '' ?>" value="<?= $t['id'] ?>"><?= $t['nombre'] ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
+                                            <div class="flex-column d-flex col-sm-8">
+                                                <label>Torneo</label>
+                                                <select id="torneo" name="torneo" class="form-control select2" >
+                                                    <option value="<?=null?>">Seleccionar...</option>
+                                                    <?php foreach ($torneos as $t) : ?>
+                                                        <option <?= $torneo_seleccionado ? ($torneo_seleccionado === $t['id'] ? 'selected="selected"': '') : '' ?>" value="<?= $t['id'] ?>"><?= $t['nombre'] ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
 
-                                        <button type="button" name="buscar" title="Buscar" class="form-control col-sm-1 ml-1 btn-info align-self-end"
-                                                onclick="buscarParticipantes()">
-                                            <i class='fas fa-search-dollar'></i>
-                                        </button>
-                                    </form>
-                                </div><!-- /.form -->
-                            </div>
+                                            <button type="button" name="buscar" title="Buscar" class="form-control col-sm-1 ml-1 btn-info align-self-end"
+                                                    onclick="buscarParticipantes()">
+                                                <i class='fas fa-search-dollar'></i>
+                                            </button>
+                                        </form>
+                                    </div><!-- /.form -->
+                                </div>
+                            <?php } else { ?>
+                                <h5>Este es el ranking de los participantes del torneo <b><?=$torneo['nombre'] ?></b></h5>
+                            <?php } ?>
+
                         </div>
                     </div><!-- /.card-header -->
+                    
 
                     <div class="card-body" style="margin-top: 3em;">
                         <div class="table-responsive p-0" style="height: 300px;">
@@ -59,7 +67,11 @@
                                     
                                 } else { ?>
                                     <tr style="text-align: center;">
-                                        <td colspan="3"> <?= $torneo_seleccionado != 'null' ? 'El torneo seleccionado no tiene ninguna apuesta realizada' : 'No ha seleccionado ningún torneo' ?></td>
+                                        <td colspan="3">
+                                             <?= $torneo_seleccionado != 'null' || !$desafio_seleccionado ? 
+                                                'Todavia no hay ninguna apuesta realizada' : 
+                                                'No ha seleccionado ningún torneo' ?>
+                                        </td>
                                     </tr>
                                 <?php }?>
                                 </tbody>

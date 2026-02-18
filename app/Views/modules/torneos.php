@@ -15,7 +15,7 @@
                                 <div class="input-group input-group-sm">
                                     <!-- /form -->
                                     <div class="form-container">
-                                        <form class="form-group form-card" style="place-items: center;" action="<?php echo base_url('agregarModificarTorneo');?>" method="post" name="agregarModificarTorneo"
+                                        <form class="form-group form-card" style="place-items: center; flex-wrap:wrap" action="<?php echo base_url('agregarModificarTorneo');?>" method="post" name="agregarModificarTorneo"
                                         <?php if(session()->rol == 'Participante'){ echo 'style="display:none;visibility:hidden;"'; } else { echo 'style="visibility:visible;"';}?>>
                                             <input type="hidden" name="id" value="<?php echo $torneoEditar ? $torneoEditar['id'] : '' ?>">
 

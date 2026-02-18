@@ -28,6 +28,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="<?= base_url('/css/miprode/fixture.css')?>">
 </head>
 <body class="hold-transition sidebar-mini" style="overflow: hidden">
+
+    <div aria-live="polite" aria-atomic="true" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
+
+      <?php if (session()->getFlashdata('success')): ?>
+          <div class="container mt-3">
+            <div class="alert alert-success alert-dismissible fade show">
+                <?= session()->getFlashdata('success'); ?>
+                <button type="button" class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                </button>
+            </div>
+        </div>
+      <?php endif; ?>
+
+      <?php if (session()->getFlashdata('error')): ?>
+          <div class="container mt-3">
+            <div class="alert alert-danger alert-dismissible fade show">
+                <?= session()->getFlashdata('error'); ?>
+                <button type="button" class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                </button>
+            </div>
+        </div>
+      <?php endif; ?>
+
+    </div>
+
+    <?= view('components/loader') ?>
     <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">

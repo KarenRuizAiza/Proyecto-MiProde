@@ -129,6 +129,56 @@ class Fase extends BaseController
             . view('template/footer');
     }
 
+    public function recuperarFixtureActual()
+    {
+        $today = date('Y-m-d');
+
+        $torneoModel = new TorneoModel();
+
+        $torneoActual = $torneoModel
+            ->where('fecha_inicio <=', $today)
+            ->where('fecha_fin >=', $today)
+            ->orderBy('fecha_inicio', 'DESC')
+            ->first();
+
+        $nombre_torneo = $torneoActual['nombre'];
+
+        $id_torneo = $torneoActual['id'];
+        
+        $faseModel = new FaseModel();
+        $fases = $faseModel->where('id_torneo', $id_torneo)->orderBy('fecha_inicio', 'ASC')->findAll();
+
+        $partidoModel = new PartidoModel();
+        $diccionario = [];
+
+        $cantidada_aciertos = 0;
+
+        foreach ($fases as $fase) {
+            $partidos = $partidoModel->listarPorFaseConApuestas($fase['id'], $this->session->usuarioId);
+
+            foreach ($partidos as $partido) {
+                $cantidada_aciertos += $partido['acerto_prediccion'];
+
+                if ($partido['grupo']) {
+                    // solo habia que agregar [] vacio, no tengo idea como funca php
+                    $diccionario[$fase['nombre'] . ' - Grupo ' . $partido['grupo']][] = $partido;
+                } else {
+                    $diccionario[$fase['nombre']][] = $partido;
+                }
+            }
+        }
+
+        $data['fixture'] =  $diccionario;
+        $data['titulo'] =  "Fixture " . $nombre_torneo;
+        $data['cantidada_aciertos'] = $cantidada_aciertos;
+
+        return view('template/header')
+            . view('template/sidebar')
+            . view('modules/fixture', $data)
+            . view('template/footer');
+      
+    }
+
     public function recuperarFixture($id_torneo)
     {
         $torneoModel = new TorneoModel();

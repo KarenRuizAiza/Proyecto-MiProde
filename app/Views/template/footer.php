@@ -59,5 +59,16 @@
             });
         });
       </script>
+
+      <script>
+      $(document).ready(function() {
+        $('#load-data-button').on('click', function() {
+            // Show the spinner overlay
+            $('#loading-spinner').addClass('active');
+            
+            
+        });
+        });
+</script>
   </body>
 </html>

@@ -36,7 +36,7 @@ if (isset($_SESSION['alta_exitosa'])) {
             <img src="<?= base_url('/img/bet-logo.png') ?>" alt="AdminLTE Logo" class="brand-image img-circle">
 
             <h4 class="mb-3 fw-normal">Inicie sesión en su cuenta</h4>
-            <form class="form-card" action="<?php echo base_url('auth');?>" method="post" name="login">
+            <form class="form-card" action="<?php echo base_url('auth');?>" method="post" name="login"      onsubmit="showLoader()">
                 <div class="form-floating form-input col-12">
                     <input name="nombre" class="form-control" placeholder="Nombre" value="" required>
                 </div>

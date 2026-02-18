@@ -14,8 +14,8 @@
                         <div class="card-tools" style="width: 100%;">
                             <div class="input-group input-group-sm">
                                 <!-- /form -->
-                                <div class="form-container">
-                                    <form class="form-group form-card" action="<?php echo base_url('agregarModificarUsuario');?>" method="post" name="agregarModificarUsuario"
+                                <div class="form-container" style="width: 100%;">
+                                    <form class="form-group form-card" style="place-items: center; flex-wrap:wrap; width: 100%" action="<?php echo base_url('agregarModificarUsuario');?>" method="post" name="agregarModificarUsuario"
                                     <?php if(session()->rol == 'Participante'){ echo 'style="display:none;visibility:hidden;"'; } else { echo 'style="visibility:visible;"';}?>>
                                         <input type="hidden" name="id" value="<?php echo $usuarioEditar ? $usuarioEditar['id'] : '' ?>">
 
@@ -39,7 +39,7 @@
                                             </select>
                                         </div>
 
-                                        <div class="col-sm-8 flex-row d-flex">
+                                        <div class="col-sm-8 flex-row d-flex" style="margin-top: 24px">
                                             <button type="submit" name="submit" title="Guardar" class="form-control col-sm-2 btn-primary"
                                                     onclick="return confirm('¿Desea guardar el usuario con los datos ingresados?')">
                                                 <i class='<?= $usuarioEditar ? 'fas fa-user-check' : 'fa fa-user-plus' ?>'></i>

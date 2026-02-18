@@ -60,22 +60,8 @@ session_start();
             </div>
           </div>
         </div>
-        <div class="form-floating form-input input-group mb-3 col-12">
-          <input type="password" class="form-control" name="contraseña" placeholder="Contraseña" required>
-          <div class="input-group-append">
-            <div class="input-group-text form-icon">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="form-floating form-input input-group mb-3 col-12">
-          <input type="password" class="form-control" name="contraseña_repetida" placeholder="Repetir contraseña" required>
-          <div class="input-group-append">
-            <div class="input-group-text form-icon">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
+    
+        <!--
         <div class="form-floating form-input input-group mb-3 col-12">
           <input type="text" class="form-control" name="nombre_completo" placeholder="Nombre Completo" required>
           <div class="input-group-append">
@@ -92,6 +78,7 @@ session_start();
             </div>
           </div>
         </div>
+        -->
         <div class="form-floating form-input input-group mb-3 col-12">
           <input type="number" class="form-control" name="dni" placeholder="DNI" required>
           <div class="input-group-append">
@@ -108,6 +95,23 @@ session_start();
                 <div class="input-group-text form-icon">
                   <i class="fa fa-calendar"></i>
                 </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-floating form-input input-group mb-3 col-12">
+          <input type="password" class="form-control" name="contraseña" placeholder="Contraseña" required>
+          <div class="input-group-append">
+            <div class="input-group-text form-icon">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="form-floating form-input input-group mb-3 col-12">
+          <input type="password" class="form-control" name="contraseña_repetida" placeholder="Repetir contraseña" required>
+          <div class="input-group-append">
+            <div class="input-group-text form-icon">
+              <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>

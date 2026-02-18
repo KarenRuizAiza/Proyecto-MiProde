@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 class DesafioModel extends Model
 {
     protected $table = 'desafio';
-    protected $allowedFields = ['id', 'nombre', 'id_torneo', 'fecha', 'hora', 'id_partido'];
+    protected $allowedFields = ['id', 'nombre', 'id_torneo', 'fecha', 'hora', 'id_creador'];
 
     public function getDesafios()
     {
@@ -16,11 +16,13 @@ class DesafioModel extends Model
     public function listarDesafiosPorUsuario($idUsuario)
     {
         return $this->db->table('desafio')
-            ->select('desafio.*')
-            ->join('desafio_participante', 'desafio.id = desafio_participante.id_desafio')
+            ->select('desafio.*, torneo.nombre as torneo_nombre')
+            ->join('desafio_participante', 'desafio.id = desafio_participante.id_desafio', 'left')
+            ->join('torneo', 'torneo.id = desafio.id_torneo', 'left')
             ->where('desafio_participante.id_participante', $idUsuario)
+            ->orWhere('desafio.id_creador', $idUsuario)
             ->get()->getResultArray();
-        }
+    }
 
    /* public function listarInvitacionesPorUsuario($idUsuario)
     {
