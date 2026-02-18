@@ -1,8 +1,10 @@
 .session-bg {
-    display: grid;
+    display: block;
+    height: 45em;
+    align-content: center;
     background-image: url("../../img/online-betting-sports-neon.jpg");
     background-color: #cccccc;
-    height: 60em;
+    
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -27,8 +29,11 @@
     align-items: center;
     justify-content: center;
 }
+.register-container .app-title {
+    margin: 1.3rem auto;
+}
 .app-title {
-    margin: 2em auto 1em auto;
+    margin: 1.3em auto 1em auto;
     color: transparent;
     background-clip: text;
     background-image: linear-gradient(to right, #38C2A8 30%, #FF0060 100%);
@@ -45,7 +50,6 @@
 }
 .form-input {
     width: 25em;
-
 }
 .form-input input {
     border-radius: 30px;
@@ -55,14 +59,11 @@
     font-weight: bold;
 }
 .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: white;
     opacity: 1; /* Firefox */
 }
-
 .form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: white;
 }
-
 .form-control::-ms-input-placeholder { /* Microsoft Edge */
     color: white;
 }
