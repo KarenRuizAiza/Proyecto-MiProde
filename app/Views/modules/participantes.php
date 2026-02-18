@@ -68,7 +68,7 @@
                                 } else { ?>
                                     <tr style="text-align: center;">
                                         <td colspan="3">
-                                             <?= $torneo_seleccionado != 'null' || !$desafio_seleccionado ? 
+                                             <?= $torneo_seleccionado != 'null' || isset($desafio_seleccionado) ?
                                                 'Todavia no hay ninguna apuesta realizada' : 
                                                 'No ha seleccionado ningún torneo' ?>
                                         </td>
