@@ -88,7 +88,7 @@
                                         <th>Torneo</th>
                                         <th>Fecha</th>
                                         <th>Hora</th>
-                                        <th>Invitado</th>
+                                        <th>Rol</th>
                                         <th>Acciones</th>
                                     </tr>
                                     </thead>
@@ -100,7 +100,7 @@
                                             <td><?= $d['torneo_nombre'] ?></td>
                                             <td><?= DateTime::createFromFormat('Y-m-d', $d['fecha'])->format('d/m/Y') ?></td>
                                             <td><?= $d['hora'] ?></td>
-                                            <td><?= $d['id_creador'] == $participante ? 'Dueño' : 'SI' ?></td>
+                                            <td><?= $d['id_creador'] == $participante ? 'Dueño' : 'Invitado' ?></td>
         
                                             <td >
                                                 <?php if ($d['id_creador'] == $participante): ?>

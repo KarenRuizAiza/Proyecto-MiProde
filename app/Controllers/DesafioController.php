@@ -122,6 +122,15 @@ class DesafioController extends BaseController
                 ->first();
 
             if (!$exists) {
+                $email = \Config\Services::email();
+
+                $email->setTo($correo);
+                $email->setSubject('Invitación al desafío');
+
+                $email->setMessage("
+                    <h3>¡Te invitaron a un desafío!</h3>
+                    <p>Ingresá a la app para participar. si no tienes usuario, registrate!</p>
+                ");
 
                 $data = [
                     'id_desafio' => $idDesafio,
@@ -133,7 +142,7 @@ class DesafioController extends BaseController
                 $invitacionModel->insert($data);
             }
         }
-        return redirect()->back()->with('success', 'Invitaciones enviadas');    
+        return redirect()->to(base_url('desafios'))->with('success', 'Invitaciones enviadas');    
     }
 
     public function desafioSeleccionado($id = null)

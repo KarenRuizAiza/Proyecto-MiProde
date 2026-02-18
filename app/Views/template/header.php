@@ -74,7 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
-          <?php if(!session()->has('id')): ?>
+          <?php if(!session()->has('usuarioId')): ?>
             <li class="nav-item">
               <a href="<?= site_url('/login') ?>" class="btn btn-outline-primary mr-2">Iniciar Sesión</a>
             </li>

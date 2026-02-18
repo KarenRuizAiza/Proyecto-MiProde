@@ -52,6 +52,16 @@ class InvitacionController extends BaseController
 
     public function rechazarInvitacion($id)
     {
+        $invitacionModel = new InvitacionModel();
+        $invitacion = $invitacionModel->find($id);
+
+        if (!$invitacion) {
+            return redirect()->back()->with('error', 'Invitación no encontrada');
+        }
+
+        $invitacionModel->update($id, [
+            'estado' => 'RECHAZADA'
+        ]);
         return redirect()->to(base_url("/invitaciones"))->with('success', 'Se ha rechazado la invitacion!');;
     }
 }

@@ -8,7 +8,7 @@
 
                 <h4>Apuesta con <?=$cantidada_aciertos?> aciertos</h4>
             </section>
-            <section class="content" style="max-height: 44rem; overflow: auto;">
+            <section class="content" style="overflow: auto;">
                 <div class="justify-content-center container-fluid fixture-body">
 
                     <?php foreach ($fixture as $fase => $partidos) : ?>
