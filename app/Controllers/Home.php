@@ -9,6 +9,11 @@ class Home extends BaseController
 {
     public function index()
     {
+        $sess = session();
+        $id = $sess->get('id');
+        $id_sess = $sess->session_id ?? 'no-id';
+        file_put_contents(WRITEPATH . 'debug_session.log', date('Y-m-d H:i:s') . " - SessID: $id_sess - UserID: " . ($id ?? 'NULL') . "\n", FILE_APPEND);
+
         $torneoModel = new \App\Models\TorneoModel();
         $partidoModel = new \App\Models\PartidoModel();
 

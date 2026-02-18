@@ -29,7 +29,7 @@ class Register extends BaseController
             '$usuarioEditar'=> ''
         );
 
-        if (isset($_SESSION['logged'])) {
+        if (session()->has('logged')) {
             $view = view('template/header')
                     . view('template/sidebar')
                     . view('sessions/register', $data)
@@ -70,7 +70,7 @@ class Register extends BaseController
                     print_r($usuario);
                     $usuarioModelo->insert($usuario);
                     print_r("bien...");
-                    $_SESSION['alta_exitosa'] = 'Tu usuario se creó correctamente.';
+                    session()->setFlashdata('alta_exitosa', 'Tu usuario se creó correctamente.');
                     return $this->response->redirect(site_url('/login'));
                 }
 

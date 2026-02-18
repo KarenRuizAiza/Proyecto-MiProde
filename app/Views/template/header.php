@@ -53,6 +53,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="nav-item">
               <a href="<?= site_url('/register') ?>" class="btn btn-primary">Registrarse</a>
             </li>
+          <?php else: ?>
+            <li class="nav-item d-flex align-items-center">
+              <span class="mr-3 text-muted">Hola, <?= esc(session()->usuario) ?></span>
+              <form action="<?= site_url('logout') ?>" method="post" class="m-0">
+                <button type="submit" class="btn btn-outline-danger btn-sm">Cerrar Sesión</button>
+              </form>
+            </li>
           <?php endif; ?>
 
           <li class="nav-item">

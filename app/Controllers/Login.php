@@ -14,30 +14,37 @@ class Login extends BaseController
     }
 
     public function autenticar()
-        {
-            if ($this->request->getPost()) {
-                $model = new UsuarioModel();
-                $usuario = $model->where('nombre', $this->request->getPost('nombre'))->find();
+    {
+        if ($this->request->getPost()) {
+            $model = new UsuarioModel();
+            $usuario = $model->where('nombre', $this->request->getPost('nombre'))->first();
 
-                if ($usuario != null && count($usuario) > 0) {
-                    $usuario = $usuario[0];
-                    if ($usuario["contraseña"] == $this->request->getPost('contraseña')) {
-                        $this->session->usuarioId = $usuario["id"];
-                        $this->session->usuario = $usuario["nombre"];
-                        $this->session->rol = $usuario["rol"];
-                        $this->session->logged = true;
+            if ($usuario) {
+                if ($usuario["contraseña"] == $this->request->getPost('contraseña')) {
+                    // Set both keys to ensure compatibility with old controllers (usuarioId) 
+                    // and new views (id)
+                    $this->session->set([
+                        'id'        => $usuario["id"],
+                        'usuarioId' => $usuario["id"], 
+                        'usuario'   => $usuario["nombre"],
+                        'rol'       => $usuario["rol"],
+                        'logged'    => true,
+                    ]);
 
-                        return $this->response->redirect(site_url('/'));
-                    } else  {
-                        return $this->errorMessage();
-                    }
-                }
-                else {
+                    $id_sess = $this->session->session_id ?? 'no-id';
+                    file_put_contents(WRITEPATH . 'debug_session.log', date('Y-m-d H:i:s') . " - LOGIN SUCCESS - SessID: $id_sess - UserID: " . ($usuario["id"]) . "\n", FILE_APPEND);
+
+                    return $this->response->redirect(site_url('/'));
+                } else {
                     return $this->errorMessage();
                 }
-
-            } else return $this->response->redirect(site_url('/login'));
+            } else {
+                return $this->errorMessage();
+            }
+        } else {
+            return $this->response->redirect(site_url('/login'));
         }
+    }
 
     private function errorMessage()
         {

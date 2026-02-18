@@ -19,13 +19,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="<?= base_url('/css/miprode/sessions.css')?>">
 </head>
 <?php
-session_start();
-
 // Verificar si hay un mensaje en la sesión
-if (isset($_SESSION['alta_exitosa'])) {
-    echo "<script>alert('" . $_SESSION['alta_exitosa'] . "');</script>";
-    // Después de mostrar el mensaje, borrar el mensaje de la sesión
-    unset($_SESSION['alta_exitosa']);
+if (session()->has('alta_exitosa')) {
+    echo "<script>alert('" . session()->getFlashdata('alta_exitosa') . "');</script>";
 }
 ?>
 <body class="hold-transition sidebar-mini" style="overflow: hidden">
