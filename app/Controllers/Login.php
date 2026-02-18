@@ -13,7 +13,6 @@ class Login extends BaseController
         return view('sessions/log-in', ['error' => $error]);
     }
 
-
     public function autenticar()
     {
         if ($this->request->getPost()) {
@@ -25,7 +24,7 @@ class Login extends BaseController
             // TODO: password_verify Solo funciona cuando las contraseñas estan guardadas con hash en la base
             // if ($usuario && password_verify($contraseña, $usuario['contraseña'])) {
             if ($usuario && $contraseña === $usuario['contraseña']) {
-                
+
 
                 $this->session->usuarioId = $usuario["id"];
                 $this->session->usuario = $usuario["nombre"];

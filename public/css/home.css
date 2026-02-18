@@ -1,0 +1,283 @@
+/* Home Page Styles */
+html,
+body.home-page,
+.content-wrapper {
+    background-color: #0f1923 !important;
+    /* Dark background */
+    color: #ffffff;
+    font-family: 'Source Sans Pro', sans-serif;
+    overflow-y: auto !important;
+    /* Ensure vertical scrolling is enabled */
+    height: auto !important;
+    min-height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f1923;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2c3b47;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3d4e5c;
+}
+
+.home-container {
+    background-color: #0f1923;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/img/Apuestas-deportivas-1.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    padding: 60px 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: white;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    border-left: 4px solid #007bff;
+    padding-left: 10px;
+    color: #ffffff;
+}
+
+/* Phase Header */
+.phase-header {
+    background-color: #2c3b47;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border-left: 3px solid #28a745;
+}
+
+.phase-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+
+/* Group Cards (Fixture Style) */
+.group-card {
+    background-color: #1a242d;
+    border-radius: 8px;
+    border: 1px solid #2c3b47;
+    height: 100%;
+    overflow: hidden;
+}
+
+.group-header {
+    background-color: #e67e22;
+    /* Orange header */
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.group-header h5 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.group-content {
+    padding: 10px;
+}
+
+/* Compact Match Item */
+.match-item-compact {
+    background-color: #25323e;
+    border-radius: 5px;
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #2c3b47;
+}
+
+.match-item-compact:last-child {
+    margin-bottom: 0;
+}
+
+.match-date-compact {
+    font-size: 0.7rem;
+    color: #8b9bb4;
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+.match-teams-compact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.team-name-compact {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 40%;
+}
+
+.vs-divider {
+    font-size: 0.7rem;
+    color: #6c757d;
+}
+
+.match-actions-compact {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.btn-compact {
+    flex: 1;
+    border: none;
+    border-radius: 3px;
+    padding: 2px 0;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-compact:hover {
+    opacity: 0.8;
+}
+
+.btn-l {
+    background-color: #28a745;
+}
+
+.btn-e {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.btn-v {
+    background-color: #dc3545;
+}
+
+
+/* Sidebar / Tournaments */
+.tournament-list {
+    background-color: #1a242d;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    /* Ensure spacing */
+}
+
+.tournament-item {
+    padding: 10px;
+    border-bottom: 1px solid #2c3b47;
+    color: #b1b1b1;
+    display: block;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.tournament-item:hover {
+    color: #ffffff;
+    background-color: #2c3b47;
+}
+
+.tournament-item:last-child {
+    border-bottom: none;
+}
+
+/* Challenge Card */
+.challenge-card {
+    background-color: #1a242d;
+    border: 1px solid #2c3b47;
+    height: auto;
+    /* Adapt to content */
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    /* Prevent overlap with following elements */
+    position: relative;
+    z-index: 1;
+}
+
+.challenge-card .card-title {
+    color: white;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.challenge-card .card-text {
+    margin-bottom: 20px;
+}
+
+/* Pagination */
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.25rem;
+}
+
+.page-item .page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #1a242d;
+    border: 1px solid #2c3b47;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #1a242d;
+    border-color: #2c3b47;
+}

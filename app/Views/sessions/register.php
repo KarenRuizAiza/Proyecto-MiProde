@@ -18,10 +18,7 @@
   <link rel="stylesheet" href="<?= base_url('/css/adminlte.min.css')?>">
   <link rel="stylesheet" href="<?= base_url('/css/miprode/sessions.css')?>">
 </head>
-<?php
-session_start();
 
-?>
 <body class="hold-transition register-page" style="overflow: hidden">
   <section class="session-bg register-out-bg register-container">
       
