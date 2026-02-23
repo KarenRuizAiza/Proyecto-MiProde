@@ -23,7 +23,7 @@ class Home extends BaseController
             'pager' => $partidoModel->pager
         ];
 
-        return view('template/header', $data)
+        return view('template/header')
             . view('modules/home', $data)
             . view('template/footer');
     }

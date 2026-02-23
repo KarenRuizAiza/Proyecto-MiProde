@@ -40,7 +40,7 @@
                     </div><!-- /.card-header -->
 
                     <div class="card-body" style="margin-top: 3em;">
-                        <div class="table-responsive p-0" style="height: 300px;">
+                        <div class="table-responsive p-0">
                             <table class="table table-head-fixed text-nowrap">
                                 <thead>
                                 <tr>

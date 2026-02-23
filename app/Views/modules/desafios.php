@@ -80,7 +80,7 @@
                         </div><!-- /.card-header -->
 
                         <div class="card-body" style="margin-top: 3em;">
-                            <div class="table-responsive p-0" style="height: 300px;">
+                            <div class="table-responsive p-0">
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
                                     <tr>
@@ -94,39 +94,47 @@
                                     </thead>
                                     <tbody>
                                     
-                                    <?php foreach ($desafios as $d) : ?> 
-                                    <tr>
-                                            <td><?= $d['nombre'] ?></td>
-                                            <td><?= $d['torneo_nombre'] ?></td>
-                                            <td><?= DateTime::createFromFormat('Y-m-d', $d['fecha'])->format('d/m/Y') ?></td>
-                                            <td><?= $d['hora'] ?></td>
-                                            <td><?= $d['id_creador'] == $participante ? 'Dueño' : 'Invitado' ?></td>
-        
-                                            <td >
-                                                <?php if ($d['id_creador'] == $participante): ?>
-                                                    <a href="<?php echo base_url('/deleteDesafio/'.$d['id']);?>" 
-                                                       title="Eliminar"
-                                                       onclick="return confirm('¿Desea eliminar el desafio seleccionado?')">
-                                                        <i class="fa-solid fa-trash-can"></i>
-                                                    </a>
-                                                    <a href="<?php echo base_url('/updateDesafio/'.$d['id']);?>" 
-                                                       title="Modificar">
-                                                        <i class="fa-solid fa-pen"></i>
-                                                    </a>
-                                                    <a href="#"
-                                                       id="enviarInvitacionBoton" 
-                                                       data-id="<?= $d['id']; ?>"
-                                                       title="EnviarInvitacion">
-                                                        <i class="fa-solid fa-envelope"></i>
-                                                    </a>
-                                                <?php endif; ?>
-                                                <a href="<?php echo base_url('/desafio/ranking/desafio='.$d['id']);?>"
-                                                   title="Ranking">
-                                                        <i class="fa-solid fa-ranking-star"></i>
-                                                    </a>
-                                            </td>
-                                    </tr>
-                                    <?php endforeach; ?>
+                                        <?php if ($desafios) {
+                                            foreach ($desafios as $d) : ?> 
+                                            <tr>
+                                                    <td><?= $d['nombre'] ?></td>
+                                                    <td><?= $d['torneo_nombre'] ?></td>
+                                                    <td><?= DateTime::createFromFormat('Y-m-d', $d['fecha'])->format('d/m/Y') ?></td>
+                                                    <td><?= $d['hora'] ?></td>
+                                                    <td><?= $d['id_creador'] == $participante ? 'Dueño' : 'Invitado' ?></td>
+                
+                                                    <td >
+                                                        <?php if ($d['id_creador'] == $participante): ?>
+                                                            <a href="<?php echo base_url('/deleteDesafio/'.$d['id']);?>" 
+                                                            title="Eliminar"
+                                                            onclick="return confirm('¿Desea eliminar el desafio seleccionado?')">
+                                                                <i class="fa-solid fa-trash-can"></i>
+                                                            </a>
+                                                            <a href="<?php echo base_url('/updateDesafio/'.$d['id']);?>" 
+                                                            title="Modificar">
+                                                                <i class="fa-solid fa-pen"></i>
+                                                            </a>
+                                                            <a href="#"
+                                                            id="enviarInvitacionBoton" 
+                                                            data-id="<?= $d['id']; ?>"
+                                                            title="EnviarInvitacion">
+                                                                <i class="fa-solid fa-envelope"></i>
+                                                            </a>
+                                                        <?php endif; ?>
+                                                        <a href="<?php echo base_url('/desafio/ranking/desafio='.$d['id']);?>"
+                                                        title="Ranking">
+                                                                <i class="fa-solid fa-ranking-star"></i>
+                                                            </a>
+                                                    </td>
+                                            </tr>
+                                            <?php endforeach; 
+                                        } else { ?>
+                                            <tr style="text-align: center;">
+                                                <td colspan="6">
+                                                    Actualmente no es parte de ningún desafio
+                                                </td>
+                                            </tr>
+                                        <?php }?>
                             
                                     </tbody>
                                 </table>

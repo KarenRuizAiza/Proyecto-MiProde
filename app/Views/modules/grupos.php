@@ -42,7 +42,7 @@
 
                                 </form>
                             </div><!-- /.form -->
-                            <div class="table-responsive p-0" style="height: 300px;">
+                            <div class="table-responsive p-0">
                                 <h1> <?= $titulo ?> </h1>
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>

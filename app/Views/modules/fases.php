@@ -62,7 +62,7 @@
 
                         <div class="card-body" style="margin-top: 3em;">
                             <h4> Listado de Fases </h4>
-                            <div class="table-responsive p-0" style="height: 300px;">
+                            <div class="table-responsive p-0">
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
                                     <tr>

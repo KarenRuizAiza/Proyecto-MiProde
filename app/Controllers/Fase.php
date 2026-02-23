@@ -107,7 +107,7 @@ class Fase extends BaseController
         $faseModel = new FaseModel();
 
         $fase = $faseModel->find($id_fase);
-        $equipos = $equipoModel->findAll();
+        $equipos = $equipoModel->orderBy('nombre', 'ASC')->findAll();
         $grupos = $grupoModel->findAll();
         $partidos = $partidoModel->listarPorFaseConApuestas($id_fase, $this->session->usuarioId);
 
@@ -136,7 +136,6 @@ class Fase extends BaseController
         $torneoModel = new TorneoModel();
 
         $torneoActual = $torneoModel
-            ->where('fecha_inicio <=', $today)
             ->where('fecha_fin >=', $today)
             ->orderBy('fecha_inicio', 'DESC')
             ->first();

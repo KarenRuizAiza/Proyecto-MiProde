@@ -20,7 +20,7 @@ class Partido extends BaseController
 
         $partidos = $partidoModel->listarPorFaseConApuestas($id_fase, $this->session->usuarioId);
         $fase = $faseModel->find($id_fase);
-        $equipos = $equipoModel->findAll();
+        $equipos = $equipoModel->orderBy('nombre', 'ASC')->findAll();
 
         $data = array(
             'titulo' => 'Partidos',
@@ -48,7 +48,7 @@ class Partido extends BaseController
 
         $fase = $faseModel->find($id_fase);
         $grupos = $grupoModel->findAll();
-        $equipos = $equipoModel->findAll();
+        $equipos = $equipoModel->orderBy('nombre', 'ASC')->findAll();
         $partidos = $partidoModel->listarPorFaseConApuestas($id_fase, $this->session->usuarioId);
 
         $partidoEditar = $partidoModel->find($id);
@@ -83,7 +83,7 @@ class Partido extends BaseController
 
         $fase = $faseModel->find($id_fase);
         $partidos = $partidoModel->listarPorFaseConApuestas($id_fase, $this->session->usuarioId);
-        $equipos = $equipoModel->findAll();
+        $equipos = $equipoModel->orderBy('nombre', 'ASC')->findAll();
 
         $apuesta = $apuestaModel->existeApuesta($this->session->usuarioId, $id_fase);
 
@@ -217,7 +217,7 @@ class Partido extends BaseController
         $grupos = $grupoModel->findAll();
         $partidos = $partidoModel->listarPorFase($id_fase);
         $partidoSeleccionado = $partidoModel->partidoPorFase($id, $id_fase);
-        $equipos = $equipoModel->findAll();
+        $equipos = $equipoModel->orderBy('nombre', 'ASC')->findAll();
 
         $tieneEquipoDefinido = $partidoSeleccionado ? $partidoSeleccionado[0]['id_equipo_local'] && $partidoSeleccionado[0]['id_equipo_visitante'] : false;
 

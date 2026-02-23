@@ -12,7 +12,7 @@ class Torneo extends BaseController
     public function index()
     {
         $torneoModel = new TorneoModel();
-        $torneos = $torneoModel->findAll();
+        $torneos = $torneoModel->orderBy('id', 'DESC')->findAll();
 
         $data = array(
             'titulo' => 'Torneos',
@@ -29,7 +29,7 @@ class Torneo extends BaseController
     public function torneoSeleccionado($id = null)
     {
         $torneoModel = new TorneoModel();
-        $torneos = $torneoModel->findAll();
+        $torneos = $torneoModel->orderBy('id', 'DESC')->findAll();
 
         $torneoEditar = $torneoModel->find($id);
 
@@ -48,6 +48,7 @@ class Torneo extends BaseController
     public function agregarModificarTorneo()
     {
         //dd($this->request->getPost('fecha_inicio'));
+        $mensaje = '';
         if ($this->request->getPost()) {
             $torneo = [
                 'nombre' => $this->request->getPost('nombre'),
@@ -61,14 +62,16 @@ class Torneo extends BaseController
             if ($this->request->getPost('id')) {
                 $torneo['id'] = $this->request->getPost('id');
                 $torneoModelo->update($this->request->getPost('id'), $torneo);
+                $mensaje = "¡Se modificó el torneo seleccionado!";
             }
             else {
                 
                 $torneoModelo->insert($torneo);
+                $mensaje = "¡Se agregó un nuevo torneo!";
             }
         } 
                              
-        return $this->response->redirect(site_url('/torneos'));
+        return $this->response->redirect(site_url('/torneos'))->with('success', $mensaje);
     }
 
     public function eliminarTorneo($id = NULL)
@@ -76,7 +79,7 @@ class Torneo extends BaseController
         $torneoModelo = new TorneoModel();
         $data['user'] = $torneoModelo->where('id', $id)->delete($id);
 
-        return $this->response->redirect(site_url('/torneos'));
+        return $this->response->redirect(site_url('/torneos'))->with('success', '¡Se eliminó correctamente el torneo!');
     }
 
     public function agregarFase($id_torneo)

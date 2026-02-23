@@ -38,7 +38,7 @@ class InvitacionController extends BaseController
         }
         
         $desafioParticipante = [
-            'id_desafio' => $id,
+            'id_desafio' => $invitacion['id_desafio'],
             'id_participante' => $this->session->usuarioId,
         ];
         $desafioParticipanteModel->insert($desafioParticipante);
