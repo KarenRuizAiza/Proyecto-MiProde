@@ -108,12 +108,8 @@ class Torneo extends BaseController
     {
         $torneoModel = new TorneoModel();
         $data['titulo'] = "Apuestas Realizadas";
-        
-        if (session()->rol == 'Participante') {
-            $data['torneos'] = $torneoModel->listarTorneosPorUsuario(session()->usuarioId);
-        } else {
-            $data['torneos'] = $torneoModel->findAll();
-        }
+        $data['torneos'] = $torneoModel->findAll();
+        //$data['torneos'] = $torneo->where('fecha_fin >', date("Y-m-d"))->orderBy('id', 'ASC')->findAll();
         
         return view('template/header')
         . view('template/sidebar')

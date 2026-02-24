@@ -15,38 +15,17 @@
                                 <div class="input-group input-group-sm">
                                     <!-- /form -->
                                     <div class="form-container">
-                                        <form class="form-group form-card" style="place-items: center; flex-wrap: wrap" action="<?php echo base_url('agregarModificarDesafio');?>" method="post" name="agregarModificarDesafio" id="formFase">
+                                        <form class="form-group form-card" style="place-items: center;" action="<?php echo base_url('agregarModificarDesafio');?>" method="post" name="agregarModificarDesafio" id="formFase">
                                             <?= csrf_field() ?>
                                             <input type="hidden" name="id" value="<?php echo isset($desafioEditar) ? $desafioEditar['id'] : '' ?>">
 
-                                            <div class="flex-column d-flex col-sm-5">
+                                            <div class="flex-column d-flex col-sm-8">
                                                 <label for="nombre" class="form-label">Nombre del desafio</label>
                                                 <input name="nombre" class="form-control" value="<?php echo isset($desafioEditar) ? $desafioEditar['nombre'] : '' ?>">
                                             </div>
 
                                             <input type="hidden" name="id_torneo" value="<?php echo isset($torneo) ? $torneo["id"] : ''?>">
                                             
-                                            <div class="flex-column d-flex col-sm-3">
-                                                <label>Fecha</label>
-                                                <div class="input-group date" id="reservationdateStart" data-target-input="nearest">
-                                                    <input type="text" name="fecha" class="form-control  datetimepicker-input" value="<?php echo isset($desafioEditar) ? DateTime::createFromFormat('Y-m-d', $desafioEditar['fecha'])->format('d/m/Y') : '' ?>"/>
-                                                    <div class="input-group-append" data-target="#reservationdateStart" data-toggle="datetimepicker">
-                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="flex-column d-flex col-sm-2">
-                                                <label>Hora</label>
-                                                    <div class="input-group time" id="timepicker"
-                                                    data-target-input="nearest">
-                                                        <input type="text" id="hora" readonly="readonly" name="hora" class="form-control datetimepicker-input col-sm-10" data-target="#timepicker" value="<?= isset($desafioEditar) ? $desafioEditar['hora'] : '' ?>"/>
-                                                        <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
-                                                            <div class="input-group-text"><i class="far fa-clock"></i></div>
-                                                    </div>
-                                                    <!-- /.input group -->
-                                                </div>
-                                            </div>
 
                                             <div class="flex-column d-flex col-sm-8">
                                                 <label>Torneo</label>
@@ -63,7 +42,7 @@
 
                                             <input type="hidden" name="id_partido" value="<?php echo isset($partido) ? $partido["id"] : ''?>">
                                             
-                                            <div class="flex-row d-flex col-sm-3" style="gap: 1rem; margin-top: 1.8rem">
+                                            <div class="flex-row d-flex col-sm-6" style="gap: 1rem; margin-top: 1.8rem">
                                                 <button type="submit" name="submit" class="form-control btn-primary"
                                                         onclick="return alert('¿Desea guardar el desafio los datos ingresados?')">
                                                     <i class='<?= isset($desafioEditar) ? 'fa fa-check' : 'fa fa-plus' ?>'></i>
@@ -86,8 +65,8 @@
                                     <tr>
                                         <th>Nombre</th>
                                         <th>Torneo</th>
-                                        <th>Fecha</th>
-                                        <th>Hora</th>
+                                        <!--<th>Fecha</th>-->
+                                        <!--<th>Hora</th>-->
                                         <th>Rol</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -99,8 +78,7 @@
                                             <tr>
                                                     <td><?= $d['nombre'] ?></td>
                                                     <td><?= $d['torneo_nombre'] ?></td>
-                                                    <td><?= DateTime::createFromFormat('Y-m-d', $d['fecha'])->format('d/m/Y') ?></td>
-                                                    <td><?= $d['hora'] ?></td>
+                                                
                                                     <td><?= $d['id_creador'] == $participante ? 'Dueño' : 'Invitado' ?></td>
                 
                                                     <td >
@@ -115,9 +93,9 @@
                                                                 <i class="fa-solid fa-pen"></i>
                                                             </a>
                                                             <a href="#"
-                                                            id="enviarInvitacionBoton" 
+                                                            class="enviarInvitacionBoton" 
                                                             data-id="<?= $d['id']; ?>"
-                                                            title="EnviarInvitacion">
+                                                            title="Enviar invitacion">
                                                                 <i class="fa-solid fa-envelope"></i>
                                                             </a>
                                                         <?php endif; ?>
@@ -154,7 +132,7 @@
 
                                     <div class="modal-header">
                                         <h5 class="modal-title">Enviar Invitaciones</h5>
-                                        <button type="button" class="close" data-dismiss="modal">
+                                        <button type="button" class="close" data-bs-dismiss="modal">
                                             <span>&times;</span>
                                         </button>
                                     </div>
@@ -205,7 +183,7 @@
             <script>
                 let emails = [];
 
-                $('#enviarInvitacionBoton').on('click', function() {
+                $('.enviarInvitacionBoton').on('click', function() {
 
                     var id = $(this).data('id');
 
