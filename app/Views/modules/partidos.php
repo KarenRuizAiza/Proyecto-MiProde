@@ -280,7 +280,10 @@
                                             <div class="team mb-3">
                                                 <!-- <img src="base_url()?>/img/teams/=$partidoPrediccion ? array_values($partidoPrediccion)[0]['local'] : ''; ?>.svg">-->
                                                 
-                                                <?php if ($partidoPrediccion && array_values($partidoPrediccion)[0]['local']  && array_values($partidoPrediccion)[0]['visitante']) { ?>
+                                                <?php if ($partidoPrediccion && array_values($partidoPrediccion)[0]['id_equipo_local']  && array_values($partidoPrediccion)[0]['id_equipo_visitante']) { ?>
+                                                    <input type="hidden" name="equipo_local_prediccion" value="<?= array_values($partidoPrediccion)[0]['id_equipo_local']; ?>">
+                                                    <input type="hidden" name="equipo_visitante_prediccion" value="<?= array_values($partidoPrediccion)[0]['id_equipo_visitante']; ?>">
+                                                    
                                                     <img src="<?= base_url()?>/img/teams/<?=$partidoPrediccion ? array_values($partidoPrediccion)[0]['local'] : ''; ?>.svg">
                                                     <span><?= $partidoPrediccion ? array_values($partidoPrediccion)[0]['local'] : '';?>  - </span>
                                                     <img src="<?= base_url()?>/img/teams/<?=$partidoPrediccion ? array_values($partidoPrediccion)[0]['visitante'] : '';?>.svg">
