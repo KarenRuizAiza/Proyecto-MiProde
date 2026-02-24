@@ -71,7 +71,7 @@ class Torneo extends BaseController
             }
         } 
                              
-        return $this->response->redirect(site_url('/torneos'))->with('success', $mensaje);
+        return redirect()->to(site_url('/torneos'))->with('success', $mensaje);
     }
 
     public function eliminarTorneo($id = NULL)
@@ -79,7 +79,7 @@ class Torneo extends BaseController
         $torneoModelo = new TorneoModel();
         $data['user'] = $torneoModelo->where('id', $id)->delete($id);
 
-        return $this->response->redirect(site_url('/torneos'))->with('success', '¡Se eliminó correctamente el torneo!');
+        return redirect()->to(site_url('/torneos'))->with('success', '¡Se eliminó correctamente el torneo!');
     }
 
     public function agregarFase($id_torneo)
@@ -108,8 +108,12 @@ class Torneo extends BaseController
     {
         $torneoModel = new TorneoModel();
         $data['titulo'] = "Apuestas Realizadas";
-        $data['torneos'] = $torneoModel->findAll();
-        //$data['torneos'] = $torneo->where('fecha_fin >', date("Y-m-d"))->orderBy('id', 'ASC')->findAll();
+        
+        if (session()->rol == 'Participante') {
+            $data['torneos'] = $torneoModel->listarTorneosPorUsuario(session()->usuarioId);
+        } else {
+            $data['torneos'] = $torneoModel->findAll();
+        }
         
         return view('template/header')
         . view('template/sidebar')

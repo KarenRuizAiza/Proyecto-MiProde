@@ -50,6 +50,7 @@ class Usuario extends BaseController
     {
         //dd($this->request->getPost('fecha_inicio'));
         if ($this->request->getPost()) {
+            $id = $this->request->getPost('id');
             $usuario = [
                 'nombre' => $this->request->getPost('nombre'),
                 'email' => $this->request->getPost('email'),
@@ -57,10 +58,10 @@ class Usuario extends BaseController
             ];
             $usuarioModelo = new UsuarioModel();
             
-            if ($this->verificarExistenciaUsuario($usuario)) {
-                if ($this->request->getPost('id')) {
-                    $usuarioo['id'] = $this->request->getPost('id');
-                    $usuarioModelo->update($this->request->getPost('id'), $usuario);
+            if ($this->verificarExistenciaUsuario($usuario, $id)) {
+                if ($id) {
+                    $usuario['id'] = $id;
+                    $usuarioModelo->update($id, $usuario);
                 }
                 else {
                     $usuario['contraseña'] = '123abc';
@@ -69,15 +70,19 @@ class Usuario extends BaseController
             }
         } 
                              
-        return $this->response->redirect(site_url('/usuarios'));
+        return redirect()->to(site_url('/usuarios'));
     }
 
 
-    private function verificarExistenciaUsuario($datos_usuario)
+    private function verificarExistenciaUsuario($datos_usuario, $id = null)
     {
         $usuarioModel = new UsuarioModel();
         $usuarios = $usuarioModel->findAll();
-        $resultado = array_filter($usuarios, function($user) use ($datos_usuario) {
+        $resultado = array_filter($usuarios, function($user) use ($datos_usuario, $id) {
+            // Si el usuario tiene el mismo ID que el que estamos editando, lo ignoramos
+            if ($id && $user['id'] == $id) {
+                return false;
+            }
             return $user['nombre'] === $datos_usuario['nombre'] || $user['email'] === $datos_usuario['email'];
         });
 
@@ -93,7 +98,7 @@ class Usuario extends BaseController
         $usuarioModelo = new UsuarioModel();
         $data['user'] = $usuarioModelo->where('id', $id)->delete($id);
 
-        return $this->response->redirect(site_url('/usuarios'));
+        return redirect()->to(site_url('/usuarios'));
     }
 
     public function restablecerContraseña($id = NULL)
@@ -101,6 +106,6 @@ class Usuario extends BaseController
         $usuarioModelo = new UsuarioModel();
         $usuarioModelo->update($id, ['contraseña'=> '123abc']);
 
-        return $this->response->redirect(site_url('/usuarios'));
+        return redirect()->to(site_url('/usuarios'));
     }
 }
