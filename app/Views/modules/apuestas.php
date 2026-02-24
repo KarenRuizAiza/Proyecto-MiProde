@@ -37,6 +37,12 @@
                                                 
                                             </tr>
                                         <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="4" class="text-center text-muted py-4">
+                                                No ha realizado ninguna apuesta.
+                                            </td>
+                                        </tr>
                                     <?php endif; ?>
                                 </tbody>
                             </table>

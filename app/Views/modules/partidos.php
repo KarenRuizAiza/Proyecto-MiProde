@@ -247,6 +247,14 @@
                                     </div>
                                 </div>
                             <?php endforeach; ?>
+                            <?php if(!$partidos): ?>
+                                 <div style="text-align: center">
+                                    <!--<span class="match-card-tittle">Khallifa International Stadium, Municipio de Rayan</span>-->
+                                    <h5>
+                                            Aun no hay disponible ningun partido para la fase seleccionada.
+                                    </h5>
+                                </div>
+                            <?php endif; ?>
                             <!-- /.listado de partidos -->
                         </div>
                         </div><!-- /.card-body -->

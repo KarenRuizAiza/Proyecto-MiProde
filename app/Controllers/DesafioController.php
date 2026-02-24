@@ -36,7 +36,7 @@ class DesafioController extends BaseController
         $desafioModel = new DesafioModel();
         $torneoModel = new TorneoModel();
 
-        $torneos = $torneoModel->findAll();
+        $torneos = $torneoModel->where('fecha_inicio >', date('Y-m-d'))->findAll();
 
         $desafios = $desafioModel->listarDesafiosPorUsuario($this->session->usuarioId);
         $data = array(
@@ -58,8 +58,8 @@ class DesafioController extends BaseController
             $desafio = [
                 'id_torneo' => $this->request->getPost('torneo'),
                 'nombre' => $this->request->getPost('nombre'),
-                'fecha' => DateTime::createFromFormat("d/m/Y", $this->request->getPost('fecha'))->format('Y-m-d'),
-                'hora' => $this->request->getPost('hora'),
+                //'fecha' => DateTime::createFromFormat("d/m/Y", $this->request->getPost('fecha'))->format('Y-m-d'),
+                //'hora' => $this->request->getPost('hora'),
                 'id_creador' => $this->session->usuarioId
             ];
 
@@ -140,6 +140,7 @@ class DesafioController extends BaseController
                     'estado'     => 'PENDIENTE'
                 ];
                 $invitacionModel->insert($data);
+                $email->send();
             }
         }
         return redirect()->to(base_url('desafios'))->with('success', 'Invitaciones enviadas');    
@@ -154,7 +155,7 @@ class DesafioController extends BaseController
 
         $desafioEditar = $desafioModel->find($id);
         
-        $torneos = $torneoModel->findAll();
+        $torneos = $torneoModel->where('fecha_inicio >', date('Y-m-d'))->findAll();
 
         $data = array(
             'titulo' => 'Editar desafio',
