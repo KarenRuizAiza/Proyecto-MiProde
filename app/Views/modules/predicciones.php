@@ -20,7 +20,7 @@
 
                                         <div class="flex-column d-flex col-sm-8">
                                             <label>Participante</label>
-                                            <select id="participante" name="prticipante" class="form-control select2" >
+                                            <select id="participante" name="participante" class="form-control select2" >
                                                 <option value="<?=null?>">Seleccionar...</option>
                                                 <?php foreach ($participantes as $p) : ?>
                                                     <option <?= $participante_seleccionado ? ($participante_seleccionado === $p['id'] ? 'selected="selected"': '') : '' ?>" 
