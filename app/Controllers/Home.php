@@ -16,13 +16,25 @@ class Home extends BaseController
 
         $torneoModel = new \App\Models\TorneoModel();
         
+        $torneos = [];
+        if (session()->has('usuarioId') && session()->rol == 'Participante') {
+            $torneos = $torneoModel->listarVigentesConPredicciones(session()->usuarioId);
+        } else {
+            // Para admin o visitantes, mostrar todos los vigentes (o una lógica similar)
+            $torneos = $torneoModel->where('fecha_fin >=', date('Y-m-d'))->findAll();
+        }
+
         $data = [
-            'torneos' => $torneoModel->findAll()
+            'torneos' => $torneos
         ];
 
-        return view('template/header')
-            . view('template/sidebar')
-            . view('modules/home', $data)
-            . view('template/footer');
+        $view = view('template/header');
+        if (session()->has('usuarioId')) {
+            $view .= view('template/sidebar');
+        }
+        $view .= view('modules/home', $data);
+        $view .= view('template/footer');
+
+        return $view;
     }
 }

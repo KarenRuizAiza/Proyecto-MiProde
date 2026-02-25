@@ -20,7 +20,6 @@ class InvitacionModel extends Model
       return $this->select('invitacion_desafio.*, desafio.nombre AS desafio')
         ->join('desafio', 'desafio.id = invitacion_desafio.id_desafio', 'left')
         ->where('invitacion_desafio.correo', $correoUsuario)
-        ->where('invitacion_desafio.estado', 'PENDIENTE')
         ->orderBy('invitacion_desafio.fecha', 'ASC')
         ->findAll();
     }

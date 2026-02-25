@@ -29,16 +29,20 @@
                                     <td><?= DateTime::createFromFormat('Y-m-d', $invitacion['fecha'])->format('d/m/Y') ?></td>
                                     <td><?php echo $invitacion['estado']; ?></td>
                                     <td>
-                                        <a href="<?php echo base_url('/aceptarInvitacion/'.$invitacion['id']);?>" 
-                                            title="Aceptar"
-                                            onclick="return confirm('¿Desea aceptar la invitacion?')">
-                                            <i class="fa-solid fa-check"></i>
-                                        </a>
-                                        <a href="<?php echo base_url('/rechazarInvitacion/'.$invitacion['id']);?>" 
-                                            title="Rechazar"
-                                            onclick="return confirm('¿Desea rechazar la invitacion?')">
-                                            <i class="fa-regular fa-circle-xmark"></i>
-                                        </a>
+                                        <?php if ($invitacion['estado'] === 'PENDIENTE'): ?>
+                                            <a href="<?php echo base_url('/aceptarInvitacion/'.$invitacion['id']);?>" 
+                                                title="Aceptar"
+                                                onclick="return confirm('¿Desea aceptar la invitacion?')">
+                                                <i class="fa-solid fa-check"></i>
+                                            </a>
+                                            <a href="<?php echo base_url('/rechazarInvitacion/'.$invitacion['id']);?>" 
+                                                title="Rechazar"
+                                                onclick="return confirm('¿Desea rechazar la invitacion?')">
+                                                <i class="fa-regular fa-circle-xmark"></i>
+                                            </a>
+                                        <?php else: ?>
+                                            <span class="text-muted"><i class="fas fa-lock"></i></span>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

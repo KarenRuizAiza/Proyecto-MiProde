@@ -27,7 +27,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="<?= base_url('/css/miprode/formularios.css')?>">
     <link rel="stylesheet" href="<?= base_url('/css/miprode/fixture.css')?>">
 </head>
-<body class="hold-transition sidebar-mini" style="overflow: hidden">
+<body class="hold-transition sidebar-mini <?= !session()->has('usuarioId') ? 'sidebar-collapse sidebar-closed' : '' ?>" style="overflow: hidden">
 
     <div aria-live="polite" aria-atomic="true" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
 

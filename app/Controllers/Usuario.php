@@ -70,7 +70,13 @@ class Usuario extends BaseController
             }
         } 
                              
-        return redirect()->to(site_url('/usuarios'));
+        if (isset($usuario['id'])) {
+            $mensaje = "¡Se modificó el usuario seleccionado!";
+        } else {
+            $mensaje = "¡Se agregó un nuevo usuario!";
+        }
+                             
+        return redirect()->to(site_url('/usuarios'))->with('success', $mensaje);
     }
 
 
@@ -98,7 +104,7 @@ class Usuario extends BaseController
         $usuarioModelo = new UsuarioModel();
         $data['user'] = $usuarioModelo->where('id', $id)->delete($id);
 
-        return redirect()->to(site_url('/usuarios'));
+        return redirect()->to(site_url('/usuarios'))->with('success', '¡Se eliminó correctamente el usuario!');
     }
 
     public function restablecerContraseña($id = NULL)
@@ -106,6 +112,6 @@ class Usuario extends BaseController
         $usuarioModelo = new UsuarioModel();
         $usuarioModelo->update($id, ['contraseña'=> '123abc']);
 
-        return redirect()->to(site_url('/usuarios'));
+        return redirect()->to(site_url('/usuarios'))->with('success', '¡Contraseña restablecida correctamente! Se le asignó "123abc" por defecto.');
     }
 }
